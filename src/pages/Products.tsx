@@ -12,9 +12,9 @@ const Products = () => {
 
   return (
     <Layout>
-      <section className="bg-gradient-to-b from-gray-100 to-white py-12">
+      <section className="bg-gradient-to-b from-stakerpol-lightgray to-white py-12">
         <div className="container-custom">
-          <h1 className="text-4xl font-bold mb-6 text-center animate-fade-in">{t('products')}</h1>
+          <h1 className="text-4xl font-bold mb-6 text-center animate-fade-in text-stakerpol-navy">{t('products')}</h1>
           <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in">
             Oferujemy szeroki wybór wózków widłowych BT Toyota, idealnie dopasowanych do różnych zastosowań i potrzeb.
           </p>

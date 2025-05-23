@@ -63,11 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				toyota: {
-					red: '#EB0A1E',
+				stakerpol: {
+					navy: '#0A2647',
+					gray: '#64748B',
 					orange: '#FF6B00',
-					black: '#000000',
-					gray: '#58595B'
+					lightgray: '#F1F5F9'
 				}
 			},
 			borderRadius: {
