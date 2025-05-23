@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 355 91% 48%;
+    --primary: 25 100% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
@@ -33,7 +33,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 355 91% 48%;
+    --ring: 25 100% 50%;
 
     --radius: 0.5rem;
   }
@@ -48,7 +48,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 355 91% 48%;
+    --primary: 25 100% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -77,6 +77,10 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
 }
 
 @layer components {
@@ -97,10 +101,18 @@
   }
   
   .cta-button {
-    @apply bg-toyota-red hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300 inline-flex items-center justify-center;
+    @apply bg-toyota-orange hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-md hover:shadow-lg transform hover:-translate-y-1;
   }
   
   .secondary-button {
-    @apply bg-secondary hover:bg-gray-200 text-toyota-gray font-medium py-3 px-6 rounded-md transition-colors duration-300 inline-flex items-center justify-center;
+    @apply bg-secondary hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-sm hover:shadow transform hover:-translate-y-1;
+  }
+  
+  .image-hover-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .image-hover-zoom img {
+    @apply transition-transform duration-500 ease-in-out hover:scale-110;
   }
 }

@@ -17,26 +17,26 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white shadow sticky top-0 z-50">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-toyota-red">Stakerpol</span>
+            <span className="text-2xl font-bold text-toyota-orange tracking-tight">Stakerpol</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="font-medium hover:text-toyota-red transition-colors">
+            <Link to="/" className="font-medium hover:text-toyota-orange transition-colors">
               {t('home')}
             </Link>
-            <Link to="/products" className="font-medium hover:text-toyota-red transition-colors">
+            <Link to="/products" className="font-medium hover:text-toyota-orange transition-colors">
               {t('products')}
             </Link>
-            <Link to="/testimonials" className="font-medium hover:text-toyota-red transition-colors">
+            <Link to="/testimonials" className="font-medium hover:text-toyota-orange transition-colors">
               {t('testimonials')}
             </Link>
-            <Link to="/contact" className="font-medium hover:text-toyota-red transition-colors">
+            <Link to="/contact" className="font-medium hover:text-toyota-orange transition-colors">
               {t('contact')}
             </Link>
             <LanguageSwitcher />
@@ -51,7 +51,7 @@ const Header = () => {
             <LanguageSwitcher />
             <button
               onClick={toggleMenu}
-              className="text-gray-800 hover:text-toyota-red"
+              className="text-gray-800 hover:text-toyota-orange transition-all"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -61,32 +61,32 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden pt-4 pb-2 animate-fade-in">
+          <div className="md:hidden pt-4 pb-2 animate-slide-in">
             <nav className="flex flex-col space-y-4">
               <Link 
                 to="/" 
-                className="font-medium py-2 hover:text-toyota-red transition-colors"
+                className="font-medium py-2 hover:text-toyota-orange transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('home')}
               </Link>
               <Link 
                 to="/products" 
-                className="font-medium py-2 hover:text-toyota-red transition-colors"
+                className="font-medium py-2 hover:text-toyota-orange transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('products')}
               </Link>
               <Link 
                 to="/testimonials" 
-                className="font-medium py-2 hover:text-toyota-red transition-colors"
+                className="font-medium py-2 hover:text-toyota-orange transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('testimonials')}
               </Link>
               <Link 
                 to="/contact" 
-                className="font-medium py-2 hover:text-toyota-red transition-colors"
+                className="font-medium py-2 hover:text-toyota-orange transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('contact')}

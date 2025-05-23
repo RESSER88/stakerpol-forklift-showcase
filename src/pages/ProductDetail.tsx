@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +16,8 @@ const ProductDetail = () => {
   const t = useTranslation(language);
   
   const product = products.find((p) => p.id === id);
-
+  const [showZoom, setShowZoom] = useState(false);
+  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -27,7 +28,7 @@ const ProductDetail = () => {
       <Layout>
         <div className="container-custom py-12">
           <h1 className="text-3xl font-bold mb-4">Produkt nie został znaleziony</h1>
-          <Link to="/products" className="text-toyota-red hover:underline">
+          <Link to="/products" className="text-toyota-orange hover:underline">
             Powrót do listy produktów
           </Link>
         </div>
@@ -39,22 +40,46 @@ const ProductDetail = () => {
     <Layout>
       <section className="bg-white py-12">
         <div className="container-custom">
-          <Link to="/products" className="text-toyota-red hover:underline mb-6 inline-block">
-            &larr; Powrót do listy produktów
+          <Link to="/products" className="text-toyota-orange hover:underline mb-6 inline-flex items-center group animate-fade-in">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 group-hover:-translate-x-1 transition-transform">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            Powrót do listy produktów
           </Link>
           
           <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <div className="bg-gray-100 rounded-lg overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.model} 
-                  className="w-full h-auto object-contain"
-                />
+            <div className="animate-fade-in">
+              <div 
+                className={`bg-gray-100 rounded-lg overflow-hidden relative ${showZoom ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+                onClick={() => setShowZoom(!showZoom)}
+              >
+                {showZoom ? (
+                  <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4" onClick={() => setShowZoom(false)}>
+                    <img 
+                      src={product.image} 
+                      alt={product.model} 
+                      className="max-w-full max-h-full object-contain animate-zoom-in"
+                    />
+                    <button className="absolute top-4 right-4 text-white p-2 rounded-full bg-toyota-orange hover:bg-orange-600 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                      </svg>
+                    </button>
+                  </div>
+                ) : (
+                  <img 
+                    src={product.image} 
+                    alt={product.model} 
+                    className="w-full h-auto object-contain transition-transform duration-500 hover:scale-105"
+                  />
+                )}
+                <div className="absolute bottom-3 right-3 bg-toyota-orange text-white text-sm py-1 px-3 rounded-full shadow-md animate-pulse-light">
+                  Kliknij, aby powiększyć
+                </div>
               </div>
             </div>
             
-            <div>
+            <div className="animate-slide-in">
               <h1 className="text-3xl font-bold mb-4">{product.model}</h1>
               <p className="text-lg mb-6">{product.shortDescription}</p>
               
@@ -66,7 +91,7 @@ const ProductDetail = () => {
               </div>
               
               <h2 className="text-2xl font-bold mb-4">{t('specifications')}</h2>
-              <div className="border rounded-lg overflow-hidden">
+              <div className="border rounded-lg overflow-hidden shadow-sm">
                 <table className="min-w-full divide-y divide-gray-200">
                   <tbody className="bg-white divide-y divide-gray-200">
                     <tr>
@@ -176,13 +201,15 @@ const ProductDetail = () => {
       {/* Related Products */}
       <section className="bg-gray-50 py-12">
         <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-6">Podobne produkty</h2>
+          <h2 className="text-2xl font-bold mb-6 animate-fade-in">Podobne produkty</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products
               .filter((p) => p.id !== product.id)
               .slice(0, 3)
-              .map((product) => (
-                <ProductCard key={product.id} product={product} />
+              .map((product, index) => (
+                <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                  <ProductCard product={product} />
+                </div>
               ))
             }
           </div>

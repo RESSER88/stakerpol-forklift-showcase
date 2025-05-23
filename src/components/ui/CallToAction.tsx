@@ -14,17 +14,17 @@ const CallToAction = ({ className = '' }: CallToActionProps) => {
   const t = useTranslation(language);
 
   return (
-    <section className={`bg-toyota-red text-white ${className}`}>
+    <section className={`bg-gradient-to-br from-toyota-orange to-orange-600 text-white ${className}`}>
       <div className="container-custom py-16 md:py-20">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('callToAction')}</h2>
-          <p className="text-lg mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">{t('callToAction')}</h2>
+          <p className="text-lg mb-8 animate-fade-in delay-100">
             Zadzwoń do naszych ekspertów, którzy pomogą Ci wybrać idealny wózek widłowy 
             dopasowany do Twoich potrzeb.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Button 
-              className="bg-white hover:bg-gray-100 text-toyota-red py-3 px-8 rounded-md shadow-lg text-lg font-semibold min-w-[200px]"
+              className="bg-white hover:bg-gray-100 text-toyota-orange py-3 px-8 rounded-md shadow-lg text-lg font-semibold min-w-[200px] transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 animate-zoom-in"
               asChild
             >
               <a href="tel:+48123456789">
@@ -34,7 +34,7 @@ const CallToAction = ({ className = '' }: CallToActionProps) => {
             </Button>
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-toyota-red py-3 px-8 rounded-md text-lg font-semibold min-w-[200px]"
+              className="border-white text-white hover:bg-white hover:text-toyota-orange py-3 px-8 rounded-md text-lg font-semibold min-w-[200px] transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 animate-zoom-in delay-100"
               asChild
             >
               <Link to="/contact">

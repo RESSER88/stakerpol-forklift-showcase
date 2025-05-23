@@ -8,13 +8,13 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
   return (
-    <Card className="h-full">
+    <Card className="h-full transition-all duration-300 hover:shadow-lg animate-fade-in border-none rounded-lg shadow">
       <CardContent className="p-6">
         <div className="flex mb-4">
           {Array.from({ length: 5 }).map((_, i) => (
             <svg
               key={i}
-              className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+              className={`w-5 h-5 ${i < testimonial.rating ? 'text-toyota-orange' : 'text-gray-300'}`}
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -23,13 +23,13 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
             </svg>
           ))}
         </div>
-        <blockquote className="text-lg italic mb-4">"{testimonial.content}"</blockquote>
-        <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-full bg-toyota-red text-white flex items-center justify-center font-bold">
+        <blockquote className="text-lg italic mb-5">"{testimonial.content}"</blockquote>
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 rounded-full bg-toyota-orange text-white flex items-center justify-center font-bold shadow-md">
             {testimonial.name.charAt(0)}
           </div>
           <div>
-            <p className="font-medium">{testimonial.name}</p>
+            <p className="font-medium text-gray-800">{testimonial.name}</p>
             {testimonial.company && (
               <p className="text-sm text-muted-foreground">{testimonial.company}</p>
             )}

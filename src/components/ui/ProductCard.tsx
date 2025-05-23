@@ -16,18 +16,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const t = useTranslation(language);
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="aspect-video overflow-hidden bg-gray-100">
+    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow">
+      <div className="aspect-video overflow-hidden bg-gray-100 image-hover-zoom">
         <img
           src={product.image}
           alt={product.model}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover"
         />
       </div>
-      <CardContent className="p-5">
-        <h3 className="text-xl font-bold mb-2">{product.model}</h3>
-        <p className="text-muted-foreground mb-4">{product.shortDescription}</p>
-        <div className="flex flex-col sm:flex-row gap-2 mt-4">
+      <CardContent className="p-6">
+        <h3 className="text-xl font-bold mb-3 text-gray-800">{product.model}</h3>
+        <p className="text-muted-foreground mb-5 line-clamp-2">{product.shortDescription}</p>
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <Button 
             className="cta-button flex-1"
             asChild

@@ -12,20 +12,22 @@ const Testimonials = () => {
 
   return (
     <Layout>
-      <section className="bg-gray-100 py-12 md:py-20">
+      <section className="bg-gradient-to-b from-gray-100 to-white py-12 md:py-20">
         <div className="container-custom">
-          <h1 className="text-4xl font-bold mb-6 text-center">{t('customerOpinions')}</h1>
-          <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12">
+          <h1 className="text-4xl font-bold mb-6 text-center animate-fade-in">{t('customerOpinions')}</h1>
+          <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in delay-100">
             Poznaj opinie naszych klientów, którzy zaufali firmie Stakerpol i wybrali wózki widłowe BT Toyota.
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            {testimonials.map((testimonial, index) => (
+              <div key={testimonial.id} style={{ animationDelay: `${index * 100}ms` }}>
+                <TestimonialCard testimonial={testimonial} />
+              </div>
             ))}
           </div>
           
-          <div className="mt-16 bg-white p-8 rounded-lg shadow-sm text-center">
+          <div className="mt-16 bg-white p-8 rounded-lg shadow text-center animate-fade-in">
             <h3 className="text-2xl font-bold mb-4">Masz doświadczenie z naszą firmą?</h3>
             <p className="text-lg mb-6">
               Podziel się swoją opinią na naszej stronie Google lub skontaktuj się z nami bezpośrednio.

@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,9 +22,9 @@ const Index = () => {
       <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-toyota-black text-white">
         <div className="container-custom py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 md:pr-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                Wózki widłowe <span className="text-toyota-red">BT Toyota</span> od Stakerpol
+            <div className="space-y-6 md:pr-8 animate-fade-in">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Wózki widłowe <span className="text-toyota-orange">BT Toyota</span> od Stakerpol
               </h1>
               <p className="text-lg text-gray-300 md:text-xl">
                 Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota. 
@@ -41,7 +42,7 @@ const Index = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-toyota-black text-lg"
+                  className="border-white text-white hover:bg-white hover:text-toyota-black text-lg transition-all duration-300"
                   size="lg"
                   asChild
                 >
@@ -55,7 +56,7 @@ const Index = () => {
               <img 
                 src="https://stakerpol.pl/wp-content/uploads/2020/05/bt-75-1-768x550.png" 
                 alt="BT Toyota wózek widłowy" 
-                className="w-full h-auto animate-fade-in" 
+                className="w-full h-auto animate-zoom-in" 
               />
             </div>
           </div>
@@ -72,8 +73,8 @@ const Index = () => {
           
           <h3 className="text-2xl font-bold mt-12 mb-8 text-center">{t('advantages')}</h3>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg text-center">
-              <div className="w-16 h-16 bg-toyota-red rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in">
+              <div className="w-16 h-16 bg-toyota-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <Truck className="h-8 w-8 text-white" />
               </div>
               <h4 className="text-xl font-bold mb-3">{t('advantagesDelivery')}</h4>
@@ -83,8 +84,8 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg text-center">
-              <div className="w-16 h-16 bg-toyota-red rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in delay-100">
+              <div className="w-16 h-16 bg-toyota-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <Headphones className="h-8 w-8 text-white" />
               </div>
               <h4 className="text-xl font-bold mb-3">{t('advantagesConsultation')}</h4>
@@ -94,8 +95,8 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg text-center">
-              <div className="w-16 h-16 bg-toyota-red rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in delay-200">
+              <div className="w-16 h-16 bg-toyota-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <Clock className="h-8 w-8 text-white" />
               </div>
               <h4 className="text-xl font-bold mb-3">{t('advantagesAvailability')}</h4>
@@ -113,8 +114,10 @@ const Index = () => {
         <div className="container-custom">
           <h2 className="section-title text-center">{t('featuredProducts')}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {featuredProducts.map((product, index) => (
+              <div key={product.id} style={{ animationDelay: `${index * 100}ms` }}>
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
           <div className="text-center mt-12">
