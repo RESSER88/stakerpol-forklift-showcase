@@ -3,17 +3,18 @@ import { useParams, Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
-import { products } from '@/data/mockData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
 import { useState, useEffect } from 'react';
+import { useProductStore } from '@/stores/productStore';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { language } = useLanguage();
   const t = useTranslation(language);
+  const { products } = useProductStore();
   
   const product = products.find((p) => p.id === id);
   const [showZoom, setShowZoom] = useState(false);
