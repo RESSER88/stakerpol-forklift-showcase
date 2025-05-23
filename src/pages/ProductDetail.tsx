@@ -7,6 +7,7 @@ import { products } from '@/data/mockData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import CallToAction from '@/components/ui/CallToAction';
+import ProductCard from '@/components/ui/ProductCard';
 import { useEffect } from 'react';
 
 const ProductDetail = () => {

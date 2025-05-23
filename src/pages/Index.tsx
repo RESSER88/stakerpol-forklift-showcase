@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { Truck, HeadphonesMic, Clock } from 'lucide-react';
+import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
@@ -86,7 +85,7 @@ const Index = () => {
             
             <div className="bg-gray-50 p-6 rounded-lg text-center">
               <div className="w-16 h-16 bg-toyota-red rounded-full flex items-center justify-center mx-auto mb-4">
-                <HeadphonesMic className="h-8 w-8 text-white" />
+                <Headphones className="h-8 w-8 text-white" />
               </div>
               <h4 className="text-xl font-bold mb-3">{t('advantagesConsultation')}</h4>
               <p className="text-gray-600">
