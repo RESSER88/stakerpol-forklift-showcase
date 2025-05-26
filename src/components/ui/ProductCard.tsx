@@ -32,10 +32,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="cta-button flex-1"
             asChild
           >
-            <Link to={`/contact`}>
+            <a href="tel:+48123456789">
               <Phone className="mr-2 h-4 w-4" />
               {t('callNow')}
-            </Link>
+            </a>
           </Button>
           <Button 
             className="secondary-button flex-1"

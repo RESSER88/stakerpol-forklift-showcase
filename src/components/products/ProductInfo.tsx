@@ -20,9 +20,11 @@ const ProductInfo = ({ product, language }: ProductInfoProps) => {
       <p className="text-lg mb-6">{product.shortDescription}</p>
       
       <div className="mb-8">
-        <Button className="cta-button text-lg" size="lg">
-          <Phone className="mr-2" />
-          {t('callNow')}
+        <Button className="cta-button text-lg" size="lg" asChild>
+          <a href="tel:+48123456789">
+            <Phone className="mr-2" />
+            {t('callNow')}
+          </a>
         </Button>
       </div>
       
