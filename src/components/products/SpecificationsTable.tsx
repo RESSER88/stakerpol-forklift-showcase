@@ -11,109 +11,55 @@ interface SpecificationsTableProps {
 const SpecificationsTable = ({ product, language }: SpecificationsTableProps) => {
   const t = useTranslation(language);
 
+  const specifications = [
+    { key: 'model', label: t('model'), value: product.model },
+    { key: 'productionYear', label: t('productionYear'), value: product.specs.productionYear },
+    { key: 'capacity', label: t('capacity'), value: product.specs.capacity },
+    { key: 'workingHours', label: t('workingHours'), value: product.specs.workingHours },
+    { key: 'liftHeight', label: t('liftHeight'), value: product.specs.liftHeight },
+    { key: 'minHeight', label: t('minHeight'), value: product.specs.minHeight },
+    { key: 'battery', label: t('battery'), value: product.specs.battery },
+    { key: 'charger', label: t('charger'), value: product.specs.charger },
+    { key: 'condition', label: t('condition'), value: product.specs.condition },
+    { key: 'dimensions', label: t('dimensions'), value: product.specs.dimensions },
+    { key: 'wheels', label: t('wheels'), value: product.specs.wheels },
+    { key: 'additionalOptions', label: t('additionalOptions'), value: product.specs.additionalOptions },
+  ];
+
   return (
-    <div className="border rounded-lg overflow-hidden shadow-sm">
-      <table className="min-w-full divide-y divide-gray-200">
-        <tbody className="bg-white divide-y divide-gray-200">
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50 w-1/3">
-              {t('model')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.model}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('productionYear')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.productionYear}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('capacity')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.capacity}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('workingHours')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.workingHours}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('liftHeight')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.liftHeight}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('minHeight')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.minHeight}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('battery')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.battery}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('charger')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.charger}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('condition')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.condition}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('dimensions')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.dimensions}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('wheels')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.wheels}
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">
-              {t('additionalOptions')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {product.specs.additionalOptions}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <>
+      {/* Desktop Table View */}
+      <div className="hidden md:block border rounded-lg overflow-hidden shadow-sm">
+        <table className="min-w-full divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-200">
+            {specifications.map((spec, index) => (
+              <tr key={spec.key}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50 w-1/3">
+                  {spec.label}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {spec.value}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="md:hidden space-y-3">
+        {specifications.map((spec, index) => (
+          <div key={spec.key} className="bg-white border rounded-lg p-4 shadow-sm">
+            <div className="font-medium text-gray-900 text-sm mb-1">
+              {spec.label}
+            </div>
+            <div className="text-gray-600 text-sm">
+              {spec.value}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -33,8 +33,7 @@ const CallToAction = ({ className = '' }: CallToActionProps) => {
               </a>
             </Button>
             <Button
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-stakerpol-navy py-3 px-8 rounded-md text-lg font-semibold min-w-[200px] transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 animate-zoom-in delay-100"
+              className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-stakerpol-navy py-3 px-8 rounded-md text-lg font-semibold min-w-[200px] transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 animate-zoom-in delay-100"
               asChild
             >
               <Link to="/contact">
