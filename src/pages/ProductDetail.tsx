@@ -42,7 +42,11 @@ const ProductDetail = () => {
           <ProductHeader />
           
           <div className="grid lg:grid-cols-2 gap-12">
-            <ProductImage image={product.image} alt={product.model} />
+            <ProductImage 
+              image={product.image} 
+              alt={product.model} 
+              images={product.images} 
+            />
             <ProductInfo product={product} language={language} />
           </div>
         </div>

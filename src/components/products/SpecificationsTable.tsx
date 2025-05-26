@@ -13,6 +13,10 @@ const SpecificationsTable = ({ product, language }: SpecificationsTableProps) =>
 
   const specifications = [
     { key: 'model', label: t('model'), value: product.model },
+    // Only show serial number if it exists
+    ...(product.specs.serialNumber ? [
+      { key: 'serialNumber', label: 'Numer seryjny', value: product.specs.serialNumber }
+    ] : []),
     { key: 'productionYear', label: t('productionYear'), value: product.specs.productionYear },
     { key: 'capacity', label: t('capacity'), value: product.specs.capacity },
     { key: 'workingHours', label: t('workingHours'), value: product.specs.workingHours },
@@ -24,7 +28,7 @@ const SpecificationsTable = ({ product, language }: SpecificationsTableProps) =>
     { key: 'dimensions', label: t('dimensions'), value: product.specs.dimensions },
     { key: 'wheels', label: t('wheels'), value: product.specs.wheels },
     { key: 'additionalOptions', label: t('additionalOptions'), value: product.specs.additionalOptions },
-  ];
+  ].filter(spec => spec.value); // Filter out empty values
 
   return (
     <>
@@ -33,11 +37,11 @@ const SpecificationsTable = ({ product, language }: SpecificationsTableProps) =>
         <table className="min-w-full divide-y divide-gray-200">
           <tbody className="bg-white divide-y divide-gray-200">
             {specifications.map((spec, index) => (
-              <tr key={spec.key}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50 w-1/3">
+              <tr key={spec.key} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-1/3">
                   {spec.label}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                   {spec.value}
                 </td>
               </tr>

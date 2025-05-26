@@ -2,7 +2,8 @@
 export interface Product {
   id: string;
   model: string;
-  image: string;
+  image: string; // Keep for backward compatibility - will be same as images[0]
+  images: string[]; // Array of up to 5 images
   shortDescription: string;
   specs: {
     productionYear: string;
@@ -16,6 +17,7 @@ export interface Product {
     dimensions: string;
     wheels: string;
     additionalOptions: string;
+    serialNumber?: string; // Optional serial number
   };
 }
 

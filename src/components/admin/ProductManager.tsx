@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -20,14 +19,15 @@ import {
   DialogFooter
 } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
-import { Plus, Pencil, Trash2, Image } from 'lucide-react';
+import { Plus, Pencil, Trash2, Image, X, GripVertical } from 'lucide-react';
 import { Product } from '@/types';
 import { useProductStore } from '@/stores/productStore';
 
 const ProductManager = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const { toast } = useToast();
   
   const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
@@ -36,6 +36,7 @@ const ProductManager = () => {
     id: '',
     model: '',
     image: '',
+    images: [],
     shortDescription: '',
     specs: {
       productionYear: '',
@@ -48,7 +49,8 @@ const ProductManager = () => {
       condition: '',
       dimensions: '',
       wheels: '',
-      additionalOptions: ''
+      additionalOptions: '',
+      serialNumber: ''
     }
   };
   
@@ -57,27 +59,33 @@ const ProductManager = () => {
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
     setEditedProduct({...product});
-    setImagePreview(product.image);
+    setImagePreviews(product.images || [product.image].filter(Boolean));
     setIsEditDialogOpen(true);
   };
   
   const handleAdd = () => {
     setSelectedProduct(null);
     setEditedProduct({...defaultNewProduct, id: Date.now().toString()});
-    setImagePreview(null);
+    setImagePreviews([]);
     setIsEditDialogOpen(true);
   };
   
   const handleSave = () => {
     try {
+      const productToSave = {
+        ...editedProduct,
+        images: imagePreviews,
+        image: imagePreviews[0] || ''
+      };
+      
       if (selectedProduct) {
-        updateProduct(editedProduct);
+        updateProduct(productToSave);
         toast({
           title: "Produkt zaktualizowany",
           description: `Pomyślnie zaktualizowano produkt ${editedProduct.model}`
         });
       } else {
-        addProduct(editedProduct);
+        addProduct(productToSave);
         toast({
           title: "Produkt dodany",
           description: `Pomyślnie dodano produkt ${editedProduct.model}`
@@ -103,21 +111,47 @@ const ProductManager = () => {
     }
   };
   
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const file = e.target.files?.[0];
     if (!file) return;
     
-    // W rzeczywistej aplikacji tutaj byłoby uploading pliku do serwera
-    // Dla demonstracji używamy URL.createObjectURL
     const imageUrl = URL.createObjectURL(file);
-    setImagePreview(imageUrl);
-    setEditedProduct({...editedProduct, image: imageUrl});
+    const newPreviews = [...imagePreviews];
+    newPreviews[index] = imageUrl;
+    setImagePreviews(newPreviews);
   };
   
-  const handleRemoteImageUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRemoteImageUrl = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const url = e.target.value;
-    setEditedProduct({...editedProduct, image: url});
-    setImagePreview(url);
+    const newPreviews = [...imagePreviews];
+    newPreviews[index] = url;
+    setImagePreviews(newPreviews);
+  };
+  
+  const removeImage = (index: number) => {
+    const newPreviews = imagePreviews.filter((_, i) => i !== index);
+    setImagePreviews(newPreviews);
+  };
+  
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+  
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+  
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null) return;
+    
+    const newPreviews = [...imagePreviews];
+    const draggedItem = newPreviews[draggedIndex];
+    newPreviews.splice(draggedIndex, 1);
+    newPreviews.splice(dropIndex, 0, draggedItem);
+    
+    setImagePreviews(newPreviews);
+    setDraggedIndex(null);
   };
   
   const updateField = (field: string, value: string) => {
@@ -163,9 +197,9 @@ const ProductManager = () => {
                   <TableRow key={product.id}>
                     <TableCell>
                       <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden">
-                        {product.image ? (
+                        {product.images?.[0] || product.image ? (
                           <img 
-                            src={product.image} 
+                            src={product.images?.[0] || product.image} 
                             alt={product.model} 
                             className="w-full h-full object-cover"
                             onError={(e) => {
@@ -209,14 +243,14 @@ const ProductManager = () => {
       </Card>
       
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {selectedProduct ? `Edytuj ${selectedProduct.model}` : 'Dodaj nowy produkt'}
             </DialogTitle>
           </DialogHeader>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Model</label>
@@ -238,37 +272,69 @@ const ProductManager = () => {
               </div>
               
               <div className="space-y-4">
-                <label className="block text-sm font-medium mb-1">Zdjęcie produktu</label>
+                <label className="block text-sm font-medium mb-1">Galeria zdjęć (maksymalnie 5)</label>
                 
-                <div className="flex flex-col space-y-2">
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="mb-2"
-                  />
-                  <p className="text-sm text-gray-500 my-2">lub</p>
-                  <Input
-                    type="text"
-                    placeholder="URL do zdjęcia"
-                    value={editedProduct.image}
-                    onChange={handleRemoteImageUrl}
-                  />
-                </div>
-                
-                {imagePreview && (
-                  <div className="mt-2 border rounded p-2 bg-gray-50">
-                    <p className="text-sm text-gray-500 mb-2">Podgląd:</p>
-                    <div className="relative w-full h-40">
-                      <img 
-                        src={imagePreview} 
-                        alt="Podgląd" 
-                        className="w-full h-full object-contain"
-                        onError={() => setImagePreview(null)}
+                {[0, 1, 2, 3, 4].map((index) => (
+                  <div key={index} className="border rounded-lg p-4 bg-gray-50">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium">
+                        Zdjęcie {index + 1} {index === 0 && "(główne)"}
+                      </span>
+                      {imagePreviews[index] && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => removeImage(index)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageChange(e, index)}
+                        className="mb-2"
+                      />
+                      <p className="text-xs text-gray-500">lub</p>
+                      <Input
+                        type="text"
+                        placeholder="URL do zdjęcia"
+                        value={imagePreviews[index] || ''}
+                        onChange={(e) => handleRemoteImageUrl(e, index)}
                       />
                     </div>
+                    
+                    {imagePreviews[index] && (
+                      <div className="mt-2">
+                        <div 
+                          className="relative w-full h-24 cursor-move"
+                          draggable
+                          onDragStart={() => handleDragStart(index)}
+                          onDragOver={handleDragOver}
+                          onDrop={(e) => handleDrop(e, index)}
+                        >
+                          <img 
+                            src={imagePreviews[index]} 
+                            alt={`Podgląd ${index + 1}`}
+                            className="w-full h-full object-cover rounded"
+                            onError={() => {
+                              const newPreviews = [...imagePreviews];
+                              newPreviews[index] = '';
+                              setImagePreviews(newPreviews);
+                            }}
+                          />
+                          <div className="absolute top-1 right-1 bg-black/50 rounded p-1">
+                            <GripVertical className="h-3 w-3 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
             </div>
             
@@ -276,6 +342,16 @@ const ProductManager = () => {
               <h3 className="font-medium text-lg mb-2">Specyfikacja</h3>
               
               <div className="space-y-3">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Numer seryjny</label>
+                  <Input 
+                    value={editedProduct.specs.serialNumber || ''} 
+                    onChange={(e) => updateSpecsField('serialNumber', e.target.value)} 
+                    placeholder="np. ABC123456"
+                    maxLength={20}
+                  />
+                </div>
+                
                 <div>
                   <label className="block text-sm font-medium mb-1">Rok produkcji</label>
                   <Input 
