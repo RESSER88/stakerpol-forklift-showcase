@@ -6,6 +6,7 @@ export const products: Product[] = [
     id: '1',
     model: 'BT Toyota SWE200D',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SWE200-1.jpg',
+    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SWE200-1.jpg'],
     shortDescription: 'Kompaktowy wózek paletowy o udźwigu 2000 kg, idealny do zastosowań magazynowych.',
     specs: {
       productionYear: '2018',
@@ -25,6 +26,7 @@ export const products: Product[] = [
     id: '2',
     model: 'BT Toyota SPE160L',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SPE-160-L-2.jpg',
+    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SPE-160-L-2.jpg'],
     shortDescription: 'Wózek paletowy z masztem o udźwigu 1600 kg, idealny do lekkich zastosowań magazynowych.',
     specs: {
       productionYear: '2019',
@@ -44,6 +46,7 @@ export const products: Product[] = [
     id: '3',
     model: 'BT Toyota RRE160H',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Reflex-RRE-160-H-3-1.jpg',
+    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Reflex-RRE-160-H-3-1.jpg'],
     shortDescription: 'Wózek wysokiego składowania z przeciwwagą o udźwigu 1600 kg. Doskonały do intensywnej pracy w magazynie.',
     specs: {
       productionYear: '2020',
@@ -63,6 +66,7 @@ export const products: Product[] = [
     id: '4',
     model: 'BT Toyota LRE300',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg',
+    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg'],
     shortDescription: 'Wózek paletowy z operatorem stojącym o udźwigu 3000 kg, idealny do intensywnych zastosowań transportowych.',
     specs: {
       productionYear: '2021',
@@ -82,6 +86,7 @@ export const products: Product[] = [
     id: '5',
     model: 'BT Toyota TSE300',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
+    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg'],
     shortDescription: 'Wózek do kompletacji pionowej o udźwigu 3000 kg. Idealny do sklepów i magazynów.',
     specs: {
       productionYear: '2017',
