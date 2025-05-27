@@ -18,9 +18,9 @@ const ProductDetail = () => {
   const product = products.find((p) => p.id === id);
   
   useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-  }, []);
+    // Scroll to top when component mounts or when ID changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
 
   if (!product) {
     return (
@@ -37,7 +37,7 @@ const ProductDetail = () => {
 
   return (
     <Layout>
-      <section className="bg-white py-12">
+      <section id="product-details" className="bg-white py-12">
         <div className="container-custom">
           <ProductHeader />
           

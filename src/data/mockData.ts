@@ -1,5 +1,9 @@
-
 import { Product, Testimonial } from '../types';
+import { generateBlackWhiteCheckerboard, generateBlueYellowCheckerboard } from '../utils/generateCheckerboard';
+
+// Generate checkerboard images
+const blackWhiteCheckerboard = generateBlackWhiteCheckerboard();
+const blueYellowCheckerboard = generateBlueYellowCheckerboard();
 
 export const products: Product[] = [
   {
@@ -10,7 +14,8 @@ export const products: Product[] = [
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SWE200-1.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SPE-160-L-2.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Reflex-RRE-160-H-3-1.jpg',
-      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg'
+      blackWhiteCheckerboard,
+      blueYellowCheckerboard
     ],
     shortDescription: 'Kompaktowy wózek paletowy o udźwigu 2000 kg, idealny do zastosowań magazynowych.',
     specs: {
@@ -36,8 +41,8 @@ export const products: Product[] = [
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SPE-160-L-2.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Reflex-RRE-160-H-3-1.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg',
-      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
-      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SWE200-1.jpg'
+      blackWhiteCheckerboard,
+      blueYellowCheckerboard
     ],
     shortDescription: 'Wózek paletowy z masztem o udźwigu 1600 kg, idealny do lekkich zastosowań magazynowych.',
     specs: {
@@ -62,7 +67,9 @@ export const products: Product[] = [
     images: [
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Reflex-RRE-160-H-3-1.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg',
-      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg'
+      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
+      blackWhiteCheckerboard,
+      blueYellowCheckerboard
     ],
     shortDescription: 'Wózek wysokiego składowania z przeciwwagą o udźwigu 1600 kg. Doskonały do intensywnej pracy w magazynie.',
     specs: {
@@ -87,7 +94,8 @@ export const products: Product[] = [
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-LWE-200-1.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
       'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SWE200-1.jpg',
-      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-SPE-160-L-2.jpg'
+      blackWhiteCheckerboard,
+      blueYellowCheckerboard
     ],
     shortDescription: 'Wózek paletowy z operatorem stojącym o udźwigu 3000 kg, idealny do intensywnych zastosowań transportowych.',
     specs: {
@@ -109,7 +117,11 @@ export const products: Product[] = [
     id: '5',
     model: 'BT Toyota TSE300',
     image: 'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
-    images: ['https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg'],
+    images: [
+      'https://stakerpol.pl/wp-content/uploads/2020/05/Toyota-BT-Levio-LPE-200-1.jpg',
+      blackWhiteCheckerboard,
+      blueYellowCheckerboard
+    ],
     shortDescription: 'Wózek do kompletacji pionowej o udźwigu 3000 kg. Idealny do sklepów i magazynów.',
     specs: {
       productionYear: '2017',
