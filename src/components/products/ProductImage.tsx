@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import LazyImage from '@/components/ui/LazyImage';
 
 interface ProductImageProps {
   image: string;
@@ -60,7 +61,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
 
   if (!currentImage) {
     return (
-      <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="aspect-[4/3] bg-gray-100 rounded-lg flex items-center justify-center">
         <span className="text-gray-400">Brak zdjęcia</span>
       </div>
     );
@@ -71,17 +72,17 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
       {/* Main Image Container */}
       <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
         <div 
-          className="aspect-square cursor-zoom-in relative"
+          className="aspect-[4/3] cursor-zoom-in relative"
           onClick={openZoom}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <img 
-            src={currentImage} 
-            alt={alt} 
-            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
+          <LazyImage
+            src={currentImage}
+            alt={alt}
+            aspectRatio="4:3"
+            className="transition-transform duration-300 group-hover:scale-105"
           />
           
           {/* Navigation arrows for multiple images */}
@@ -131,11 +132,11 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <img 
-                src={img} 
+              <LazyImage
+                src={img}
                 alt={`${alt} - zdjęcie ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300"
-                loading="lazy"
+                aspectRatio="1:1"
+                className="transition-transform duration-300"
               />
             </button>
           ))}
@@ -153,6 +154,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
               src={currentImage} 
               alt={alt} 
               className="max-w-full max-h-full object-contain animate-scale-in"
+              loading="eager"
             />
             
             {/* Close button */}

@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
+import LazyImage from '@/components/ui/LazyImage';
 
 interface ProductCardProps {
   product: Product;
@@ -17,11 +18,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow">
-      <div className="aspect-video overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
-        <img
+      <div className="aspect-[4/3] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
+        <LazyImage
           src={product.image}
           alt={product.model}
-          className="w-full h-full object-cover"
+          aspectRatio="4:3"
         />
       </div>
       <CardContent className="p-6">
