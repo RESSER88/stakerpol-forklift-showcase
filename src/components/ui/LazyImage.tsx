@@ -24,35 +24,72 @@ const LazyImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [imgSrc, setImgSrc] = useState<string>('');
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
+    // Reset states when src changes
+    setIsLoaded(false);
+    setHasError(false);
+    setImgSrc('');
+    
+    // Add a small delay to ensure proper initialization
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        },
+        { 
+          threshold: 0.1,
+          rootMargin: '50px' // Start loading 50px before the image comes into view
         }
-      },
-      { threshold: 0.1 }
-    );
+      );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+      if (containerRef.current) {
+        observer.observe(containerRef.current);
+      }
+
+      return () => observer.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [src]);
+
+  useEffect(() => {
+    if (isInView && src && !imgSrc && !hasError) {
+      // Preload the image
+      const img = new Image();
+      
+      img.onload = () => {
+        setImgSrc(src);
+        console.log(`Image loaded successfully: ${src}`);
+      };
+      
+      img.onerror = () => {
+        console.error(`Failed to load image: ${src}`);
+        setHasError(true);
+        onError?.();
+      };
+      
+      // Start loading
+      img.src = src;
     }
-
-    return () => observer.disconnect();
-  }, []);
+  }, [isInView, src, imgSrc, hasError, onError]);
 
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad?.();
+    console.log(`Image displayed: ${src}`);
   };
 
   const handleError = () => {
     setHasError(true);
     onError?.();
+    console.error(`Image display error: ${src}`);
   };
 
   const getAspectRatioClass = () => {
@@ -92,25 +129,28 @@ const LazyImage = ({
       
       {/* Error placeholder */}
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-          <span className="text-sm">Błąd ładowania zdjęcia</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-4">
+          <div className="text-4xl mb-2">📷</div>
+          <span className="text-sm text-center">Błąd ładowania zdjęcia</span>
+          <span className="text-xs text-center mt-1 opacity-75">{src}</span>
         </div>
       )}
       
       {/* Actual image */}
-      {isInView && (
+      {imgSrc && !hasError && (
         <img
           ref={imgRef}
-          src={src}
+          src={imgSrc}
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
           className={cn(
-            'w-full h-full transition-opacity duration-300',
+            'w-full h-full transition-opacity duration-500',
             getImageStyle(),
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           loading="lazy"
+          decoding="async"
         />
       )}
     </div>
