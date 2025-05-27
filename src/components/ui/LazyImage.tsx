@@ -9,6 +9,7 @@ interface LazyImageProps {
   className?: string;
   onLoad?: () => void;
   onError?: () => void;
+  generateThumbnail?: boolean;
 }
 
 const LazyImage = ({ 
@@ -17,7 +18,8 @@ const LazyImage = ({
   aspectRatio = 'auto',
   className,
   onLoad,
-  onError
+  onError,
+  generateThumbnail = false
 }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -64,11 +66,19 @@ const LazyImage = ({
     }
   };
 
+  const getImageStyle = () => {
+    if (generateThumbnail && aspectRatio === '1:1') {
+      return 'object-contain bg-white';
+    }
+    return 'object-cover';
+  };
+
   return (
     <div 
       ref={containerRef}
       className={cn(
         'relative overflow-hidden bg-gray-100 rounded-lg',
+        generateThumbnail && aspectRatio === '1:1' ? 'bg-white' : 'bg-gray-100',
         getAspectRatioClass(),
         className
       )}
@@ -96,7 +106,8 @@ const LazyImage = ({
           onLoad={handleLoad}
           onError={handleError}
           className={cn(
-            'w-full h-full object-cover transition-opacity duration-300',
+            'w-full h-full transition-opacity duration-300',
+            getImageStyle(),
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           loading="lazy"

@@ -1,3 +1,4 @@
+
 import { Product } from '@/types';
 import { generateBlackWhiteCheckerboard, generateBlueYellowCheckerboard } from '@/utils/generateCheckerboard';
 
@@ -5,10 +6,10 @@ export const products: Product[] = [
   {
     id: "1",
     model: "Toyota SPE 160L",
-    image: "/lovable-uploads/fa30cbc1-42a2-4099-97e4-34085393ad6d.png",
+    image: "/lovable-uploads/6e5d96de-d749-4128-b04e-bca7004df2b7.png",
     images: [
-      "/lovable-uploads/fa30cbc1-42a2-4099-97e4-34085393ad6d.png",
-      "/lovable-uploads/22977e26-b33e-4a22-8283-08e0b5e5e71c.png",
+      "/lovable-uploads/6e5d96de-d749-4128-b04e-bca7004df2b7.png",
+      "/lovable-uploads/c6b103db-0f96-4137-9911-80b50af35519.png",
       generateBlackWhiteCheckerboard(),
       generateBlueYellowCheckerboard(),
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
@@ -32,10 +33,10 @@ export const products: Product[] = [
   {
     id: "2", 
     model: "BT Reflex RRE 160",
-    image: "/lovable-uploads/ad037c0d-1889-4e04-8356-53cf6e6dc21f.png",
+    image: "/lovable-uploads/61ef61e3-2c2f-4c92-9a42-2f2932896324.png",
     images: [
-      "/lovable-uploads/ad037c0d-1889-4e04-8356-53cf6e6dc21f.png",
-      "/lovable-uploads/5e91de32-068f-41a0-94fe-99901204a2b0.png",
+      "/lovable-uploads/61ef61e3-2c2f-4c92-9a42-2f2932896324.png",
+      "/lovable-uploads/afeeff55-3f29-4e9d-93fe-a19fd458a3a1.png",
       generateBlueYellowCheckerboard(),
       generateBlackWhiteCheckerboard(),
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
@@ -59,10 +60,10 @@ export const products: Product[] = [
   {
     id: "3",
     model: "Toyota SWE 080",
-    image: "/lovable-uploads/29ae705b-a0e6-4261-b14f-a54443a4b9b0.png",
+    image: "/lovable-uploads/466c3bea-ce11-4033-ae63-30eed1b3d610.png",
     images: [
-      "/lovable-uploads/29ae705b-a0e6-4261-b14f-a54443a4b9b0.png",
-      "/lovable-uploads/603e5bbd-67da-4488-8c8c-0e2505a3a576.png",
+      "/lovable-uploads/466c3bea-ce11-4033-ae63-30eed1b3d610.png",
+      "/lovable-uploads/89e3bb74-afbd-43a7-a8f2-9300ad79f08a.png",
       generateBlackWhiteCheckerboard(),
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80"
     ],
@@ -85,9 +86,10 @@ export const products: Product[] = [
   {
     id: "4",
     model: "BT Levio LWE180",
-    image: "/lovable-uploads/07e5989b-1e44-4c54-b67c-75b90709506f.png",
+    image: "/lovable-uploads/c8fa54ec-9a98-42d8-ac0f-31ca4981943a.png",
     images: [
-      "/lovable-uploads/07e5989b-1e44-4c54-b67c-75b90709506f.png",
+      "/lovable-uploads/c8fa54ec-9a98-42d8-ac0f-31ca4981943a.png",
+      "/lovable-uploads/3cbce3aa-e5e0-4b49-ba14-1659b0c67cb3.png",
       generateBlackWhiteCheckerboard(),
       generateBlueYellowCheckerboard(),
       "https://images.unsplash.com/photo-1624972873447-9c82494ba575?auto=format&fit=crop&w=800&q=80"
@@ -111,9 +113,10 @@ export const products: Product[] = [
   {
     id: "5",
     model: "Toyota Traigo 80 8FBE18T",
-    image: "/lovable-uploads/49996994-6981-484e-a99d-50199198e39f.png",
+    image: "/lovable-uploads/7224d802-f5cc-461f-a434-066a7220c2ce.png",
     images: [
-      "/lovable-uploads/49996994-6981-484e-a99d-50199198e39f.png",
+      "/lovable-uploads/7224d802-f5cc-461f-a434-066a7220c2ce.png",
+      "/lovable-uploads/d1073bb1-ba81-4404-9f27-3c2df998122a.png",
       generateBlackWhiteCheckerboard(),
       "https://images.unsplash.com/photo-1542739675-b44934a54f92?auto=format&fit=crop&w=800&q=80"
     ],
@@ -136,9 +139,10 @@ export const products: Product[] = [
   {
     id: "6",
     model: "BT Optio LSE120",
-    image: "/lovable-uploads/c93491b1-118f-4978-a939-0e9328abd5d3.png",
+    image: "/lovable-uploads/74b0a1dc-a0f8-4301-9e73-f143182d7f72.png",
     images: [
-      "/lovable-uploads/c93491b1-118f-4978-a939-0e9328abd5d3.png",
+      "/lovable-uploads/74b0a1dc-a0f8-4301-9e73-f143182d7f72.png",
+      "/lovable-uploads/c9f0d435-74d7-40bc-b2f8-616e888a2689.png",
       generateBlackWhiteCheckerboard(),
       generateBlueYellowCheckerboard(),
       "https://images.unsplash.com/photo-1617831843544-545c64648699?auto=format&fit=crop&w=800&q=80"

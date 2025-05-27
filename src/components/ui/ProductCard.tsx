@@ -18,15 +18,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow">
-      <div className="aspect-[4/3] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
-        <LazyImage
-          src={product.image}
-          alt={product.model}
-          aspectRatio="4:3"
-        />
-      </div>
+      <Link to={`/products/${product.id}`} className="block">
+        <div className="aspect-[4/3] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
+          <LazyImage
+            src={product.image}
+            alt={product.model}
+            aspectRatio="4:3"
+          />
+        </div>
+      </Link>
       <CardContent className="p-6">
-        <h3 className="text-xl font-bold mb-3 text-stakerpol-navy">{product.model}</h3>
+        <Link to={`/products/${product.id}`} className="block hover:text-stakerpol-orange transition-colors">
+          <h3 className="text-xl font-bold mb-3 text-stakerpol-navy">{product.model}</h3>
+        </Link>
         <p className="text-muted-foreground mb-5 line-clamp-2">{product.shortDescription}</p>
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <Button 
