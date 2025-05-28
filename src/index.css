@@ -101,11 +101,11 @@
   }
   
   .cta-button {
-    @apply bg-stakerpol-orange hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-md hover:shadow-lg transform hover:-translate-y-1;
+    @apply bg-stakerpol-orange hover:bg-orange-600 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-md hover:shadow-lg transform hover:-translate-y-1 text-sm md:text-base;
   }
   
   .secondary-button {
-    @apply bg-secondary hover:bg-gray-200 text-stakerpol-navy font-medium py-3 px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-sm hover:shadow transform hover:-translate-y-1;
+    @apply bg-secondary hover:bg-gray-200 text-stakerpol-navy font-medium py-2 md:py-3 px-4 md:px-6 rounded-md transition-all duration-300 inline-flex items-center justify-center shadow-sm hover:shadow transform hover:-translate-y-1 text-sm md:text-base;
   }
   
   .image-hover-zoom {
@@ -114,6 +114,21 @@
   
   .image-hover-zoom img {
     @apply transition-transform duration-500 ease-in-out hover:scale-110;
+  }
+  
+  /* Improved responsive design for product cards */
+  .product-card-grid {
+    @apply grid gap-4 md:gap-6 lg:gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  /* Better button spacing on mobile */
+  .button-group {
+    @apply flex flex-col gap-2 md:gap-3;
+  }
+  
+  .button-group.horizontal {
+    @apply flex-col sm:flex-row;
   }
 }
 
@@ -188,4 +203,15 @@
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out;
+}
+
+/* Dodatkowe responsywne poprawki */
+@media (max-width: 640px) {
+  .cta-button, .secondary-button {
+    @apply text-sm py-2 px-4;
+  }
+  
+  .button-group {
+    @apply gap-2;
+  }
 }
