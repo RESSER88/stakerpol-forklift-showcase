@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -39,6 +38,8 @@ const ProductManager = () => {
     image: '',
     images: [],
     shortDescription: '',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     specs: {
       productionYear: '',
       capacity: '',

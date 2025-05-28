@@ -1,3 +1,4 @@
+
 import { Product } from '@/types';
 import { generateBlackWhiteCheckerboard, generateBlueYellowCheckerboard } from '@/utils/generateCheckerboard';
 
@@ -14,6 +15,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Elektryczny paletowy wózek widłowy o udźwigu 1600 kg z ergonomiczną kabiną operatora.",
+    createdAt: "2024-01-15T10:00:00.000Z",
+    updatedAt: "2024-01-15T10:00:00.000Z",
     specs: {
       productionYear: "2023",
       capacity: "1600 kg",
@@ -41,6 +44,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Zasięgowy wózek widłowy BT z nowoczesnym systemem sterowania i wysoką efektywnością energetyczną.",
+    createdAt: "2024-02-10T14:30:00.000Z",
+    updatedAt: "2024-02-10T14:30:00.000Z",
     specs: {
       productionYear: "2022",
       capacity: "1600 kg", 
@@ -67,6 +72,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Kompaktowy elektryczny wózek widłowy z wyjątkową manewrowością i niskim poziomem hałasu.",
+    createdAt: "2024-03-05T09:15:00.000Z",
+    updatedAt: "2024-03-05T09:15:00.000Z",
     specs: {
       productionYear: "2021",
       capacity: "800 kg",
@@ -94,6 +101,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1624972873447-9c82494ba575?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Wózek paletowy elektryczny z serii BT Levio o udźwigu do 1.8 tony, idealny do intensywnej pracy.",
+    createdAt: "2024-04-12T16:45:00.000Z",
+    updatedAt: "2024-04-12T16:45:00.000Z",
     specs: {
       productionYear: "2022",
       capacity: "1800 kg",
@@ -120,6 +129,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1542739675-b44934a54f92?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Elektryczny wózek widłowy Toyota Traigo 80 z serii 8, udźwig 1.8 tony, wysoka wydajność i komfort.",
+    createdAt: "2024-05-20T11:20:00.000Z",
+    updatedAt: "2024-05-20T11:20:00.000Z",
     specs: {
       productionYear: "2023",
       capacity: "1800 kg",
@@ -147,6 +158,8 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1617831843544-545c64648699?auto=format&fit=crop&w=800&q=80"
     ],
     shortDescription: "Wózek do kompletacji zamówień BT Optio z podnoszoną platformą, udźwig 1.2 tony, zwiększona efektywność.",
+    createdAt: "2024-06-01T08:30:00.000Z",
+    updatedAt: "2024-06-01T08:30:00.000Z",
     specs: {
       productionYear: "2021",
       capacity: "1200 kg",
