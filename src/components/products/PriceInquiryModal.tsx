@@ -38,12 +38,13 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
     setIsSubmitting(true);
 
     try {
-      // Simulate email sending (in real app, this would call a backend API)
+      // Create the email content with serial number
       const emailData = {
         to: 'maciejsew@gmail.com',
         subject: 'Prośba o cenę',
         body: `
 Zapytanie o cenę dla produktu: ${product.model}
+Numer seryjny: ${product.id}
 
 Dane kontaktowe:
 ${email ? `Email: ${email}` : ''}
@@ -54,6 +55,10 @@ Wysłane ze strony: ${window.location.href}
       };
 
       console.log('Wysyłanie e-maila:', emailData);
+      
+      // For now, we'll use mailto: as a temporary solution since we don't have backend
+      const mailtoLink = `mailto:maciejsew@gmail.com?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
+      window.open(mailtoLink, '_blank');
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -86,7 +91,8 @@ Wysłane ze strony: ${window.location.href}
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="text-sm text-muted-foreground mb-4">
-            {t('productModel')}: <strong>{product.model}</strong>
+            {t('productModel')}: <strong>{product.model}</strong><br />
+            Numer seryjny: <strong>{product.id}</strong>
           </div>
           
           <div className="space-y-2">

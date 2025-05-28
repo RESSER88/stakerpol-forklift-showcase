@@ -14,32 +14,27 @@ const Footer = () => {
       case 'en':
         return {
           description: 'Professional sales and service of BT Toyota forklifts.',
-          address: 'ul. Przykładowa 123, 00-000 Warsaw, Poland',
-          btDescription: 'BT Toyota is a leading manufacturer of forklifts, known for reliability and high-quality workmanship.'
+          address: 'ul. Międzyleśna 115, 32-095 Celiny, Poland'
         };
       case 'cs':
         return {
           description: 'Profesionální prodej a servis vysokozdvižných vozíků BT Toyota.',
-          address: 'ul. Przykładowa 123, 00-000 Varšava, Polsko',
-          btDescription: 'BT Toyota je přední výrobce vysokozdvižných vozíků, známý spolehlivostí a vysokou kvalitou zpracování.'
+          address: 'ul. Międzyleśna 115, 32-095 Celiny, Polsko'
         };
       case 'sk':
         return {
           description: 'Profesionálny predaj a servis vysokozdvižných vozíkov BT Toyota.',
-          address: 'ul. Przykładowa 123, 00-000 Varšava, Poľsko',
-          btDescription: 'BT Toyota je vedúci výrobca vysokozdvižných vozíkov, známy spoľahlivosťou a vysokou kvalitou spracovania.'
+          address: 'ul. Międzyleśna 115, 32-095 Celiny, Poľsko'
         };
       case 'de':
         return {
           description: 'Professioneller Verkauf und Service von BT Toyota Gabelstaplern.',
-          address: 'ul. Przykładowa 123, 00-000 Warschau, Polen',
-          btDescription: 'BT Toyota ist ein führender Hersteller von Gabelstaplern, bekannt für Zuverlässigkeit und hochwertige Verarbeitung.'
+          address: 'ul. Międzyleśna 115, 32-095 Celiny, Polen'
         };
       default:
         return {
           description: 'Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota.',
-          address: 'ul. Przykładowa 123, 00-000 Warszawa, Polska',
-          btDescription: 'BT Toyota to wiodący producent wózków widłowych, znany z niezawodności i wysokiej jakości wykonania.'
+          address: 'ul. Międzyleśna 115, 32-095 Celiny, Polska'
         };
     }
   };
@@ -49,18 +44,18 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Company Info */}
           <div className="animate-fade-in">
             <h3 className="text-xl font-bold mb-4 text-toyota-orange">Stakerpol</h3>
             <p className="mb-4">{companyInfo.description}</p>
             <div className="flex items-center space-x-2 mb-3 group">
               <Phone size={16} className="text-toyota-orange group-hover:animate-pulse-light" />
-              <a href="tel:+48123456789" className="hover:text-toyota-orange transition-colors">+48 123 456 789</a>
+              <a href="tel:+48694133592" className="hover:text-toyota-orange transition-colors">+48 694 133 592</a>
             </div>
             <div className="flex items-center space-x-2 mb-3 group">
               <Mail size={16} className="text-toyota-orange group-hover:animate-pulse-light" />
-              <a href="mailto:kontakt@stakerpol.pl" className="hover:text-toyota-orange transition-colors">kontakt@stakerpol.pl</a>
+              <a href="mailto:info@stakerpol.pl" className="hover:text-toyota-orange transition-colors">info@stakerpol.pl</a>
             </div>
             <div className="flex items-start space-x-2 group">
               <MapPin size={16} className="mt-1 flex-shrink-0 text-toyota-orange group-hover:animate-pulse-light" />
@@ -97,19 +92,6 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
-          
-          {/* Newsletter */}
-          <div className="animate-fade-in delay-200">
-            <h3 className="text-xl font-bold mb-4 text-toyota-orange">BT Toyota</h3>
-            <p className="mb-4">{companyInfo.btDescription}</p>
-            <div className="mt-4">
-              <img 
-                src="https://stakerpol.pl/wp-content/uploads/2020/05/bt-toyota-logo.png" 
-                alt="BT Toyota Logo" 
-                className="h-12 object-contain hover:opacity-90 transition-opacity" 
-              />
-            </div>
           </div>
         </div>
         
