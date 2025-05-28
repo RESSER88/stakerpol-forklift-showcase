@@ -8,6 +8,44 @@ const Footer = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
 
+  // Company info translations based on language
+  const getCompanyInfo = () => {
+    switch (language) {
+      case 'en':
+        return {
+          description: 'Professional sales and service of BT Toyota forklifts.',
+          address: 'ul. Przykładowa 123, 00-000 Warsaw, Poland',
+          btDescription: 'BT Toyota is a leading manufacturer of forklifts, known for reliability and high-quality workmanship.'
+        };
+      case 'cs':
+        return {
+          description: 'Profesionální prodej a servis vysokozdvižných vozíků BT Toyota.',
+          address: 'ul. Przykładowa 123, 00-000 Varšava, Polsko',
+          btDescription: 'BT Toyota je přední výrobce vysokozdvižných vozíků, známý spolehlivostí a vysokou kvalitou zpracování.'
+        };
+      case 'sk':
+        return {
+          description: 'Profesionálny predaj a servis vysokozdvižných vozíkov BT Toyota.',
+          address: 'ul. Przykładowa 123, 00-000 Varšava, Poľsko',
+          btDescription: 'BT Toyota je vedúci výrobca vysokozdvižných vozíkov, známy spoľahlivosťou a vysokou kvalitou spracovania.'
+        };
+      case 'de':
+        return {
+          description: 'Professioneller Verkauf und Service von BT Toyota Gabelstaplern.',
+          address: 'ul. Przykładowa 123, 00-000 Warschau, Polen',
+          btDescription: 'BT Toyota ist ein führender Hersteller von Gabelstaplern, bekannt für Zuverlässigkeit und hochwertige Verarbeitung.'
+        };
+      default:
+        return {
+          description: 'Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota.',
+          address: 'ul. Przykładowa 123, 00-000 Warszawa, Polska',
+          btDescription: 'BT Toyota to wiodący producent wózków widłowych, znany z niezawodności i wysokiej jakości wykonania.'
+        };
+    }
+  };
+
+  const companyInfo = getCompanyInfo();
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-custom py-12">
@@ -15,7 +53,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="animate-fade-in">
             <h3 className="text-xl font-bold mb-4 text-toyota-orange">Stakerpol</h3>
-            <p className="mb-4">Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota.</p>
+            <p className="mb-4">{companyInfo.description}</p>
             <div className="flex items-center space-x-2 mb-3 group">
               <Phone size={16} className="text-toyota-orange group-hover:animate-pulse-light" />
               <a href="tel:+48123456789" className="hover:text-toyota-orange transition-colors">+48 123 456 789</a>
@@ -26,7 +64,7 @@ const Footer = () => {
             </div>
             <div className="flex items-start space-x-2 group">
               <MapPin size={16} className="mt-1 flex-shrink-0 text-toyota-orange group-hover:animate-pulse-light" />
-              <p>ul. Przykładowa 123, 00-000 Warszawa, Polska</p>
+              <p>{companyInfo.address}</p>
             </div>
           </div>
           
@@ -64,7 +102,7 @@ const Footer = () => {
           {/* Newsletter */}
           <div className="animate-fade-in delay-200">
             <h3 className="text-xl font-bold mb-4 text-toyota-orange">BT Toyota</h3>
-            <p className="mb-4">BT Toyota to wiodący producent wózków widłowych, znany z niezawodności i wysokiej jakości wykonania.</p>
+            <p className="mb-4">{companyInfo.btDescription}</p>
             <div className="mt-4">
               <img 
                 src="https://stakerpol.pl/wp-content/uploads/2020/05/bt-toyota-logo.png" 
@@ -76,7 +114,13 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Stakerpol. Wszelkie prawa zastrzeżone.</p>
+          <p>&copy; {new Date().getFullYear()} Stakerpol. {
+            language === 'en' ? 'All rights reserved.' :
+            language === 'cs' ? 'Všechna práva vyhrazena.' :
+            language === 'sk' ? 'Všetky práva vyhradené.' :
+            language === 'de' ? 'Alle Rechte vorbehalten.' :
+            'Wszelkie prawa zastrzeżone.'
+          }</p>
         </div>
       </div>
     </footer>

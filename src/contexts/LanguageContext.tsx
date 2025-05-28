@@ -1,7 +1,7 @@
 
 import { createContext, useState, useContext, ReactNode } from 'react';
 
-export type Language = 'pl' | 'en' | 'cs' | 'sk';
+export type Language = 'pl' | 'en' | 'cs' | 'sk' | 'de';
 
 type LanguageContextType = {
   language: Language;

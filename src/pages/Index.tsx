@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,11 +33,10 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 md:pr-8 animate-fade-in">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Wózki widłowe <span className="text-toyota-orange">BT Toyota</span> od Stakerpol
+                {t('heroTitle')}
               </h1>
               <p className="text-lg text-gray-300 md:text-xl">
-                Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota. 
-                Zapewniamy najwyższą jakość, szybką dostawę i fachowe doradztwo.
+                {t('heroSubtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
@@ -45,7 +45,7 @@ const Index = () => {
                   asChild
                 >
                   <Link to="/products">
-                    Przeglądaj wózki
+                    {t('browseProducts')}
                   </Link>
                 </Button>
                 <Button 
@@ -60,7 +60,6 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            {/* Remove the right side image since we're using background */}
           </div>
         </div>
       </section>
@@ -73,7 +72,7 @@ const Index = () => {
             {t('aboutUsDesc')}
           </p>
           
-          <h3 className="text-2xl font-bold mt-12 mb-8 text-center">{t('advantages')}</h3>
+          <h3 className="text-2xl font-bold mt-12 mb-8 text-center">{t('aboutUsAdvantages')}</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in border border-gray-100">
               <div className="w-16 h-16 bg-stakerpol-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
@@ -81,8 +80,7 @@ const Index = () => {
               </div>
               <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesDelivery')}</h4>
               <p className="text-gray-600">
-                Dostarczamy wózki widłowe BT Toyota w najkrótszym możliwym terminie, 
-                dostosowując się do Twoich potrzeb.
+                {t('advantagesDeliveryDesc')}
               </p>
             </div>
             
@@ -92,8 +90,7 @@ const Index = () => {
               </div>
               <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesConsultation')}</h4>
               <p className="text-gray-600">
-                Nasi eksperci pomogą Ci wybrać idealny wózek widłowy, dopasowany do 
-                specyfiki Twojej działalności.
+                {t('advantagesConsultationDesc')}
               </p>
             </div>
             
@@ -103,8 +100,7 @@ const Index = () => {
               </div>
               <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesAvailability')}</h4>
               <p className="text-gray-600">
-                Posiadamy szeroki wybór używanych wózków widłowych dostępnych od ręki, 
-                gotowych do natychmiastowej pracy.
+                {t('advantagesAvailabilityDesc')}
               </p>
             </div>
           </div>
@@ -116,7 +112,7 @@ const Index = () => {
         <div className="container-custom">
           <h2 className="section-title text-center">{t('featuredProducts')}</h2>
           <p className="text-center text-gray-600 mb-8">
-            Najnowsze i wybrane wózki widłowe z naszej oferty
+            {t('featuredProductsSubtitle')}
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
             {featuredProducts.map((product, index) => (
@@ -133,7 +129,7 @@ const Index = () => {
               asChild
             >
               <Link to="/products">
-                Zobacz wszystkie produkty
+                {t('viewAllProducts')}
               </Link>
             </Button>
           </div>

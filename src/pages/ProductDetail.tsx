@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/utils/translations';
 import { useProductStore } from '@/stores/productStore';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductImage from '@/components/products/ProductImage';
@@ -13,6 +14,7 @@ import RelatedProducts from '@/components/products/RelatedProducts';
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { language } = useLanguage();
+  const t = useTranslation(language);
   const { products } = useProductStore();
   
   const product = products.find((p) => p.id === id);
@@ -26,9 +28,9 @@ const ProductDetail = () => {
     return (
       <Layout>
         <div className="container-custom py-12">
-          <h1 className="text-3xl font-bold mb-4">Produkt nie został znaleziony</h1>
+          <h1 className="text-3xl font-bold mb-4">{t('productNotFound')}</h1>
           <Link to="/products" className="text-stakerpol-orange hover:underline">
-            Powrót do listy produktów
+            {t('backToProducts')}
           </Link>
         </div>
       </Layout>

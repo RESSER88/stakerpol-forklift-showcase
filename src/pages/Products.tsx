@@ -13,6 +13,21 @@ const Products = () => {
   const t = useTranslation(language);
   const { products } = useProductStore();
 
+  const getPageDescription = () => {
+    switch (language) {
+      case 'en':
+        return 'We offer a wide selection of BT Toyota forklifts, perfectly adapted to various applications and needs.';
+      case 'cs':
+        return 'Nabízíme široký výběr vysokozdvižných vozíků BT Toyota, ideálně přizpůsobených různým aplikacím a potřebám.';
+      case 'sk':
+        return 'Ponúkame široký výber vysokozdvižných vozíkov BT Toyota, ideálne prispôsobených rôznym aplikáciám a potrebám.';
+      case 'de':
+        return 'Wir bieten eine große Auswahl an BT Toyota Gabelstaplern, perfekt angepasst an verschiedene Anwendungen und Bedürfnisse.';
+      default:
+        return 'Oferujemy szeroki wybór wózków widłowych BT Toyota, idealnie dopasowanych do różnych zastosowań i potrzeb.';
+    }
+  };
+
   return (
     <Layout>
       <section className="bg-gradient-to-b from-stakerpol-lightgray to-white py-12">
@@ -24,12 +39,12 @@ const Products = () => {
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-stakerpol-orange transition-colors"
             >
               <Shield size={16} />
-              Panel Admin
+              {t('adminPanel')}
             </Link>
           </div>
           
           <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in">
-            Oferujemy szeroki wybór wózków widłowych BT Toyota, idealnie dopasowanych do różnych zastosowań i potrzeb.
+            {getPageDescription()}
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
