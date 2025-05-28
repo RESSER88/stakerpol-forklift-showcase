@@ -55,6 +55,165 @@ export const translations = {
     de: 'Mehr erfahren'
   },
   
+  // Hero Section
+  heroTitle: {
+    pl: 'Profesjonalne wózki widłowe BT Toyota',
+    en: 'Professional BT Toyota Forklifts',
+    cs: 'Profesionální vysokozdvižné vozíky BT Toyota',
+    sk: 'Profesionálne vysokozdvižné vozíky BT Toyota',
+    de: 'Professionelle BT Toyota Gabelstapler'
+  },
+  heroSubtitle: {
+    pl: 'Najwyższa jakość, niezawodność i wydajność dla Twojego biznesu',
+    en: 'Highest quality, reliability and efficiency for your business',
+    cs: 'Nejvyšší kvalita, spolehlivost a výkonnost pro váš podnik',
+    sk: 'Najvyššia kvalita, spoľahlivosť a výkonnosť pre váš podnik',
+    de: 'Höchste Qualität, Zuverlässigkeit und Effizienz für Ihr Unternehmen'
+  },
+  browseProducts: {
+    pl: 'Przeglądaj produkty',
+    en: 'Browse Products',
+    cs: 'Procházet produkty',
+    sk: 'Prehliadať produkty',
+    de: 'Produkte durchsuchen'
+  },
+  
+  // About Us Section
+  aboutUsTitle: {
+    pl: 'O nas',
+    en: 'About Us',
+    cs: 'O nás',
+    sk: 'O nás',
+    de: 'Über uns'
+  },
+  aboutUsDesc: {
+    pl: 'Stakerpol to doświadczony dostawca wysokiej jakości wózków widłowych BT Toyota. Oferujemy kompleksowe rozwiązania dla Twojego biznesu.',
+    en: 'Stakerpol is an experienced supplier of high-quality BT Toyota forklifts. We offer comprehensive solutions for your business.',
+    cs: 'Stakerpol je zkušený dodavatel kvalitních vysokozdvižných vozíků BT Toyota. Nabízíme komplexní řešení pro váš podnik.',
+    sk: 'Stakerpol je skúsený dodávateľ kvalitných vysokozdvižných vozíkov BT Toyota. Ponúkame komplexné riešenia pre váš podnik.',
+    de: 'Stakerpol ist ein erfahrener Anbieter hochwertiger BT Toyota Gabelstapler. Wir bieten umfassende Lösungen für Ihr Unternehmen.'
+  },
+  aboutUsAdvantages: {
+    pl: 'Nasze przewagi',
+    en: 'Our Advantages',
+    cs: 'Naše výhody',
+    sk: 'Naše výhody',
+    de: 'Unsere Vorteile'
+  },
+  
+  // Advantages
+  advantagesDelivery: {
+    pl: 'Szybka dostawa',
+    en: 'Fast Delivery',
+    cs: 'Rychlé dodání',
+    sk: 'Rýchle dodanie',
+    de: 'Schnelle Lieferung'
+  },
+  advantagesDeliveryDesc: {
+    pl: 'Zapewniamy szybką i bezpieczną dostawę wózków widłowych na terenie całej Polski.',
+    en: 'We ensure fast and secure delivery of forklifts throughout Poland.',
+    cs: 'Zajišťujeme rychlé a bezpečné dodání vysokozdvižných vozíků po celém Polsku.',
+    sk: 'Zabezpečujeme rýchle a bezpečné dodanie vysokozdvižných vozíkov po celom Poľsku.',
+    de: 'Wir gewährleisten eine schnelle und sichere Lieferung von Gabelstaplern in ganz Polen.'
+  },
+  advantagesConsultation: {
+    pl: 'Fachowa konsultacja',
+    en: 'Expert Consultation',
+    cs: 'Odborná konzultace',
+    sk: 'Odborná konzultácia',
+    de: 'Fachberatung'
+  },
+  advantagesConsultationDesc: {
+    pl: 'Nasi eksperci pomogą Ci wybrać odpowiedni wózek widłowy do Twoich potrzeb.',
+    en: 'Our experts will help you choose the right forklift for your needs.',
+    cs: 'Naši odborníci vám pomohou vybrat správný vysokozdvižný vozík pro vaše potřeby.',
+    sk: 'Naši odborníci vám pomôžu vybrať správny vysokozdvižný vozík pre vaše potreby.',
+    de: 'Unsere Experten helfen Ihnen bei der Auswahl des richtigen Gabelstaplers für Ihre Bedürfnisse.'
+  },
+  advantagesAvailability: {
+    pl: 'Stała dostępność',
+    en: 'Constant Availability',
+    cs: 'Stálá dostupnost',
+    sk: 'Stála dostupnosť',
+    de: 'Ständige Verfügbarkeit'
+  },
+  advantagesAvailabilityDesc: {
+    pl: 'Mamy na stanie szeroki wybór wózków widłowych gotowych do natychmiastowej sprzedaży.',
+    en: 'We have a wide selection of forklifts in stock ready for immediate sale.',
+    cs: 'Máme na skladě široký výběr vysokozdvižných vozíků připravených k okamžitému prodeji.',
+    sk: 'Máme na sklade široký výber vysokozdvižných vozíkov pripravených na okamžitý predaj.',
+    de: 'Wir haben eine große Auswahl an Gabelstaplern auf Lager, die sofort verkaufsbereit sind.'
+  },
+  
+  // Featured Products
+  featuredProducts: {
+    pl: 'Polecane produkty',
+    en: 'Featured Products',
+    cs: 'Doporučené produkty',
+    sk: 'Odporúčané produkty',
+    de: 'Empfohlene Produkte'
+  },
+  featuredProductsSubtitle: {
+    pl: 'Sprawdź najlepsze oferty wózków widłowych BT Toyota',
+    en: 'Check out the best BT Toyota forklift offers',
+    cs: 'Podívejte se na nejlepší nabídky vysokozdvižných vozíků BT Toyota',
+    sk: 'Pozrite si najlepšie ponuky vysokozdvižných vozíkov BT Toyota',
+    de: 'Schauen Sie sich die besten BT Toyota Gabelstapler-Angebote an'
+  },
+  viewAllProducts: {
+    pl: 'Zobacz wszystkie produkty',
+    en: 'View All Products',
+    cs: 'Zobrazit všechny produkty',
+    sk: 'Zobraziť všetky produkty',
+    de: 'Alle Produkte anzeigen'
+  },
+  
+  // Customer Opinions
+  customerOpinions: {
+    pl: 'Opinie klientów',
+    en: 'Customer Opinions',
+    cs: 'Názory zákazníků',
+    sk: 'Názory zákazníkov',
+    de: 'Kundenmeinungen'
+  },
+  
+  // Contact Form
+  sendMessage: {
+    pl: 'Wyślij wiadomość',
+    en: 'Send Message',
+    cs: 'Odeslat zprávu',
+    sk: 'Odoslať správu',
+    de: 'Nachricht senden'
+  },
+  ourLocation: {
+    pl: 'Nasza lokalizacja',
+    en: 'Our Location',
+    cs: 'Naše umístění',
+    sk: 'Naše umiestnenie',
+    de: 'Unser Standort'
+  },
+  fullName: {
+    pl: 'Imię i nazwisko',
+    en: 'Full Name',
+    cs: 'Jméno a příjmení',
+    sk: 'Meno a priezvisko',
+    de: 'Vollständiger Name'
+  },
+  message: {
+    pl: 'Wiadomość',
+    en: 'Message',
+    cs: 'Zpráva',
+    sk: 'Správa',
+    de: 'Nachricht'
+  },
+  submit: {
+    pl: 'Wyślij',
+    en: 'Submit',
+    cs: 'Odeslat',
+    sk: 'Odoslať',
+    de: 'Senden'
+  },
+  
   // Product specifications
   model: {
     pl: 'Model',
