@@ -40,9 +40,11 @@ const Header = () => {
               {t('contact')}
             </Link>
             <LanguageSwitcher />
-            <Button className="cta-button">
-              <Phone className="mr-2 h-4 w-4" />
-              +48 123 456 789
+            <Button className="cta-button" asChild>
+              <a href="tel:+48693133592">
+                <Phone className="mr-2 h-4 w-4" />
+                +48 693 133 592
+              </a>
             </Button>
           </nav>
 
@@ -91,9 +93,11 @@ const Header = () => {
               >
                 {t('contact')}
               </Link>
-              <Button className="cta-button w-full">
-                <Phone className="mr-2 h-4 w-4" />
-                +48 123 456 789
+              <Button className="cta-button w-full" asChild>
+                <a href="tel:+48693133592">
+                  <Phone className="mr-2 h-4 w-4" />
+                  +48 693 133 592
+                </a>
               </Button>
             </nav>
           </div>

@@ -40,7 +40,7 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
     try {
       // Create the email content with serial number
       const emailData = {
-        to: 'maciejsew@gmail.com',
+        to: 'info@stakerpol.pl',
         subject: 'Prośba o cenę',
         body: `
 Zapytanie o cenę dla produktu: ${product.model}
@@ -56,9 +56,11 @@ Wysłane ze strony: ${window.location.href}
 
       console.log('Wysyłanie e-maila:', emailData);
       
-      // For now, we'll use mailto: as a temporary solution since we don't have backend
-      const mailtoLink = `mailto:maciejsew@gmail.com?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
-      window.open(mailtoLink, '_blank');
+      // Create mailto link that works reliably on both desktop and mobile
+      const mailtoLink = `mailto:info@stakerpol.pl?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
+      
+      // Use window.location.href for better mobile compatibility
+      window.location.href = mailtoLink;
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));

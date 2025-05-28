@@ -24,7 +24,7 @@ const ProductInfo = ({ product, language }: ProductInfoProps) => {
       
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <Button className="cta-button text-lg" size="lg" asChild>
-          <a href="tel:+48123456789">
+          <a href="tel:+48693133592">
             <Phone className="mr-2" />
             {t('callNow')}
           </a>
