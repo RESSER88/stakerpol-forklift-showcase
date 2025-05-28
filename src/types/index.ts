@@ -5,6 +5,8 @@ export interface Product {
   image: string; // Keep for backward compatibility - will be same as images[0]
   images: string[]; // Array of up to 5 images
   shortDescription: string;
+  createdAt: string; // ISO date string for when product was created
+  updatedAt: string; // ISO date string for when product was last updated
   specs: {
     productionYear: string;
     capacity: string;
