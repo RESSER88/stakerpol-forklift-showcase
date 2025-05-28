@@ -10,20 +10,25 @@ import LazyImage from '@/components/ui/LazyImage';
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, priority = false }: ProductCardProps) => {
   const { language } = useLanguage();
   const t = useTranslation(language);
+
+  // Use the first image from images array, fallback to image field
+  const displayImage = product.images?.[0] || product.image;
 
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow">
       <Link to={`/products/${product.id}`} className="block">
         <div className="aspect-[4/3] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
           <LazyImage
-            src={product.image}
+            src={displayImage}
             alt={product.model}
             aspectRatio="4:3"
+            priority={priority}
           />
         </div>
       </Link>

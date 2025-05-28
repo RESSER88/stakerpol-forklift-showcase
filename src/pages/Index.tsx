@@ -1,20 +1,20 @@
-
 import { Link } from 'react-router-dom';
 import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
-import { products } from '@/data/mockData';
+import { useProductStore } from '@/stores/productStore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 
 const Index = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
+  const getFeaturedProducts = useProductStore(state => state.getFeaturedProducts);
 
-  // Only show 3 featured products on the homepage
-  const featuredProducts = products.slice(0, 3);
+  // Get dynamic featured products (mix of recent and random)
+  const featuredProducts = getFeaturedProducts(3);
 
   return (
     <Layout>
@@ -115,6 +115,9 @@ const Index = () => {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <h2 className="section-title text-center">{t('featuredProducts')}</h2>
+          <p className="text-center text-gray-600 mb-8">
+            Najnowsze i wybrane wózki widłowe z naszej oferty
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
             {featuredProducts.map((product, index) => (
               <div key={product.id} style={{ animationDelay: `${index * 100}ms` }}>
