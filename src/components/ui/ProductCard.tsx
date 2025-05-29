@@ -42,7 +42,7 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
             className="cta-button w-full text-sm md:text-base py-2 md:py-3"
             asChild
           >
-            <a href="tel:+48693133592">
+            <a href="tel:+48694133592">
               <Phone className="mr-2 h-3 w-3 md:h-4 md:w-4" />
               {t('callNow')}
             </a>

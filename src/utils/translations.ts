@@ -346,7 +346,7 @@ export const translations = {
   
   // Call to Action
   readyToStart: {
-    pl: 'Gotowy na rozpoczęcie?',
+    pl: 'Gotowy na współpracę?',
     en: 'Ready to Start?',
     cs: 'Připraveni začít?',
     sk: 'Pripravení začať?',

@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import { Upload, X, Star, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,7 +14,7 @@ interface ProductImageManagerProps {
 
 const ProductImageManager = ({ 
   onImagesChange, 
-  maxImages = 3, 
+  maxImages = 10, 
   currentImages = [],
   className 
 }: ProductImageManagerProps) => {
@@ -28,7 +27,7 @@ const ProductImageManager = ({
     if (previews.length >= maxImages) {
       toast({
         title: "Limit zdjęć osiągnięty",
-        description: `Możesz dodać maksymalnie ${maxImages} zdjęcia`,
+        description: `Możesz dodać maksymalnie ${maxImages} zdjęć`,
         variant: "destructive"
       });
       return;
@@ -226,7 +225,7 @@ const ProductImageManager = ({
             {previews.map((preview, index) => (
               <div key={index} className="relative group">
                 <div className={cn(
-                  "relative aspect-square bg-white rounded-lg overflow-hidden border-2 transition-all",
+                  "relative aspect-[4/3] bg-white rounded-lg overflow-hidden border-2 transition-all",
                   index === mainImageIndex 
                     ? "border-stakerpol-orange shadow-lg ring-2 ring-stakerpol-orange/20" 
                     : "border-gray-200 hover:border-gray-300"

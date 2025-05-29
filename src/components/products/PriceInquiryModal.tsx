@@ -38,20 +38,22 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
     setIsSubmitting(true);
 
     try {
-      // Create the email content with serial number
+      // Create the email content with updated format
       const emailData = {
         to: 'info@stakerpol.pl',
-        subject: 'Prośba o cenę',
-        body: `
-Zapytanie o cenę dla produktu: ${product.model}
+        subject: 'Zapytanie o cenę dla produktu (uzupełnij Model, rok produkcji, oraz nr seryjny ze strony zapytania)',
+        body: `Dzień dobry,
+
+Proszę o ofertę na produkt (uzupełnij Model, rok produkcji, oraz nr seryjny ze strony zapytania).
+
+Model produktu: ${product.model}
 Numer seryjny: ${product.id}
 
 Dane kontaktowe:
 ${email ? `Email: ${email}` : ''}
 ${phone ? `Telefon: ${phone}` : ''}
 
-Wysłane ze strony: ${window.location.href}
-        `.trim()
+Pozdrawiam,`.trim()
       };
 
       console.log('Wysyłanie e-maila:', emailData);

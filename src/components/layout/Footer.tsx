@@ -41,6 +41,10 @@ const Footer = () => {
 
   const companyInfo = getCompanyInfo();
 
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-custom py-12">
@@ -68,25 +72,25 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4 text-toyota-orange">Menu</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="hover:text-toyota-orange transition-colors inline-flex items-center group">
+                <Link to="/" onClick={handleLinkClick} className="hover:text-toyota-orange transition-colors inline-flex items-center group">
                   <span className="w-1 h-1 bg-toyota-orange rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   {t('home')}
                 </Link>
               </li>
               <li>
-                <Link to="/products" className="hover:text-toyota-orange transition-colors inline-flex items-center group">
+                <Link to="/products" onClick={handleLinkClick} className="hover:text-toyota-orange transition-colors inline-flex items-center group">
                   <span className="w-1 h-1 bg-toyota-orange rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   {t('products')}
                 </Link>
               </li>
               <li>
-                <Link to="/testimonials" className="hover:text-toyota-orange transition-colors inline-flex items-center group">
+                <Link to="/testimonials" onClick={handleLinkClick} className="hover:text-toyota-orange transition-colors inline-flex items-center group">
                   <span className="w-1 h-1 bg-toyota-orange rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   {t('testimonials')}
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-toyota-orange transition-colors inline-flex items-center group">
+                <Link to="/contact" onClick={handleLinkClick} className="hover:text-toyota-orange transition-colors inline-flex items-center group">
                   <span className="w-1 h-1 bg-toyota-orange rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   {t('contact')}
                 </Link>

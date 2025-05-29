@@ -33,7 +33,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 md:pr-8 animate-fade-in">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                {t('heroTitle')}
+                Profesjonalna sprzedaż i serwis używanych wózków paletowych BT Toyota
               </h1>
               <p className="text-lg text-gray-300 md:text-xl">
                 {t('heroSubtitle')}
