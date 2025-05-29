@@ -1,11 +1,10 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface LazyImageProps {
   src: string;
   alt: string;
-  aspectRatio?: '4:3' | '1:1' | 'auto';
+  aspectRatio?: '4:3' | '3:4' | '1:1' | 'auto';
   className?: string;
   onLoad?: () => void;
   onError?: () => void;
@@ -109,6 +108,8 @@ const LazyImage = ({
     switch (aspectRatio) {
       case '4:3':
         return 'aspect-[4/3]';
+      case '3:4':
+        return 'aspect-[3/4]';
       case '1:1':
         return 'aspect-square';
       default:
