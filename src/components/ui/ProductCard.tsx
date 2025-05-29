@@ -29,6 +29,7 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
             alt={product.model}
             aspectRatio="4:3"
             priority={priority}
+            className="h-full w-full"
           />
         </div>
       </Link>

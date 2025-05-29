@@ -41,13 +41,13 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
       // Create the email content with updated format
       const emailData = {
         to: 'info@stakerpol.pl',
-        subject: 'Zapytanie o cenę dla produktu (uzupełnij Model, rok produkcji, oraz nr seryjny ze strony zapytania)',
+        subject: `Zapytanie o cenę dla produktu Model produktu: ${product.model}  Numer seryjny: ${product.id}  Rok produkcji: [YEAR]`,
         body: `Dzień dobry,
 
-Proszę o ofertę na produkt (uzupełnij Model, rok produkcji, oraz nr seryjny ze strony zapytania).
-
+Proszę o ofertę na produkt:
 Model produktu: ${product.model}
 Numer seryjny: ${product.id}
+Rok produkcji: [YEAR]
 
 Dane kontaktowe:
 ${email ? `Email: ${email}` : ''}
@@ -89,14 +89,15 @@ Pozdrawiam,`.trim()
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md mx-4 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t('askForPrice')}</DialogTitle>
+          <DialogTitle className="text-lg">{t('askForPrice')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="text-sm text-muted-foreground mb-4">
-            {t('productModel')}: <strong>{product.model}</strong><br />
-            Numer seryjny: <strong>{product.id}</strong>
+          <div className="text-sm text-muted-foreground mb-4 p-3 bg-gray-50 rounded-lg">
+            <div><strong>Model produktu:</strong> {product.model}</div>
+            <div><strong>Numer seryjny:</strong> {product.id}</div>
+            <div><strong>Rok produkcji:</strong> [YEAR]</div>
           </div>
           
           <div className="space-y-2">
@@ -107,6 +108,7 @@ Pozdrawiam,`.trim()
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('yourEmail')}
+              className="text-base"
             />
           </div>
           
@@ -118,18 +120,19 @@ Pozdrawiam,`.trim()
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder={t('yourPhone')}
+              className="text-base"
             />
           </div>
           
-          <div className="text-xs text-muted-foreground">
+          <div className="text-xs text-muted-foreground bg-blue-50 p-2 rounded">
             {t('provideAtLeastOne')}
           </div>
           
           <div className="flex gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={onClose} className="flex-1">
+            <Button type="button" variant="outline" onClick={onClose} className="flex-1 text-base py-3">
               {t('cancel')}
             </Button>
-            <Button type="submit" disabled={isSubmitting} className="flex-1">
+            <Button type="submit" disabled={isSubmitting} className="flex-1 text-base py-3">
               {isSubmitting ? t('sending') : 'OK'}
             </Button>
           </div>

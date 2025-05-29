@@ -90,14 +90,14 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10 touch-manipulation"
                 aria-label="Poprzednie zdjęcie"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10 touch-manipulation"
                 aria-label="Następne zdjęcie"
               >
                 <ChevronRight size={20} />
@@ -126,7 +126,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`aspect-square rounded overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
+              className={`aspect-[4/3] rounded overflow-hidden border-2 transition-all duration-300 hover:scale-105 touch-manipulation ${
                 index === currentImageIndex 
                   ? 'border-stakerpol-orange shadow-md ring-2 ring-stakerpol-orange/30' 
                   : 'border-gray-200 hover:border-gray-300'
@@ -135,7 +135,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
               <LazyImage
                 src={img}
                 alt={`${alt} - zdjęcie ${index + 1}`}
-                aspectRatio="1:1"
+                aspectRatio="4:3"
                 className="transition-transform duration-300"
               />
             </button>
@@ -143,49 +143,50 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
         </div>
       )}
 
-      {/* Zoom Modal */}
+      {/* Mobile-Optimized Zoom Modal */}
       {showZoom && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4" 
+          className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-2 touch-manipulation" 
           onClick={closeZoom}
         >
-          <div className="relative max-w-full max-h-full">
+          <div className="relative w-full h-full max-w-4xl max-h-full flex items-center justify-center">
             <img 
               src={currentImage} 
               alt={alt} 
               className="max-w-full max-h-full object-contain animate-scale-in"
               loading="eager"
+              style={{ touchAction: 'pinch-zoom' }}
             />
             
-            {/* Close button */}
+            {/* Close button - larger for mobile */}
             <button 
               onClick={closeZoom}
-              className="absolute top-4 right-4 text-white p-2 rounded-full bg-stakerpol-orange hover:bg-orange-600 transition-colors z-10"
+              className="absolute top-4 right-4 text-white p-3 rounded-full bg-stakerpol-orange hover:bg-orange-600 transition-colors z-10 touch-manipulation"
               aria-label="Zamknij"
             >
               <X size={24} />
             </button>
             
-            {/* Navigation in zoom mode */}
+            {/* Navigation in zoom mode - larger touch targets */}
             {allImages.length > 1 && (
               <>
                 <button
                   onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-4 rounded-full hover:bg-black/70 transition-colors touch-manipulation"
                   aria-label="Poprzednie zdjęcie"
                 >
                   <ChevronLeft size={24} />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-4 rounded-full hover:bg-black/70 transition-colors touch-manipulation"
                   aria-label="Następne zdjęcie"
                 >
                   <ChevronRight size={24} />
                 </button>
                 
                 {/* Image counter in zoom */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
                   {currentImageIndex + 1} / {allImages.length}
                 </div>
               </>
