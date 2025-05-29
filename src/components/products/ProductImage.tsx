@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import LazyImage from '@/components/ui/LazyImage';
@@ -61,7 +60,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
 
   if (!currentImage) {
     return (
-      <div className="aspect-[4/3] bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="aspect-[3/4] bg-gray-100 rounded-lg flex items-center justify-center">
         <span className="text-gray-400">Brak zdjęcia</span>
       </div>
     );
@@ -72,7 +71,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
       {/* Main Image Container */}
       <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
         <div 
-          className="aspect-[4/3] cursor-zoom-in relative"
+          className="aspect-[3/4] cursor-zoom-in relative"
           onClick={openZoom}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -81,7 +80,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
           <LazyImage
             src={currentImage}
             alt={alt}
-            aspectRatio="4:3"
+            aspectRatio="3:4"
             className="transition-transform duration-300 group-hover:scale-105"
           />
           
@@ -126,7 +125,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`aspect-[4/3] rounded overflow-hidden border-2 transition-all duration-300 hover:scale-105 touch-manipulation ${
+              className={`aspect-[3/4] rounded overflow-hidden border-2 transition-all duration-300 hover:scale-105 touch-manipulation ${
                 index === currentImageIndex 
                   ? 'border-stakerpol-orange shadow-md ring-2 ring-stakerpol-orange/30' 
                   : 'border-gray-200 hover:border-gray-300'
@@ -135,7 +134,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
               <LazyImage
                 src={img}
                 alt={`${alt} - zdjęcie ${index + 1}`}
-                aspectRatio="4:3"
+                aspectRatio="3:4"
                 className="transition-transform duration-300"
               />
             </button>

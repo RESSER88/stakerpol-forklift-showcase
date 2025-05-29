@@ -23,6 +23,11 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
   const { language } = useLanguage();
   const t = useTranslation(language);
 
+  // Extract product data with fallbacks
+  const productModel = product.model || 'Nie określono';
+  const productSerial = product.specs?.serialNumber || product.id || 'Nie określono';
+  const productYear = product.specs?.productionYear || 'Nie określono';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -39,27 +44,25 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
 
     try {
       // Create the email content with updated format
-      const emailData = {
-        to: 'info@stakerpol.pl',
-        subject: `Zapytanie o cenę dla produktu Model produktu: ${product.model}  Numer seryjny: ${product.id}  Rok produkcji: [YEAR]`,
-        body: `Dzień dobry,
+      const emailSubject = `Zapytanie o cenę dla produktu ${productModel} ${productSerial} ${productYear}`;
+      
+      const emailBody = `Dzień dobry,
 
 Proszę o ofertę na produkt:
-Model produktu: ${product.model}
-Numer seryjny: ${product.id}
-Rok produkcji: [YEAR]
+${productModel}
+${productSerial}
+${productYear}
 
 Dane kontaktowe:
 ${email ? `Email: ${email}` : ''}
 ${phone ? `Telefon: ${phone}` : ''}
 
-Pozdrawiam,`.trim()
-      };
+Pozdrawiam,`.trim();
 
-      console.log('Wysyłanie e-maila:', emailData);
+      console.log('Wysyłanie e-maila:', { subject: emailSubject, body: emailBody });
       
       // Create mailto link that works reliably on both desktop and mobile
-      const mailtoLink = `mailto:info@stakerpol.pl?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
+      const mailtoLink = `mailto:info@stakerpol.pl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
       
       // Use window.location.href for better mobile compatibility
       window.location.href = mailtoLink;
@@ -95,9 +98,9 @@ Pozdrawiam,`.trim()
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="text-sm text-muted-foreground mb-4 p-3 bg-gray-50 rounded-lg">
-            <div><strong>Model produktu:</strong> {product.model}</div>
-            <div><strong>Numer seryjny:</strong> {product.id}</div>
-            <div><strong>Rok produkcji:</strong> [YEAR]</div>
+            <div><strong>Model produktu:</strong> {productModel}</div>
+            <div><strong>Numer seryjny:</strong> {productSerial}</div>
+            <div><strong>Rok produkcji:</strong> {productYear}</div>
           </div>
           
           <div className="space-y-2">

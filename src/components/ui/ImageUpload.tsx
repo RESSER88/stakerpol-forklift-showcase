@@ -15,7 +15,7 @@ interface ImageUploadProps {
 
 const ImageUpload = ({ 
   onImagesChange, 
-  maxImages = 5, 
+  maxImages = 10, 
   currentImages = [],
   className 
 }: ImageUploadProps) => {
@@ -160,7 +160,7 @@ const ImageUpload = ({
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {previews.map((preview, index) => (
             <div key={index} className="relative group">
-              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+              <div className="aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden">
                 <img
                   src={preview}
                   alt={`Podgląd ${index + 1}`}
