@@ -4,14 +4,35 @@ import { persist } from 'zustand/middleware';
 import { products as initialProducts } from '@/data/mockData';
 import { Product } from '@/types';
 
-// Migration function to add images array and ensure backward compatibility
+// Migration function to add new specification fields and ensure backward compatibility
 const migrateProduct = (product: any): Product => {
   return {
     ...product,
     images: product.images || [product.image].filter(Boolean),
     specs: {
-      ...product.specs,
-      serialNumber: product.specs?.serialNumber || ''
+      // Main section
+      productionYear: product.specs?.productionYear || '',
+      capacity: product.specs?.capacity || '',
+      workingHours: product.specs?.workingHours || '',
+      liftHeight: product.specs?.liftHeight || '',
+      minHeight: product.specs?.minHeight || '',
+      preliminaryLifting: product.specs?.preliminaryLifting || '',
+      battery: product.specs?.battery || '',
+      condition: product.specs?.condition || '',
+      serialNumber: product.specs?.serialNumber || '',
+      
+      // Expandable section
+      driveType: product.specs?.driveType || '',
+      mast: product.specs?.mast || '',
+      freeStroke: product.specs?.freeStroke || '',
+      dimensions: product.specs?.dimensions || '',
+      wheels: product.specs?.wheels || '',
+      operatorPlatform: product.specs?.operatorPlatform || '',
+      additionalOptions: product.specs?.additionalOptions || '',
+      additionalDescription: product.specs?.additionalDescription || '',
+      
+      // Legacy compatibility
+      charger: product.specs?.charger || ''
     },
     createdAt: product.createdAt || new Date().toISOString(),
     updatedAt: product.updatedAt || new Date().toISOString()
@@ -70,13 +91,11 @@ export const useProductStore = create<ProductState>()(
         const { products } = get();
         if (products.length === 0) return [];
         
-        // Mix of recent and random products
         const sortedByDate = [...products].sort((a, b) => 
           new Date(b.updatedAt || b.createdAt || 0).getTime() - 
           new Date(a.updatedAt || a.createdAt || 0).getTime()
         );
         
-        // Take 2 most recent and 1 random from the rest
         const recent = sortedByDate.slice(0, Math.min(2, count));
         const remaining = sortedByDate.slice(2);
         
@@ -85,7 +104,6 @@ export const useProductStore = create<ProductState>()(
           recent.push(remaining[randomIndex]);
         }
         
-        // If we still need more products, add from the beginning
         while (recent.length < count && recent.length < products.length) {
           const nextProduct = sortedByDate.find(p => !recent.includes(p));
           if (nextProduct) recent.push(nextProduct);
@@ -107,7 +125,7 @@ export const useProductStore = create<ProductState>()(
     }),
     {
       name: 'product-store',
-      version: 1
+      version: 2
     }
   )
 );

@@ -8,18 +8,29 @@ export interface Product {
   createdAt: string; // ISO date string for when product was created
   updatedAt: string; // ISO date string for when product was last updated
   specs: {
+    // Main section (always visible)
     productionYear: string;
-    capacity: string;
-    workingHours: string;
-    liftHeight: string;
-    minHeight: string;
-    battery: string;
-    charger: string;
-    condition: string;
-    dimensions: string;
-    wheels: string;
-    additionalOptions: string;
     serialNumber?: string; // Optional serial number
+    capacity: string; // Udźwig przy podnoszeniu masztu / Udźwig przy podnoszeniu wstępnym [kg]
+    workingHours: string; // Godziny pracy [mh]
+    liftHeight: string; // Wysokość podnoszenia [mm]
+    minHeight: string; // Wysokość konstrukcyjna [mm]
+    preliminaryLifting: string; // Wstępne podnoszenie
+    battery: string; // Bateria (z ładowarką)
+    condition: string; // Stan
+    
+    // Expandable section (hidden by default)
+    driveType: string; // Rodzaj napędu
+    mast: string; // Maszt
+    freeStroke: string; // Wolny skok [mm]
+    dimensions: string; // Wymiary (długość / szerokość) [mm]
+    wheels: string; // Koła
+    operatorPlatform: string; // Składany podest dla operatora
+    additionalOptions: string; // Opcje dodatkowe
+    additionalDescription: string; // Opis dodatkowy
+    
+    // Legacy fields for backward compatibility
+    charger?: string;
   };
 }
 

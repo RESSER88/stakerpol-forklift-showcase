@@ -30,7 +30,7 @@ const ProductManager = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [productImages, setProductImages] = useState<string[]>([]);
-  const [viewMode, setViewMode] = useState<'grid' | 'table'>('table'); // Set table as default
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
   const { toast } = useToast();
   
   const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
@@ -44,23 +44,34 @@ const ProductManager = () => {
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     specs: {
+      // Main section
       productionYear: '',
       capacity: '',
       workingHours: '',
       liftHeight: '',
       minHeight: '',
+      preliminaryLifting: '',
       battery: '',
-      charger: '',
       condition: '',
+      serialNumber: '',
+      
+      // Expandable section
+      driveType: '',
+      mast: '',
+      freeStroke: '',
       dimensions: '',
       wheels: '',
+      operatorPlatform: '',
       additionalOptions: '',
-      serialNumber: ''
+      additionalDescription: '',
+      
+      // Legacy compatibility
+      charger: ''
     }
   };
   
   const [editedProduct, setEditedProduct] = useState<Product>(defaultNewProduct);
-  
+
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
     setEditedProduct({...product});
@@ -82,7 +93,7 @@ const ProductManager = () => {
       model: `${product.model} (kopia)`,
       specs: {
         ...product.specs,
-        serialNumber: '' // Clear serial number for uniqueness check
+        serialNumber: ''
       },
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -95,7 +106,7 @@ const ProductManager = () => {
   };
 
   const checkSerialNumberUnique = (serialNumber: string, currentProductId?: string): boolean => {
-    if (!serialNumber.trim()) return true; // Empty serial numbers are allowed
+    if (!serialNumber.trim()) return true;
     
     return !products.some(product => 
       product.specs.serialNumber?.toLowerCase() === serialNumber.toLowerCase() &&
@@ -123,7 +134,6 @@ const ProductManager = () => {
         return;
       }
 
-      // Check serial number uniqueness
       const serialNumber = editedProduct.specs.serialNumber?.trim();
       if (serialNumber && !checkSerialNumberUnique(serialNumber, selectedProduct?.id)) {
         toast({
@@ -361,119 +371,188 @@ const ProductManager = () => {
                 </div>
               </div>
               
-              <div className="space-y-4">
-                <h3 className="font-semibold text-base sm:text-lg text-stakerpol-navy">Specyfikacja techniczna</h3>
+              <Tabs defaultValue="main" className="space-y-4">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="main">Sekcja główna</TabsTrigger>
+                  <TabsTrigger value="extended">Sekcja rozwijana</TabsTrigger>
+                </TabsList>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Numer seryjny</label>
-                    <Input 
-                      value={editedProduct.specs.serialNumber || ''} 
-                      onChange={(e) => updateSpecsField('serialNumber', e.target.value)} 
-                      placeholder="ABC123456"
-                    />
-                  </div>
+                <TabsContent value="main" className="space-y-4">
+                  <h3 className="font-semibold text-base sm:text-lg text-stakerpol-navy">Sekcja główna (zawsze widoczna)</h3>
                   
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Rok produkcji</label>
-                    <Input 
-                      value={editedProduct.specs.productionYear} 
-                      onChange={(e) => updateSpecsField('productionYear', e.target.value)} 
-                      placeholder="2023"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Numer seryjny</label>
+                      <Input 
+                        value={editedProduct.specs.serialNumber || ''} 
+                        onChange={(e) => updateSpecsField('serialNumber', e.target.value)} 
+                        placeholder="ABC123456"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Rok produkcji</label>
+                      <Input 
+                        value={editedProduct.specs.productionYear} 
+                        onChange={(e) => updateSpecsField('productionYear', e.target.value)} 
+                        placeholder="2023"
+                      />
+                    </div>
+                    
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium mb-1">Udźwig przy podnoszeniu masztu / Udźwig przy podnoszeniu wstępnym [kg]</label>
+                      <Input 
+                        value={editedProduct.specs.capacity} 
+                        onChange={(e) => updateSpecsField('capacity', e.target.value)} 
+                        placeholder="2000 kg"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Godziny pracy [mh]</label>
+                      <Input 
+                        value={editedProduct.specs.workingHours} 
+                        onChange={(e) => updateSpecsField('workingHours', e.target.value)} 
+                        placeholder="3200 h"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Wysokość podnoszenia [mm]</label>
+                      <Input 
+                        value={editedProduct.specs.liftHeight} 
+                        onChange={(e) => updateSpecsField('liftHeight', e.target.value)} 
+                        placeholder="1600 mm"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Wysokość konstrukcyjna [mm]</label>
+                      <Input 
+                        value={editedProduct.specs.minHeight} 
+                        onChange={(e) => updateSpecsField('minHeight', e.target.value)} 
+                        placeholder="85 mm"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Wstępne podnoszenie</label>
+                      <Input 
+                        value={editedProduct.specs.preliminaryLifting} 
+                        onChange={(e) => updateSpecsField('preliminaryLifting', e.target.value)} 
+                        placeholder="120 mm"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Bateria (z ładowarką)</label>
+                      <Input 
+                        value={editedProduct.specs.battery} 
+                        onChange={(e) => updateSpecsField('battery', e.target.value)} 
+                        placeholder="48V 120Ah z ładowarką 230V"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Stan</label>
+                      <Input 
+                        value={editedProduct.specs.condition} 
+                        onChange={(e) => updateSpecsField('condition', e.target.value)} 
+                        placeholder="Bardzo dobry"
+                      />
+                    </div>
                   </div>
+                </TabsContent>
+
+                <TabsContent value="extended" className="space-y-4">
+                  <h3 className="font-semibold text-base sm:text-lg text-stakerpol-navy">Sekcja rozwijana</h3>
                   
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Udźwig</label>
-                    <Input 
-                      value={editedProduct.specs.capacity} 
-                      onChange={(e) => updateSpecsField('capacity', e.target.value)} 
-                      placeholder="2000 kg"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Rodzaj napędu</label>
+                      <Input 
+                        value={editedProduct.specs.driveType} 
+                        onChange={(e) => updateSpecsField('driveType', e.target.value)} 
+                        placeholder="Elektryczny"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Maszt</label>
+                      <Input 
+                        value={editedProduct.specs.mast} 
+                        onChange={(e) => updateSpecsField('mast', e.target.value)} 
+                        placeholder="Duplex"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Wolny skok [mm]</label>
+                      <Input 
+                        value={editedProduct.specs.freeStroke} 
+                        onChange={(e) => updateSpecsField('freeStroke', e.target.value)} 
+                        placeholder="150 mm"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Wymiary (długość / szerokość) [mm]</label>
+                      <Input 
+                        value={editedProduct.specs.dimensions} 
+                        onChange={(e) => updateSpecsField('dimensions', e.target.value)} 
+                        placeholder="1900/720 mm"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Koła</label>
+                      <Input 
+                        value={editedProduct.specs.wheels} 
+                        onChange={(e) => updateSpecsField('wheels', e.target.value)} 
+                        placeholder="Poliuretan"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Składany podest dla operatora</label>
+                      <Input 
+                        value={editedProduct.specs.operatorPlatform} 
+                        onChange={(e) => updateSpecsField('operatorPlatform', e.target.value)} 
+                        placeholder="Tak/Nie"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium mb-1">Opcje dodatkowe</label>
+                      <Input 
+                        value={editedProduct.specs.additionalOptions} 
+                        onChange={(e) => updateSpecsField('additionalOptions', e.target.value)} 
+                        placeholder="Platforma operatora, czujniki"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
+                    </div>
+                    
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium mb-1">Opis dodatkowy</label>
+                      <Textarea 
+                        value={editedProduct.specs.additionalDescription} 
+                        onChange={(e) => updateSpecsField('additionalDescription', e.target.value)} 
+                        placeholder="Szczegółowy opis dodatkowy produktu. Tekst będzie automatycznie dopasowywany do szerokości okna."
+                        rows={4}
+                        className="w-full"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie. Tekst będzie responsywny (desktop i mobile).</p>
+                    </div>
                   </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Godziny pracy</label>
-                    <Input 
-                      value={editedProduct.specs.workingHours} 
-                      onChange={(e) => updateSpecsField('workingHours', e.target.value)} 
-                      placeholder="3200 h"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Wysokość podnoszenia</label>
-                    <Input 
-                      value={editedProduct.specs.liftHeight} 
-                      onChange={(e) => updateSpecsField('liftHeight', e.target.value)} 
-                      placeholder="1600 mm"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Minimalna wysokość</label>
-                    <Input 
-                      value={editedProduct.specs.minHeight} 
-                      onChange={(e) => updateSpecsField('minHeight', e.target.value)} 
-                      placeholder="85 mm"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Bateria</label>
-                    <Input 
-                      value={editedProduct.specs.battery} 
-                      onChange={(e) => updateSpecsField('battery', e.target.value)} 
-                      placeholder="48V 120Ah"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Ładowarka</label>
-                    <Input 
-                      value={editedProduct.specs.charger} 
-                      onChange={(e) => updateSpecsField('charger', e.target.value)} 
-                      placeholder="230V wbudowana"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Stan</label>
-                    <Input 
-                      value={editedProduct.specs.condition} 
-                      onChange={(e) => updateSpecsField('condition', e.target.value)} 
-                      placeholder="Bardzo dobry"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Wymiary</label>
-                    <Input 
-                      value={editedProduct.specs.dimensions} 
-                      onChange={(e) => updateSpecsField('dimensions', e.target.value)} 
-                      placeholder="1900/720/1500 mm"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Koła</label>
-                    <Input 
-                      value={editedProduct.specs.wheels} 
-                      onChange={(e) => updateSpecsField('wheels', e.target.value)} 
-                      placeholder="Poliuretan"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Opcje dodatkowe</label>
-                    <Input 
-                      value={editedProduct.specs.additionalOptions} 
-                      onChange={(e) => updateSpecsField('additionalOptions', e.target.value)} 
-                      placeholder="Platforma operatora"
-                    />
-                  </div>
-                </div>
-              </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
           

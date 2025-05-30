@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Product } from '@/types';
 import { Language } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
-import SpecificationsTable from './SpecificationsTable';
+import ModernSpecificationsTable from './ModernSpecificationsTable';
 import PriceInquiryModal from './PriceInquiryModal';
 
 interface ProductInfoProps {
@@ -41,7 +41,7 @@ const ProductInfo = ({ product, language }: ProductInfoProps) => {
       </div>
       
       <h2 className="text-2xl font-bold mb-4">{t('specifications')}</h2>
-      <SpecificationsTable product={product} language={language} />
+      <ModernSpecificationsTable product={product} language={language} />
       
       <PriceInquiryModal 
         isOpen={isPriceModalOpen}
