@@ -18,18 +18,29 @@ export const products: Product[] = [
     createdAt: "2024-01-15T10:00:00.000Z",
     updatedAt: "2024-01-15T10:00:00.000Z",
     specs: {
+      // Main section
       productionYear: "2023",
       capacity: "1600 kg",
       workingHours: "1200 h",
       liftHeight: "6000 mm",
       minHeight: "85 mm",
-      battery: "80V / 500Ah",
-      charger: "Tak - 80V 100A",
+      preliminaryLifting: "120 mm",
+      battery: "80V / 500Ah z ładowarką 80V 100A",
       condition: "Bardzo dobry",
+      serialNumber: "TOY-SPE160-2023-001",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "Triplex",
+      freeStroke: "150 mm",
       dimensions: "2850 x 1150 x 2100 mm",
       wheels: "Poliuretanowe",
+      operatorPlatform: "Tak",
       additionalOptions: "Triplex, kabina operatora, wyświetlacz LCD",
-      serialNumber: "TOY-SPE160-2023-001"
+      additionalDescription: "Wózek wyposażony w nowoczesną kabinę operatora z systemem amortyzacji oraz zaawansowany system kontroli wydajności baterii.",
+      
+      // Legacy compatibility
+      charger: "Tak - 80V 100A"
     }
   },
   {
@@ -47,18 +58,29 @@ export const products: Product[] = [
     createdAt: "2024-02-10T14:30:00.000Z",
     updatedAt: "2024-02-10T14:30:00.000Z",
     specs: {
+      // Main section
       productionYear: "2022",
       capacity: "1600 kg", 
       workingHours: "800 h",
       liftHeight: "5500 mm",
       minHeight: "90 mm",
-      battery: "80V / 465Ah",
-      charger: "Tak - 80V 80A",
+      preliminaryLifting: "140 mm",
+      battery: "80V / 465Ah z ładowarką 80V 80A",
       condition: "Bardzo dobry",
+      serialNumber: "BT-RRE160-2022-042",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "Duplex",
+      freeStroke: "130 mm",
       dimensions: "2950 x 1200 x 2150 mm",
       wheels: "Pneumatyczne",
+      operatorPlatform: "Nie",
       additionalOptions: "Duplex, system nawigacji, LED oświetlenie",
-      serialNumber: "BT-RRE160-2022-042"
+      additionalDescription: "Zaawansowany wózek zasięgowy z systemem automatycznej nawigacji i energooszczędnym napędem elektrycznym.",
+      
+      // Legacy compatibility
+      charger: "Tak - 80V 80A"
     }
   },
   {
@@ -75,18 +97,29 @@ export const products: Product[] = [
     createdAt: "2024-03-05T09:15:00.000Z",
     updatedAt: "2024-03-05T09:15:00.000Z",
     specs: {
+      // Main section
       productionYear: "2021",
       capacity: "800 kg",
       workingHours: "1500 h", 
       liftHeight: "3200 mm",
       minHeight: "75 mm",
-      battery: "48V / 320Ah",
-      charger: "Tak - 48V 50A",
+      preliminaryLifting: "100 mm",
+      battery: "48V / 320Ah z ładowarką 48V 50A",
       condition: "Dobry",
+      serialNumber: "",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "Simplex",
+      freeStroke: "120 mm",
       dimensions: "2100 x 900 x 1950 mm",
       wheels: "Poliuretanowe",
+      operatorPlatform: "Nie",
       additionalOptions: "Kompaktowa konstrukcja, cicha praca",
-      serialNumber: ""
+      additionalDescription: "Idealny do pracy w ciasnych przestrzeniach magazynowych. Wyróżnia się wyjątkowo cichą pracą i niskim zużyciem energii.",
+      
+      // Legacy compatibility
+      charger: "Tak - 48V 50A"
     }
   },
   {
@@ -104,18 +137,29 @@ export const products: Product[] = [
     createdAt: "2024-04-12T16:45:00.000Z",
     updatedAt: "2024-04-12T16:45:00.000Z",
     specs: {
+      // Main section
       productionYear: "2022",
       capacity: "1800 kg",
       workingHours: "950 h",
       liftHeight: "200 mm",
       minHeight: "85 mm",
-      battery: "24V / 200Ah",
-      charger: "Zintegrowany",
+      preliminaryLifting: "200 mm",
+      battery: "24V / 200Ah zintegrowana",
       condition: "Bardzo dobry",
+      serialNumber: "BT-LWE180-2022-015",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "",
+      freeStroke: "",
       dimensions: "1900 x 720 x 1300 mm",
       wheels: "Poliuretanowe",
+      operatorPlatform: "Nie",
       additionalOptions: "System stabilizacji, ergonomiczny uchwyt",
-      serialNumber: "BT-LWE180-2022-015"
+      additionalDescription: "Paletowy wózek elektryczny z zaawansowanym systemem stabilizacji ładunku i ergonomicznym designem dla komfortu operatora.",
+      
+      // Legacy compatibility
+      charger: "Zintegrowany"
     }
   },
   {
@@ -132,18 +176,29 @@ export const products: Product[] = [
     createdAt: "2024-05-20T11:20:00.000Z",
     updatedAt: "2024-05-20T11:20:00.000Z",
     specs: {
+      // Main section
       productionYear: "2023",
       capacity: "1800 kg",
       workingHours: "600 h",
       liftHeight: "4700 mm",
       minHeight: "140 mm",
-      battery: "80V / 575Ah",
-      charger: "Tak - 80V 120A",
+      preliminaryLifting: "160 mm",
+      battery: "80V / 575Ah z ładowarką 80V 120A",
       condition: "Jak nowy",
+      serialNumber: "TOY-8FBE18T-2023-007",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "Triplex",
+      freeStroke: "170 mm",
       dimensions: "2200 x 1200 x 2150 mm",
       wheels: "Superelastyczne",
+      operatorPlatform: "Tak",
       additionalOptions: "Pełna kabina, ogrzewanie, oświetlenie LED",
-      serialNumber: "TOY-8FBE18T-2023-007"
+      additionalDescription: "Najnowszy model z serii Toyota Traigo 80 wyposażony w pełną kabinę operatora z ogrzewaniem, klimatyzacją i zaawansowanym systemem oświetlenia LED.",
+      
+      // Legacy compatibility
+      charger: "Tak - 80V 120A"
     }
   },
   {
@@ -161,18 +216,29 @@ export const products: Product[] = [
     createdAt: "2024-06-01T08:30:00.000Z",
     updatedAt: "2024-06-01T08:30:00.000Z",
     specs: {
+      // Main section
       productionYear: "2021",
       capacity: "1200 kg",
       workingHours: "1300 h",
       liftHeight: "2800 mm",
       minHeight: "180 mm",
-      battery: "24V / 250Ah",
-      charger: "Tak - 24V 40A",
+      preliminaryLifting: "280 mm",
+      battery: "24V / 250Ah z ładowarką 24V 40A",
       condition: "Dobry",
+      serialNumber: "BT-LSE120-2021-022",
+      
+      // Expandable section
+      driveType: "Elektryczny",
+      mast: "Duplex",
+      freeStroke: "200 mm",
       dimensions: "2050 x 800 x 2000 mm",
       wheels: "Poliuretanowe",
+      operatorPlatform: "Tak",
       additionalOptions: "Podnoszona platforma, skaner kodów kreskowych",
-      serialNumber: "BT-LSE120-2021-022"
+      additionalDescription: "Specjalistyczny wózek do kompletacji zamówień wyposażony w podnoszącą się platformę operatora oraz zintegrowany system skanowania kodów kreskowych dla zwiększenia efektywności pracy.",
+      
+      // Legacy compatibility
+      charger: "Tak - 24V 40A"
     }
   }
 ];
