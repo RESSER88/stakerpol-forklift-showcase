@@ -11,12 +11,13 @@ export interface Product {
     // Main section (always visible)
     productionYear: string;
     serialNumber?: string; // Optional serial number
-    capacity: string; // Udźwig przy podnoszeniu masztu / Udźwig przy podnoszeniu wstępnym [kg]
+    mastLiftingCapacity: string; // Udźwig przy podnoszeniu masztu [kg]
+    preliminaryLiftingCapacity: string; // Udźwig przy podnoszeniu wstępnym [kg]
     workingHours: string; // Godziny pracy [mh]
     liftHeight: string; // Wysokość podnoszenia [mm]
     minHeight: string; // Wysokość konstrukcyjna [mm]
     preliminaryLifting: string; // Wstępne podnoszenie
-    battery: string; // Bateria (z ładowarką)
+    battery: string; // Bateria
     condition: string; // Stan
     
     // Expandable section (hidden by default)
@@ -30,6 +31,7 @@ export interface Product {
     additionalDescription: string; // Opis dodatkowy
     
     // Legacy fields for backward compatibility
+    capacity?: string; // For migration purposes
     charger?: string;
   };
 }

@@ -22,12 +22,13 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
       { key: 'serialNumber', label: 'Numer seryjny', value: product.specs.serialNumber }
     ] : []),
     { key: 'productionYear', label: 'Rok produkcji', value: product.specs.productionYear },
-    { key: 'capacity', label: 'Udźwig przy podnoszeniu masztu / Udźwig przy podnoszeniu wstępnym [kg]', value: product.specs.capacity },
+    { key: 'mastLiftingCapacity', label: 'Udźwig przy podnoszeniu masztu [kg]', value: product.specs.mastLiftingCapacity || product.specs.capacity },
+    { key: 'preliminaryLiftingCapacity', label: 'Udźwig przy podnoszeniu wstępnym [kg]', value: product.specs.preliminaryLiftingCapacity },
     { key: 'workingHours', label: 'Godziny pracy [mh]', value: product.specs.workingHours },
     { key: 'liftHeight', label: 'Wysokość podnoszenia [mm]', value: product.specs.liftHeight },
     { key: 'minHeight', label: 'Wysokość konstrukcyjna [mm]', value: product.specs.minHeight },
     { key: 'preliminaryLifting', label: 'Wstępne podnoszenie', value: product.specs.preliminaryLifting },
-    { key: 'battery', label: 'Bateria (z ładowarką)', value: product.specs.battery },
+    { key: 'battery', label: 'Bateria', value: product.specs.battery },
     { key: 'condition', label: 'Stan', value: product.specs.condition },
   ].filter(spec => spec.value && spec.value.trim());
 
@@ -46,18 +47,18 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
   const hasExpandableContent = expandableSpecs.length > 0;
 
   const SpecRow = ({ spec, isDescription = false }: { spec: any, isDescription?: boolean }) => (
-    <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-      <td className="px-4 py-3 text-sm font-medium text-gray-900 w-2/5 align-top">
+    <tr className="border-b border-gray-100 hover:bg-gray-50/50 transition-colors duration-200">
+      <td className="px-4 py-4 text-sm font-medium text-stakerpol-navy w-2/5 align-top bg-gray-50/30">
         {spec.label}
       </td>
-      <td className={`px-4 py-3 text-sm text-gray-600 ${isDescription ? 'whitespace-pre-wrap break-words' : ''}`}>
+      <td className={`px-4 py-4 text-sm text-gray-700 bg-white ${isDescription ? 'whitespace-pre-wrap break-words leading-relaxed' : ''}`}>
         {spec.value}
       </td>
     </tr>
   );
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
       {/* Main specifications table */}
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -71,38 +72,42 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
 
       {/* Expand button */}
       {hasExpandableContent && (
-        <div className="border-t border-gray-200 px-4 py-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-4 py-4 bg-gradient-to-r from-gray-50 to-gray-100">
           <Button
             variant="ghost"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full justify-between text-stakerpol-navy hover:text-stakerpol-orange transition-colors"
+            className="w-full justify-between text-stakerpol-navy hover:text-stakerpol-orange hover:bg-white/50 transition-all duration-200 font-medium py-3"
           >
-            <span className="font-medium">
+            <span className="text-base">
               {isExpanded ? 'Ukryj dodatkowe specyfikacje' : 'Więcej specyfikacji'}
             </span>
             {isExpanded ? (
-              <ChevronUp className="h-4 w-4" />
+              <ChevronUp className="h-5 w-5 transition-transform duration-200" />
             ) : (
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="h-5 w-5 transition-transform duration-200" />
             )}
           </Button>
         </div>
       )}
 
-      {/* Expandable section */}
-      {hasExpandableContent && isExpanded && (
-        <div className="border-t border-gray-200 overflow-x-auto">
-          <table className="w-full">
-            <tbody>
-              {expandableSpecs.map((spec) => (
-                <SpecRow 
-                  key={spec.key} 
-                  spec={spec} 
-                  isDescription={spec.key === 'additionalDescription'}
-                />
-              ))}
-            </tbody>
-          </table>
+      {/* Expandable section with smooth animation */}
+      {hasExpandableContent && (
+        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="border-t border-gray-200 overflow-x-auto">
+            <table className="w-full">
+              <tbody>
+                {expandableSpecs.map((spec) => (
+                  <SpecRow 
+                    key={spec.key} 
+                    spec={spec} 
+                    isDescription={spec.key === 'additionalDescription'}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

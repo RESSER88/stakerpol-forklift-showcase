@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -46,7 +47,8 @@ const ProductManager = () => {
     specs: {
       // Main section
       productionYear: '',
-      capacity: '',
+      mastLiftingCapacity: '',
+      preliminaryLiftingCapacity: '',
       workingHours: '',
       liftHeight: '',
       minHeight: '',
@@ -66,6 +68,7 @@ const ProductManager = () => {
       additionalDescription: '',
       
       // Legacy compatibility
+      capacity: '',
       charger: ''
     }
   };
@@ -388,7 +391,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('serialNumber', e.target.value)} 
                         placeholder="ABC123456"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -400,12 +402,21 @@ const ProductManager = () => {
                       />
                     </div>
                     
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium mb-1">Udźwig przy podnoszeniu masztu / Udźwig przy podnoszeniu wstępnym [kg]</label>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Udźwig przy podnoszeniu masztu [kg]</label>
                       <Input 
-                        value={editedProduct.specs.capacity} 
-                        onChange={(e) => updateSpecsField('capacity', e.target.value)} 
-                        placeholder="2000 kg"
+                        value={editedProduct.specs.mastLiftingCapacity || editedProduct.specs.capacity || ''} 
+                        onChange={(e) => updateSpecsField('mastLiftingCapacity', e.target.value)} 
+                        placeholder="2000"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Udźwig przy podnoszeniu wstępnym [kg]</label>
+                      <Input 
+                        value={editedProduct.specs.preliminaryLiftingCapacity || ''} 
+                        onChange={(e) => updateSpecsField('preliminaryLiftingCapacity', e.target.value)} 
+                        placeholder="1800"
                       />
                     </div>
                     
@@ -414,7 +425,7 @@ const ProductManager = () => {
                       <Input 
                         value={editedProduct.specs.workingHours} 
                         onChange={(e) => updateSpecsField('workingHours', e.target.value)} 
-                        placeholder="3200 h"
+                        placeholder="3200"
                       />
                     </div>
                     
@@ -423,7 +434,7 @@ const ProductManager = () => {
                       <Input 
                         value={editedProduct.specs.liftHeight} 
                         onChange={(e) => updateSpecsField('liftHeight', e.target.value)} 
-                        placeholder="1600 mm"
+                        placeholder="1600"
                       />
                     </div>
                     
@@ -432,7 +443,7 @@ const ProductManager = () => {
                       <Input 
                         value={editedProduct.specs.minHeight} 
                         onChange={(e) => updateSpecsField('minHeight', e.target.value)} 
-                        placeholder="85 mm"
+                        placeholder="85"
                       />
                     </div>
                     
@@ -446,7 +457,7 @@ const ProductManager = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium mb-1">Bateria (z ładowarką)</label>
+                      <label className="block text-sm font-medium mb-1">Bateria</label>
                       <Input 
                         value={editedProduct.specs.battery} 
                         onChange={(e) => updateSpecsField('battery', e.target.value)} 
@@ -476,7 +487,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('driveType', e.target.value)} 
                         placeholder="Elektryczny"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -486,7 +496,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('mast', e.target.value)} 
                         placeholder="Duplex"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -494,9 +503,8 @@ const ProductManager = () => {
                       <Input 
                         value={editedProduct.specs.freeStroke} 
                         onChange={(e) => updateSpecsField('freeStroke', e.target.value)} 
-                        placeholder="150 mm"
+                        placeholder="150"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -504,9 +512,8 @@ const ProductManager = () => {
                       <Input 
                         value={editedProduct.specs.dimensions} 
                         onChange={(e) => updateSpecsField('dimensions', e.target.value)} 
-                        placeholder="1900/720 mm"
+                        placeholder="1900/720"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -516,7 +523,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('wheels', e.target.value)} 
                         placeholder="Poliuretan"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div>
@@ -526,7 +532,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('operatorPlatform', e.target.value)} 
                         placeholder="Tak/Nie"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div className="sm:col-span-2">
@@ -536,7 +541,6 @@ const ProductManager = () => {
                         onChange={(e) => updateSpecsField('additionalOptions', e.target.value)} 
                         placeholder="Platforma operatora, czujniki"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie</p>
                     </div>
                     
                     <div className="sm:col-span-2">
@@ -548,7 +552,6 @@ const ProductManager = () => {
                         rows={4}
                         className="w-full"
                       />
-                      <p className="text-xs text-muted-foreground mt-1">Pole niewypełnione – nie zostanie pokazane na stronie. Tekst będzie responsywny (desktop i mobile).</p>
                     </div>
                   </div>
                 </TabsContent>

@@ -20,7 +20,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2023",
-      capacity: "1600 kg",
+      mastLiftingCapacity: "1600",
+      preliminaryLiftingCapacity: "1200",
       workingHours: "1200 h",
       liftHeight: "6000 mm",
       minHeight: "85 mm",
@@ -40,6 +41,7 @@ export const products: Product[] = [
       additionalDescription: "Wózek wyposażony w nowoczesną kabinę operatora z systemem amortyzacji oraz zaawansowany system kontroli wydajności baterii.",
       
       // Legacy compatibility
+      capacity: "1600 kg",
       charger: "Tak - 80V 100A"
     }
   },
@@ -60,7 +62,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2022",
-      capacity: "1600 kg", 
+      mastLiftingCapacity: "1600",
+      preliminaryLiftingCapacity: "1400", 
       workingHours: "800 h",
       liftHeight: "5500 mm",
       minHeight: "90 mm",
@@ -80,6 +83,7 @@ export const products: Product[] = [
       additionalDescription: "Zaawansowany wózek zasięgowy z systemem automatycznej nawigacji i energooszczędnym napędem elektrycznym.",
       
       // Legacy compatibility
+      capacity: "1600 kg",
       charger: "Tak - 80V 80A"
     }
   },
@@ -99,7 +103,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2021",
-      capacity: "800 kg",
+      mastLiftingCapacity: "800",
+      preliminaryLiftingCapacity: "600",
       workingHours: "1500 h", 
       liftHeight: "3200 mm",
       minHeight: "75 mm",
@@ -119,6 +124,7 @@ export const products: Product[] = [
       additionalDescription: "Idealny do pracy w ciasnych przestrzeniach magazynowych. Wyróżnia się wyjątkowo cichą pracą i niskim zużyciem energii.",
       
       // Legacy compatibility
+      capacity: "800 kg",
       charger: "Tak - 48V 50A"
     }
   },
@@ -139,7 +145,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2022",
-      capacity: "1800 kg",
+      mastLiftingCapacity: "1800",
+      preliminaryLiftingCapacity: "200",
       workingHours: "950 h",
       liftHeight: "200 mm",
       minHeight: "85 mm",
@@ -159,6 +166,7 @@ export const products: Product[] = [
       additionalDescription: "Paletowy wózek elektryczny z zaawansowanym systemem stabilizacji ładunku i ergonomicznym designem dla komfortu operatora.",
       
       // Legacy compatibility
+      capacity: "1800 kg",
       charger: "Zintegrowany"
     }
   },
@@ -178,7 +186,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2023",
-      capacity: "1800 kg",
+      mastLiftingCapacity: "1800",
+      preliminaryLiftingCapacity: "1600",
       workingHours: "600 h",
       liftHeight: "4700 mm",
       minHeight: "140 mm",
@@ -198,6 +207,7 @@ export const products: Product[] = [
       additionalDescription: "Najnowszy model z serii Toyota Traigo 80 wyposażony w pełną kabinę operatora z ogrzewaniem, klimatyzacją i zaawansowanym systemem oświetlenia LED.",
       
       // Legacy compatibility
+      capacity: "1800 kg",
       charger: "Tak - 80V 120A"
     }
   },
@@ -218,7 +228,8 @@ export const products: Product[] = [
     specs: {
       // Main section
       productionYear: "2021",
-      capacity: "1200 kg",
+      mastLiftingCapacity: "1200",
+      preliminaryLiftingCapacity: "280",
       workingHours: "1300 h",
       liftHeight: "2800 mm",
       minHeight: "180 mm",
@@ -238,6 +249,7 @@ export const products: Product[] = [
       additionalDescription: "Specjalistyczny wózek do kompletacji zamówień wyposażony w podnoszącą się platformę operatora oraz zintegrowany system skanowania kodów kreskowych dla zwiększenia efektywności pracy.",
       
       // Legacy compatibility
+      capacity: "1200 kg",
       charger: "Tak - 24V 40A"
     }
   }

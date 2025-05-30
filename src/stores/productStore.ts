@@ -10,9 +10,10 @@ const migrateProduct = (product: any): Product => {
     ...product,
     images: product.images || [product.image].filter(Boolean),
     specs: {
-      // Main section
+      // Main section - handle split capacity field
       productionYear: product.specs?.productionYear || '',
-      capacity: product.specs?.capacity || '',
+      mastLiftingCapacity: product.specs?.mastLiftingCapacity || product.specs?.capacity || '',
+      preliminaryLiftingCapacity: product.specs?.preliminaryLiftingCapacity || '',
       workingHours: product.specs?.workingHours || '',
       liftHeight: product.specs?.liftHeight || '',
       minHeight: product.specs?.minHeight || '',
@@ -32,6 +33,7 @@ const migrateProduct = (product: any): Product => {
       additionalDescription: product.specs?.additionalDescription || '',
       
       // Legacy compatibility
+      capacity: product.specs?.capacity || '',
       charger: product.specs?.charger || ''
     },
     createdAt: product.createdAt || new Date().toISOString(),
@@ -125,7 +127,7 @@ export const useProductStore = create<ProductState>()(
     }),
     {
       name: 'product-store',
-      version: 2
+      version: 3
     }
   )
 );
