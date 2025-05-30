@@ -1,7 +1,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { products as initialProducts } from '@/data/mockData';
+import { products as initialProducts } from '@/data/products/productsData';
 import { Product } from '@/types';
 
 // Migration function to add new specification fields and ensure backward compatibility

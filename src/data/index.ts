@@ -1,4 +1,4 @@
 
-// Re-export all data from the new modular structure
+// Central export file for all data
 export { products } from './products/productsData';
 export { testimonials } from './testimonials/testimonialsData';
