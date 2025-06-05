@@ -116,10 +116,37 @@
     @apply transition-transform duration-500 ease-in-out hover:scale-110;
   }
   
-  /* Improved responsive design for product cards */
-  .product-card-grid {
-    @apply grid gap-4 md:gap-6 lg:gap-8;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Improved responsive grid layout for better desktop presentation */
+  .product-grid-desktop {
+    @apply grid gap-6;
+    /* Mobile: 1 column */
+    grid-template-columns: 1fr;
+  }
+  
+  /* Tablet: 2 columns with better spacing */
+  @media (min-width: 768px) {
+    .product-grid-desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+  
+  /* Desktop: 3 columns with generous spacing */
+  @media (min-width: 1024px) {
+    .product-grid-desktop {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+  }
+  
+  /* Large desktop: maintain 3 columns but with more spacing */
+  @media (min-width: 1440px) {
+    .product-grid-desktop {
+      gap: 3rem;
+      padding: 0 2rem;
+    }
   }
   
   /* Better button spacing on mobile */
@@ -130,15 +157,23 @@
   .button-group.horizontal {
     @apply flex-col sm:flex-row;
   }
-
-  /* Desktop thumbnail sizing optimization */
-  @media (min-width: 768px) {
-    .product-thumbnail {
-      transform: scale(0.6);
+  
+  /* Enhanced product card spacing for desktop */
+  @media (min-width: 1024px) {
+    .product-card-enhanced {
+      @apply mb-4;
     }
     
-    .product-card .aspect-\[3\/4\] {
-      height: 60% !important;
+    .product-card-enhanced .card-content {
+      @apply p-8;
+    }
+    
+    .product-card-enhanced h3 {
+      @apply text-2xl mb-4;
+    }
+    
+    .product-card-enhanced p {
+      @apply text-base leading-relaxed mb-6;
     }
   }
 }

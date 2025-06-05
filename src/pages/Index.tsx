@@ -114,7 +114,7 @@ const Index = () => {
           <p className="text-center text-gray-600 mb-8">
             {t('featuredProductsSubtitle')}
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+          <div className="product-grid-desktop mt-8">
             {featuredProducts.map((product, index) => (
               <div key={product.id} style={{ animationDelay: `${index * 100}ms` }}>
                 <ProductCard product={product} />
