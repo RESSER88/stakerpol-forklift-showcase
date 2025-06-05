@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -174,6 +173,42 @@
     
     .product-card-enhanced p {
       @apply text-base leading-relaxed mb-6;
+    }
+    
+    /* Desktop image container constraints for product cards */
+    .product-card-enhanced .aspect-\[3\/4\] {
+      max-height: 320px;
+      width: 100%;
+    }
+    
+    .product-card-enhanced .image-hover-zoom {
+      height: 100%;
+    }
+  }
+  
+  /* Desktop constraints for product detail images */
+  @media (min-width: 1024px) {
+    .product-detail-image .aspect-\[3\/4\] {
+      max-width: 500px;
+      max-height: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Thumbnail gallery constraints */
+    .product-detail-thumbnails .aspect-\[3\/4\] {
+      max-height: 80px;
+    }
+  }
+  
+  /* Extra large desktop - further constraints */
+  @media (min-width: 1440px) {
+    .product-card-enhanced .aspect-\[3\/4\] {
+      max-height: 360px;
+    }
+    
+    .product-detail-image .aspect-\[3\/4\] {
+      max-width: 550px;
+      max-height: 650px;
     }
   }
 }

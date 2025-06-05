@@ -67,7 +67,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
   }
 
   return (
-    <div className="space-y-4 animate-fade-in">
+    <div className="space-y-4 animate-fade-in product-detail-image">
       {/* Main Image Container */}
       <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
         <div 
@@ -120,7 +120,7 @@ const ProductImage = ({ image, alt, images }: ProductImageProps) => {
       
       {/* Thumbnail Gallery for multiple images */}
       {allImages.length > 1 && (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-5 gap-2 product-detail-thumbnails">
           {allImages.map((img, index) => (
             <button
               key={index}
