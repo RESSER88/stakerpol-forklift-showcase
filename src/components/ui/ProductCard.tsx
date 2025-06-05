@@ -23,13 +23,13 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow h-full flex flex-col">
       <Link to={`/products/${product.id}`} className="block">
-        <div className="aspect-[3/4] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
+        <div className="aspect-[3/4] overflow-hidden bg-stakerpol-lightgray image-hover-zoom md:h-[240px]">
           <LazyImage
             src={displayImage}
             alt={product.model}
             aspectRatio="3:4"
             priority={priority}
-            className="h-full w-full"
+            className="h-full w-full product-thumbnail"
           />
         </div>
       </Link>

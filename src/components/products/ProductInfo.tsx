@@ -7,6 +7,7 @@ import { Language } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import ModernSpecificationsTable from './ModernSpecificationsTable';
 import PriceInquiryModal from './PriceInquiryModal';
+import ExpandableText from '@/components/ui/ExpandableText';
 
 interface ProductInfoProps {
   product: Product;
@@ -20,7 +21,10 @@ const ProductInfo = ({ product, language }: ProductInfoProps) => {
   return (
     <div className="animate-slide-in">
       <h1 className="text-3xl font-bold mb-4">{product.model}</h1>
-      <p className="text-lg mb-6">{product.shortDescription}</p>
+      <ExpandableText 
+        text={product.shortDescription}
+        className="text-lg mb-6"
+      />
       
       <div className="mb-8 flex flex-col sm:flex-row gap-4">
         <Button className="cta-button text-lg" size="lg" asChild>

@@ -130,6 +130,17 @@
   .button-group.horizontal {
     @apply flex-col sm:flex-row;
   }
+
+  /* Desktop thumbnail sizing optimization */
+  @media (min-width: 768px) {
+    .product-thumbnail {
+      transform: scale(0.6);
+    }
+    
+    .product-card .aspect-\[3\/4\] {
+      height: 60% !important;
+    }
+  }
 }
 
 @keyframes scale-in {
@@ -185,6 +196,17 @@
   }
 }
 
+@keyframes expand-text {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
 .animate-scale-in {
   animation: scale-in 0.3s ease-out;
 }
@@ -203,6 +225,10 @@
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out;
+}
+
+.animate-expand-text {
+  animation: expand-text 0.3s ease-out;
 }
 
 /* Dodatkowe responsywne poprawki */

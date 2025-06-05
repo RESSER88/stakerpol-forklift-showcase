@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/types';
 import { Language } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
+import ExpandableText from '@/components/ui/ExpandableText';
 
 interface ModernSpecificationsTableProps {
   product: Product;
@@ -12,103 +14,109 @@ interface ModernSpecificationsTableProps {
 }
 
 const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTableProps) => {
+  const [showExtended, setShowExtended] = useState(false);
   const t = useTranslation(language);
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  // Main section specifications (always visible if filled)
+  // Main specifications (always visible)
   const mainSpecs = [
-    { key: 'model', label: 'Model', value: product.model },
-    ...(product.specs.serialNumber ? [
-      { key: 'serialNumber', label: 'Numer seryjny', value: product.specs.serialNumber }
-    ] : []),
-    { key: 'productionYear', label: 'Rok produkcji', value: product.specs.productionYear },
-    { key: 'mastLiftingCapacity', label: 'Udźwig przy podnoszeniu masztu [kg]', value: product.specs.mastLiftingCapacity || product.specs.capacity },
-    { key: 'preliminaryLiftingCapacity', label: 'Udźwig przy podnoszeniu wstępnym [kg]', value: product.specs.preliminaryLiftingCapacity },
-    { key: 'workingHours', label: 'Godziny pracy [mh]', value: product.specs.workingHours },
-    { key: 'liftHeight', label: 'Wysokość podnoszenia [mm]', value: product.specs.liftHeight },
-    { key: 'minHeight', label: 'Wysokość konstrukcyjna [mm]', value: product.specs.minHeight },
-    { key: 'preliminaryLifting', label: 'Wstępne podnoszenie', value: product.specs.preliminaryLifting },
-    { key: 'battery', label: 'Bateria', value: product.specs.battery },
-    { key: 'condition', label: 'Stan', value: product.specs.condition },
-  ].filter(spec => spec.value && spec.value.trim());
+    { label: 'Model', value: product.model },
+    { label: 'Numer seryjny', value: product.specs.serialNumber },
+    { label: 'Rok produkcji', value: product.specs.productionYear },
+    { label: 'Udźwig przy podnoszeniu masztu [kg]', value: product.specs.mastLiftingCapacity },
+    { label: 'Udźwig przy podnoszeniu wstępnym [kg]', value: product.specs.preliminaryLiftingCapacity },
+    { label: 'Godziny pracy [mh]', value: product.specs.workingHours },
+    { label: 'Wysokość podnoszenia [mm]', value: product.specs.liftHeight },
+    { label: 'Wysokość konstrukcyjna [mm]', value: product.specs.minHeight },
+    { label: 'Wstępne podnoszenie', value: product.specs.preliminaryLifting },
+    { label: 'Bateria', value: product.specs.battery },
+    { label: 'Stan', value: product.specs.condition }
+  ].filter(spec => spec.value && spec.value.trim() !== '');
 
-  // Expandable section specifications (hidden by default)
-  const expandableSpecs = [
-    { key: 'driveType', label: 'Rodzaj napędu', value: product.specs.driveType },
-    { key: 'mast', label: 'Maszt', value: product.specs.mast },
-    { key: 'freeStroke', label: 'Wolny skok [mm]', value: product.specs.freeStroke },
-    { key: 'dimensions', label: 'Wymiary (długość / szerokość) [mm]', value: product.specs.dimensions },
-    { key: 'wheels', label: 'Koła', value: product.specs.wheels },
-    { key: 'operatorPlatform', label: 'Składany podest dla operatora', value: product.specs.operatorPlatform },
-    { key: 'additionalOptions', label: 'Opcje dodatkowe', value: product.specs.additionalOptions },
-    { key: 'additionalDescription', label: 'Opis dodatkowy', value: product.specs.additionalDescription },
-  ].filter(spec => spec.value && spec.value.trim());
+  // Extended specifications (collapsible)
+  const extendedSpecs = [
+    { label: 'Rodzaj napędu', value: product.specs.driveType },
+    { label: 'Maszt', value: product.specs.mast },
+    { label: 'Wolny skok [mm]', value: product.specs.freeStroke },
+    { label: 'Wymiary (długość / szerokość) [mm]', value: product.specs.dimensions },
+    { label: 'Koła', value: product.specs.wheels },
+    { label: 'Składany podest dla operatora', value: product.specs.operatorPlatform },
+    { label: 'Opcje dodatkowe', value: product.specs.additionalOptions }
+  ].filter(spec => spec.value && spec.value.trim() !== '');
 
-  const hasExpandableContent = expandableSpecs.length > 0;
-
-  const SpecRow = ({ spec, isDescription = false }: { spec: any, isDescription?: boolean }) => (
-    <tr className="border-b border-gray-100 hover:bg-gray-50/50 transition-colors duration-200">
-      <td className="px-4 py-4 text-sm font-medium text-stakerpol-navy w-2/5 align-top bg-gray-50/30">
-        {spec.label}
-      </td>
-      <td className={`px-4 py-4 text-sm text-gray-700 bg-white ${isDescription ? 'whitespace-pre-wrap break-words leading-relaxed' : ''}`}>
-        {spec.value}
-      </td>
-    </tr>
-  );
+  const hasExtendedSpecs = extendedSpecs.length > 0 || (product.specs.additionalDescription && product.specs.additionalDescription.trim() !== '');
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-      {/* Main specifications table */}
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <tbody>
-            {mainSpecs.map((spec) => (
-              <SpecRow key={spec.key} spec={spec} />
+    <div className="space-y-6">
+      {/* Main Specifications */}
+      <Card className="shadow-sm border border-gray-200">
+        <CardContent className="p-0">
+          <div className="divide-y divide-gray-100">
+            {mainSpecs.map((spec, index) => (
+              <div key={index} className="flex flex-col sm:flex-row sm:justify-between p-4 hover:bg-gray-50 transition-colors">
+                <span className="font-medium text-gray-700 sm:w-1/2">{spec.label}</span>
+                <span className="text-gray-900 mt-1 sm:mt-0 sm:text-right sm:w-1/2">{spec.value}</span>
+              </div>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Expand button */}
-      {hasExpandableContent && (
-        <div className="border-t border-gray-200 px-4 py-4 bg-gradient-to-r from-gray-50 to-gray-100">
-          <Button
-            variant="ghost"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full justify-between text-stakerpol-navy hover:text-stakerpol-orange hover:bg-white/50 transition-all duration-200 font-medium py-3"
-          >
-            <span className="text-base">
-              {isExpanded ? 'Ukryj dodatkowe specyfikacje' : 'Więcej specyfikacji'}
-            </span>
-            {isExpanded ? (
-              <ChevronUp className="h-5 w-5 transition-transform duration-200" />
-            ) : (
-              <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-            )}
-          </Button>
-        </div>
-      )}
-
-      {/* Expandable section with smooth animation */}
-      {hasExpandableContent && (
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <div className="border-t border-gray-200 overflow-x-auto">
-            <table className="w-full">
-              <tbody>
-                {expandableSpecs.map((spec) => (
-                  <SpecRow 
-                    key={spec.key} 
-                    spec={spec} 
-                    isDescription={spec.key === 'additionalDescription'}
-                  />
-                ))}
-              </tbody>
-            </table>
           </div>
-        </div>
+        </CardContent>
+      </Card>
+
+      {/* Extended Specifications Toggle */}
+      {hasExtendedSpecs && (
+        <>
+          <div className="text-center">
+            <Button
+              variant="outline"
+              onClick={() => setShowExtended(!showExtended)}
+              className="flex items-center gap-2 text-stakerpol-navy border-stakerpol-navy hover:bg-stakerpol-navy hover:text-white transition-all duration-300"
+            >
+              {showExtended ? (
+                <>
+                  <ChevronUp className="h-4 w-4" />
+                  Ukryj dodatkowe specyfikacje
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="h-4 w-4" />
+                  Więcej specyfikacji
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Extended Specifications Content */}
+          {showExtended && (
+            <div className="animate-fade-in space-y-4">
+              {extendedSpecs.length > 0 && (
+                <Card className="shadow-sm border border-gray-200">
+                  <CardContent className="p-0">
+                    <div className="divide-y divide-gray-100">
+                      {extendedSpecs.map((spec, index) => (
+                        <div key={index} className="flex flex-col sm:flex-row sm:justify-between p-4 hover:bg-gray-50 transition-colors">
+                          <span className="font-medium text-gray-700 sm:w-1/2">{spec.label}</span>
+                          <span className="text-gray-900 mt-1 sm:mt-0 sm:text-right sm:w-1/2">{spec.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Additional Description */}
+              {product.specs.additionalDescription && product.specs.additionalDescription.trim() !== '' && (
+                <Card className="shadow-sm border border-gray-200">
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold text-gray-700 mb-3">Opis dodatkowy</h4>
+                    <ExpandableText 
+                      text={product.specs.additionalDescription}
+                      className="text-gray-600 leading-relaxed whitespace-pre-wrap"
+                    />
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

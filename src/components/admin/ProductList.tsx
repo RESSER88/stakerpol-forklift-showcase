@@ -9,7 +9,7 @@ import {
   TableCell 
 } from '@/components/ui/table';
 import { Card, CardContent } from '@/components/ui/card';
-import { Pencil, Trash2, Image, Copy } from 'lucide-react';
+import { Pencil, Trash2, Image, Copy, ExternalLink } from 'lucide-react';
 import { Product } from '@/types';
 import CompactProductTable from './CompactProductTable';
 
@@ -22,6 +22,10 @@ interface ProductListProps {
 }
 
 const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductListProps) => {
+  const handlePreviewClick = (productId: string) => {
+    window.open(`/products/${productId}`, '_blank');
+  };
+
   if (viewMode === 'table') {
     return (
       <CompactProductTable 
@@ -72,9 +76,18 @@ const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductLi
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="font-medium">{product.model}</div>
-                    <div className="text-sm text-muted-foreground sm:hidden line-clamp-1">
-                      {product.shortDescription}
+                    <div className="space-y-1">
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto font-medium text-left justify-start hover:text-stakerpol-orange"
+                        onClick={() => handlePreviewClick(product.id)}
+                      >
+                        {product.model}
+                        <ExternalLink className="ml-1 h-3 w-3" />
+                      </Button>
+                      <div className="text-sm text-muted-foreground sm:hidden line-clamp-1">
+                        {product.shortDescription}
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell className="hidden md:table-cell max-w-xs truncate">

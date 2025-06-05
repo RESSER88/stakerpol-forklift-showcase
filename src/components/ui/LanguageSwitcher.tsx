@@ -11,7 +11,7 @@ import { useLanguage, Language } from '@/contexts/LanguageContext';
 
 const languageFlags: Record<Language, { flag: string, name: string }> = {
   pl: { flag: '🇵🇱', name: 'Polski' },
-  en: { flag: '🇺🇸', name: 'English' },
+  en: { flag: '🇬🇧', name: 'English' },
   cs: { flag: '🇨🇿', name: 'Čeština' },
   sk: { flag: '🇸🇰', name: 'Slovenčina' },
   de: { flag: '🇩🇪', name: 'Deutsch' }
