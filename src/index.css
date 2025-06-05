@@ -140,11 +140,20 @@
     }
   }
   
-  /* Large desktop: maintain 3 columns but with more spacing */
+  /* Large desktop: 4 columns for better space utilization */
+  @media (min-width: 1200px) {
+    .product-grid-desktop {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+  }
+  
+  /* Extra large desktop: maintain 4 columns with more spacing */
   @media (min-width: 1440px) {
     .product-grid-desktop {
-      gap: 3rem;
-      padding: 0 2rem;
+      gap: 2.5rem;
+      padding: 0 3rem;
     }
   }
   
@@ -174,16 +183,6 @@
     .product-card-enhanced p {
       @apply text-base leading-relaxed mb-6;
     }
-    
-    /* Desktop image container constraints for product cards */
-    .product-card-enhanced .aspect-\[3\/4\] {
-      max-height: 320px;
-      width: 100%;
-    }
-    
-    .product-card-enhanced .image-hover-zoom {
-      height: 100%;
-    }
   }
   
   /* Desktop constraints for product detail images */
@@ -200,12 +199,8 @@
     }
   }
   
-  /* Extra large desktop - further constraints */
+  /* Extra large desktop - further constraints for product detail */
   @media (min-width: 1440px) {
-    .product-card-enhanced .aspect-\[3\/4\] {
-      max-height: 360px;
-    }
-    
     .product-detail-image .aspect-\[3\/4\] {
       max-width: 550px;
       max-height: 650px;
