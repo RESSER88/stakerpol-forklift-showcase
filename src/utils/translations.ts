@@ -70,6 +70,13 @@ export const translations = {
     sk: 'Najvyššia kvalita, spoľahlivosť a výkonnosť pre váš podnik',
     de: 'Höchste Qualität, Zuverlässigkeit und Effizienz für Ihr Unternehmen'
   },
+  heroDescription: {
+    pl: 'Profesjonalna sprzedaż i serwis używanych wózków paletowych BT Toyota',
+    en: 'Professional sales and service of used BT Toyota pallet trucks',
+    cs: 'Profesionální prodej a servis použitých paletových vozíků BT Toyota',
+    sk: 'Profesionálny predaj a servis použitých paletových vozíkov BT Toyota',
+    de: 'Professioneller Verkauf und Service gebrauchter BT Toyota Palettenwagen'
+  },
   browseProducts: {
     pl: 'Przeglądaj produkty',
     en: 'Browse Products',
@@ -213,8 +220,29 @@ export const translations = {
     sk: 'Odoslať',
     de: 'Senden'
   },
+  workingHours: {
+    pl: 'Godziny pracy',
+    en: 'Working Hours',
+    cs: 'Pracovní doba',
+    sk: 'Pracovný čas',
+    de: 'Öffnungszeiten'
+  },
+  mondayToFriday: {
+    pl: 'Poniedziałek - Piątek: 8:00 - 16:00',
+    en: 'Monday - Friday: 8:00 - 16:00',
+    cs: 'Pondělí - Pátek: 8:00 - 16:00',
+    sk: 'Pondelok - Piatok: 8:00 - 16:00',
+    de: 'Montag - Freitag: 8:00 - 16:00'
+  },
+  weekend: {
+    pl: 'Sobota - Niedziela: Zamknięte',
+    en: 'Saturday - Sunday: Closed',
+    cs: 'Sobota - Neděle: Zavřeno',
+    sk: 'Sobota - Nedeľa: Zatvorené',
+    de: 'Samstag - Sonntag: Geschlossen'
+  },
   
-  // Product specifications
+  // Product specifications with proper labels
   model: {
     pl: 'Model',
     en: 'Model',
@@ -229,6 +257,20 @@ export const translations = {
     sk: 'Rok výroby',
     de: 'Baujahr'
   },
+  mastLiftingCapacity: {
+    pl: 'Udźwig przy podnoszeniu masztu [kg]',
+    en: 'Mast lifting capacity [kg]',
+    cs: 'Nosnost při zdvihání stožáru [kg]',
+    sk: 'Nosnosť pri zdvíhaní stožiara [kg]',
+    de: 'Masthubleistung [kg]'
+  },
+  preliminaryLiftingCapacity: {
+    pl: 'Udźwig przy podnoszeniu wstępnym [kg]',
+    en: 'Preliminary lifting capacity [kg]',
+    cs: 'Nosnost při předběžném zdvihání [kg]',
+    sk: 'Nosnosť pri predbežnom zdvíhaní [kg]',
+    de: 'Vorhubkapazität [kg]'
+  },
   capacity: {
     pl: 'Udźwig',
     en: 'Capacity',
@@ -237,25 +279,32 @@ export const translations = {
     de: 'Tragfähigkeit'
   },
   workingHours: {
-    pl: 'Godziny pracy',
-    en: 'Working Hours',
-    cs: 'Provozní hodiny',
-    sk: 'Prevádzkové hodiny',
-    de: 'Betriebsstunden'
+    pl: 'Godziny pracy [mh]',
+    en: 'Working Hours [mh]',
+    cs: 'Provozní hodiny [mh]',
+    sk: 'Prevádzkové hodiny [mh]',
+    de: 'Betriebsstunden [mh]'
   },
   liftHeight: {
-    pl: 'Wysokość podnoszenia',
-    en: 'Lift Height',
-    cs: 'Výška zdvihu',
-    sk: 'Výška zdvihu',
-    de: 'Hubhöhe'
+    pl: 'Wysokość podnoszenia [mm]',
+    en: 'Lift Height [mm]',
+    cs: 'Výška zdvihu [mm]',
+    sk: 'Výška zdvihu [mm]',
+    de: 'Hubhöhe [mm]'
   },
   minHeight: {
-    pl: 'Wysokość minimalna',
-    en: 'Minimum Height',
-    cs: 'Minimální výška',
-    sk: 'Minimálna výška',
-    de: 'Mindesthöhe'
+    pl: 'Wysokość konstrukcyjna [mm]',
+    en: 'Construction Height [mm]',
+    cs: 'Konstrukční výška [mm]',
+    sk: 'Konštrukčná výška [mm]',
+    de: 'Bauhöhe [mm]'
+  },
+  preliminaryLifting: {
+    pl: 'Wstępne podnoszenie',
+    en: 'Preliminary lifting',
+    cs: 'Předběžné zdvihání',
+    sk: 'Predbežné zdvíhanie',
+    de: 'Vorhub'
   },
   battery: {
     pl: 'Bateria',
@@ -278,12 +327,40 @@ export const translations = {
     sk: 'Stav',
     de: 'Zustand'
   },
+  serialNumber: {
+    pl: 'Numer seryjny',
+    en: 'Serial Number',
+    cs: 'Sériové číslo',
+    sk: 'Sériové číslo',
+    de: 'Seriennummer'
+  },
+  driveType: {
+    pl: 'Rodzaj napędu',
+    en: 'Drive Type',
+    cs: 'Typ pohonu',
+    sk: 'Typ pohonu',
+    de: 'Antriebsart'
+  },
+  mast: {
+    pl: 'Maszt',
+    en: 'Mast',
+    cs: 'Stožár',
+    sk: 'Stožiar',
+    de: 'Mast'
+  },
+  freeStroke: {
+    pl: 'Wolny skok [mm]',
+    en: 'Free stroke [mm]',
+    cs: 'Volný zdvih [mm]',
+    sk: 'Voľný zdvih [mm]',
+    de: 'Freihub [mm]'
+  },
   dimensions: {
-    pl: 'Wymiary',
-    en: 'Dimensions',
-    cs: 'Rozměry',
-    sk: 'Rozmery',
-    de: 'Abmessungen'
+    pl: 'Wymiary (długość / szerokość) [mm]',
+    en: 'Dimensions (length / width) [mm]',
+    cs: 'Rozměry (délka / šířka) [mm]',
+    sk: 'Rozmery (dĺžka / šírka) [mm]',
+    de: 'Abmessungen (Länge / Breite) [mm]'
   },
   wheels: {
     pl: 'Koła',
@@ -292,12 +369,26 @@ export const translations = {
     sk: 'Kolá',
     de: 'Räder'
   },
+  operatorPlatform: {
+    pl: 'Składany podest dla operatora',
+    en: 'Foldable operator platform',
+    cs: 'Skládací plošina pro operátora',
+    sk: 'Skladacia plošina pre operátora',
+    de: 'Klappbare Bedienerbühne'
+  },
   additionalOptions: {
     pl: 'Opcje dodatkowe',
     en: 'Additional Options',
     cs: 'Další možnosti',
     sk: 'Dodatočné možnosti',
     de: 'Zusätzliche Optionen'
+  },
+  additionalDescription: {
+    pl: 'Opis dodatkowy',
+    en: 'Additional Description',
+    cs: 'Dodatečný popis',
+    sk: 'Dodatočný popis',
+    de: 'Zusätzliche Beschreibung'
   },
   
   // Pages
@@ -545,12 +636,12 @@ export const translations = {
     sk: 'Žiadne produkty nevyhovujú filtru',
     de: 'Keine Produkte entsprechen dem Filter'
   },
-  serialNumber: {
-    pl: 'Nr seryjny',
-    en: 'Serial Number',
-    cs: 'Sériové číslo',
-    sk: 'Sériové číslo',
-    de: 'Seriennummer'
+  viewProductDetails: {
+    pl: 'Zobacz podgląd produktu',
+    en: 'View product preview',
+    cs: 'Zobrazit náhled produktu',
+    sk: 'Zobraziť náhľad produktu',
+    de: 'Produktvorschau anzeigen'
   },
   
   // Export translations

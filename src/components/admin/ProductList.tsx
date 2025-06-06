@@ -1,4 +1,5 @@
 
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   Table, 
@@ -22,8 +23,14 @@ interface ProductListProps {
 }
 
 const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductListProps) => {
+  const navigate = useNavigate();
+  
   const handlePreviewClick = (productId: string) => {
     window.open(`/products/${productId}`, '_blank');
+  };
+
+  const handleModelClick = (productId: string) => {
+    navigate(`/products/${productId}`);
   };
 
   if (viewMode === 'table') {
@@ -81,7 +88,7 @@ const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductLi
                         <Button
                           variant="link"
                           className="p-0 h-auto font-medium text-left justify-start hover:text-stakerpol-orange"
-                          onClick={() => onEdit(product)}
+                          onClick={() => handleModelClick(product.id)}
                         >
                           {product.model}
                         </Button>

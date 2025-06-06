@@ -19,31 +19,47 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
 
   // Main specifications (always visible)
   const mainSpecs = [
-    { label: 'Model', value: product.model },
-    { label: 'Numer seryjny', value: product.specs.serialNumber },
-    { label: 'Rok produkcji', value: product.specs.productionYear },
-    { label: 'Udźwig przy podnoszeniu masztu [kg]', value: product.specs.mastLiftingCapacity },
-    { label: 'Udźwig przy podnoszeniu wstępnym [kg]', value: product.specs.preliminaryLiftingCapacity },
-    { label: 'Godziny pracy [mh]', value: product.specs.workingHours },
-    { label: 'Wysokość podnoszenia [mm]', value: product.specs.liftHeight },
-    { label: 'Wysokość konstrukcyjna [mm]', value: product.specs.minHeight },
-    { label: 'Wstępne podnoszenie', value: product.specs.preliminaryLifting },
-    { label: 'Bateria', value: product.specs.battery },
-    { label: 'Stan', value: product.specs.condition }
+    { label: t('model'), value: product.model },
+    { label: t('serialNumber'), value: product.specs.serialNumber },
+    { label: t('productionYear'), value: product.specs.productionYear },
+    { label: t('mastLiftingCapacity'), value: product.specs.mastLiftingCapacity },
+    { label: t('preliminaryLiftingCapacity'), value: product.specs.preliminaryLiftingCapacity },
+    { label: t('workingHours'), value: product.specs.workingHours },
+    { label: t('liftHeight'), value: product.specs.liftHeight },
+    { label: t('minHeight'), value: product.specs.minHeight },
+    { label: t('preliminaryLifting'), value: product.specs.preliminaryLifting },
+    { label: t('battery'), value: product.specs.battery },
+    { label: t('condition'), value: product.specs.condition }
   ].filter(spec => spec.value && spec.value.trim() !== '');
 
   // Extended specifications (collapsible)
   const extendedSpecs = [
-    { label: 'Rodzaj napędu', value: product.specs.driveType },
-    { label: 'Maszt', value: product.specs.mast },
-    { label: 'Wolny skok [mm]', value: product.specs.freeStroke },
-    { label: 'Wymiary (długość / szerokość) [mm]', value: product.specs.dimensions },
-    { label: 'Koła', value: product.specs.wheels },
-    { label: 'Składany podest dla operatora', value: product.specs.operatorPlatform },
-    { label: 'Opcje dodatkowe', value: product.specs.additionalOptions }
+    { label: t('driveType'), value: product.specs.driveType },
+    { label: t('mast'), value: product.specs.mast },
+    { label: t('freeStroke'), value: product.specs.freeStroke },
+    { label: t('dimensions'), value: product.specs.dimensions },
+    { label: t('wheels'), value: product.specs.wheels },
+    { label: t('operatorPlatform'), value: product.specs.operatorPlatform },
+    { label: t('additionalOptions'), value: product.specs.additionalOptions }
   ].filter(spec => spec.value && spec.value.trim() !== '');
 
   const hasExtendedSpecs = extendedSpecs.length > 0 || (product.specs.additionalDescription && product.specs.additionalDescription.trim() !== '');
+
+  const moreSpecsText = {
+    pl: 'Więcej specyfikacji',
+    en: 'More specifications',
+    cs: 'Více specifikací',
+    sk: 'Viac špecifikácií',
+    de: 'Weitere Spezifikationen'
+  };
+
+  const hideSpecsText = {
+    pl: 'Ukryj dodatkowe specyfikacje',
+    en: 'Hide additional specifications',
+    cs: 'Skrýt další specifikace',
+    sk: 'Skryť ďalšie špecifikácie',
+    de: 'Zusätzliche Spezifikationen ausblenden'
+  };
 
   return (
     <div className="space-y-6">
@@ -73,12 +89,12 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
               {showExtended ? (
                 <>
                   <ChevronUp className="h-4 w-4" />
-                  Ukryj dodatkowe specyfikacje
+                  {hideSpecsText[language] || hideSpecsText.pl}
                 </>
               ) : (
                 <>
                   <ChevronDown className="h-4 w-4" />
-                  Więcej specyfikacji
+                  {moreSpecsText[language] || moreSpecsText.pl}
                 </>
               )}
             </Button>
@@ -106,7 +122,7 @@ const ModernSpecificationsTable = ({ product, language }: ModernSpecificationsTa
               {product.specs.additionalDescription && product.specs.additionalDescription.trim() !== '' && (
                 <Card className="shadow-sm border border-gray-200">
                   <CardContent className="p-4">
-                    <h4 className="font-semibold text-gray-700 mb-3">Opis dodatkowy</h4>
+                    <h4 className="font-semibold text-gray-700 mb-3">{t('additionalDescription')}</h4>
                     <ExpandableText 
                       text={product.specs.additionalDescription}
                       className="text-gray-600 leading-relaxed whitespace-pre-wrap"

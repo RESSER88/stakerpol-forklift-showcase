@@ -1,114 +1,176 @@
 
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 
 const Contact = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Tutaj byłaby logika wysyłania formularza
+    console.log('Contact form submitted:', formData);
+    toast({
+      title: "Wiadomość wysłana",
+      description: "Dziękujemy za kontakt. Odpowiemy tak szybko jak to możliwe.",
+    });
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   return (
     <Layout>
-      <section className="bg-gray-100 py-12">
+      <section className="bg-white py-12">
         <div className="container-custom">
-          <h1 className="text-4xl font-bold mb-6 text-center text-stakerpol-navy">{t('contact')}</h1>
-          <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12">
-            Skontaktuj się z nami, aby uzyskać więcej informacji o naszych wózkach widłowych BT Toyota.
-          </p>
-          
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-stakerpol-navy">
+              {t('contact')}
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {t('contactUs')}
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Mail className="h-5 w-5" />
+                  {t('sendMessage')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <Label htmlFor="name">{t('fullName')}</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="email">{t('email')}</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="message">{t('message')}</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={5}
+                      required
+                    />
+                  </div>
+                  
+                  <Button type="submit" className="w-full cta-button">
+                    {t('submit')}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Contact Information and Map */}
             <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-bold mb-4 text-stakerpol-navy">FHU Stakerpol</h2>
-                <h3 className="text-2xl font-semibold mb-8 text-gray-700">Michał Seweryn</h3>
-              </div>
-              
-              <div className="space-y-8">
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h4 className="font-bold text-xl mb-4 text-stakerpol-navy">Lokalizacja: Stakerpol – Magazyn</h4>
-                  <div className="flex items-start space-x-4">
-                    <MapPin className="w-6 h-6 text-stakerpol-orange flex-shrink-0 mt-1" />
-                    <address className="text-lg not-italic text-gray-700">
-                      ul. Międzyleśna 115<br />
-                      32-095 Celiny
-                    </address>
-                  </div>
-                </div>
-                
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <div className="flex items-start space-x-4">
-                    <Phone className="w-6 h-6 text-stakerpol-orange flex-shrink-0 mt-1" />
+              {/* Contact Details */}
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle>{t('contact')}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-stakerpol-orange" />
                     <div>
-                      <h3 className="font-bold text-lg mb-2 text-stakerpol-navy">{t('callNow')}</h3>
-                      <a 
-                        href="tel:+48694133592" 
-                        className="text-xl hover:text-stakerpol-orange transition-colors font-medium"
-                      >
-                        +48 694 133 592
-                      </a>
+                      <p className="font-semibold">+48 694 133 592</p>
+                      <p className="text-sm text-gray-600">Marcin Barwijuk</p>
                     </div>
                   </div>
-                </div>
-                
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <div className="flex items-start space-x-4">
-                    <Mail className="w-6 h-6 text-stakerpol-orange flex-shrink-0 mt-1" />
+                  
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-5 w-5 text-stakerpol-orange" />
                     <div>
-                      <h3 className="font-bold text-lg mb-2 text-stakerpol-navy">{t('sendMessage')}</h3>
-                      <a 
-                        href="mailto:info@stakerpol.pl" 
-                        className="text-xl hover:text-stakerpol-orange transition-colors font-medium"
-                      >
-                        info@stakerpol.pl
-                      </a>
+                      <p className="font-semibold">info@stakerpol.pl</p>
                     </div>
                   </div>
-                </div>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h4 className="font-bold text-xl mb-4 text-stakerpol-navy">Adres rejestracyjny:</h4>
-                <div className="space-y-2 text-gray-700">
-                  <p><strong>FHU Stakerpol</strong></p>
-                  <p>Michał Seweryn</p>
-                  <p>ul. Szewska 6</p>
-                  <p>32-043 Skała</p>
-                  <p><strong>NIP: PL6492111954</strong></p>
-                </div>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-bold text-xl mb-4 text-stakerpol-navy">Godziny pracy</h3>
-                <div className="space-y-2 text-gray-700">
-                  <p><strong>Poniedziałek - Piątek:</strong> 8:00 - 17:00</p>
-                  <p><strong>Sobota:</strong> 9:00 - 14:00</p>
-                  <p><strong>Niedziela:</strong> Zamknięte</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Enhanced Map Section */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-stakerpol-navy">{t('ourLocation')}</h3>
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <div className="h-[600px] lg:h-[700px] bg-gray-200 rounded-lg overflow-hidden shadow-inner">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2610899.651257704!2d19.995502000000002!3d50.278735!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471655f810639623%3A0xc3bcd72bdd0d6aa!2sStakerpol%20Paleciak%20elektryczny%20Bt%20Swe%20200d!5e0!3m2!1spl!2sus!4v1748436780377!5m2!1spl!2sus" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Stakerpol location"
-                  ></iframe>
-                </div>
-                <p className="text-sm text-gray-600 mt-3 text-center">
-                  Kliknij na mapę, aby uzyskać szczegółowe wskazówki dojazdu
-                </p>
-              </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-stakerpol-orange" />
+                    <div>
+                      <p className="font-semibold">Puławska 403</p>
+                      <p className="text-sm text-gray-600">02-801 Warszawa</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Clock className="h-5 w-5 text-stakerpol-orange mt-1" />
+                    <div>
+                      <p className="font-semibold">{t('workingHours')}</p>
+                      <p className="text-sm text-gray-600">{t('mondayToFriday')}</p>
+                      <p className="text-sm text-gray-600">{t('weekend')}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Map */}
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5" />
+                    {t('ourLocation')}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="relative w-full h-96 rounded-b-lg overflow-hidden">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2446.5!2d21.0122!3d52.1672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c1b5f8a85%3A0x5c8b9c8b5f8a85b5!2sPu%C5%82awska%20403%2C%2002-801%20Warszawa!5e0!3m2!1spl!2spl!4v1624887654321!5m2!1spl!2spl"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title={t('ourLocation')}
+                      className="rounded-b-lg"
+                    ></iframe>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
