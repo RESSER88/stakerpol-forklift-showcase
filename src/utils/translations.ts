@@ -458,6 +458,173 @@ export const translations = {
     cs: 'E-mail',
     sk: 'E-mail',
     de: 'E-Mail'
+  },
+  
+  // Admin panel translations
+  productManagement: {
+    pl: 'Zarządzanie Produktami',
+    en: 'Product Management',
+    cs: 'Správa produktů',
+    sk: 'Správa produktov',
+    de: 'Produktverwaltung'
+  },
+  totalProducts: {
+    pl: 'Łącznie opublikowanych produktów',
+    en: 'Total published products',
+    cs: 'Celkem publikovaných produktů',
+    sk: 'Celkom publikovaných produktov',
+    de: 'Insgesamt veröffentlichte Produkte'
+  },
+  addProduct: {
+    pl: 'Dodaj Produkt',
+    en: 'Add Product',
+    cs: 'Přidat produkt',
+    sk: 'Pridať produkt',
+    de: 'Produkt hinzufügen'
+  },
+  gridView: {
+    pl: 'Kafelki',
+    en: 'Grid',
+    cs: 'Dlaždice',
+    sk: 'Dlaždice',
+    de: 'Kacheln'
+  },
+  tableView: {
+    pl: 'Tabela',
+    en: 'Table',
+    cs: 'Tabulka',
+    sk: 'Tabuľka',
+    de: 'Tabelle'
+  },
+  noProducts: {
+    pl: 'Brak produktów. Dodaj pierwszy produkt używając przycisku powyżej.',
+    en: 'No products. Add the first product using the button above.',
+    cs: 'Žádné produkty. Přidejte první produkt pomocí tlačítka výše.',
+    sk: 'Žiadne produkty. Pridajte prvý produkt pomocou tlačítka vyššie.',
+    de: 'Keine Produkte. Fügen Sie das erste Produkt mit der Schaltfläche oben hinzu.'
+  },
+  copyProduct: {
+    pl: 'Kopiuj produkt',
+    en: 'Copy product',
+    cs: 'Kopírovat produkt',
+    sk: 'Kopírovať produkt',
+    de: 'Produkt kopieren'
+  },
+  editProduct: {
+    pl: 'Edytuj produkt',
+    en: 'Edit product',
+    cs: 'Upravit produkt',
+    sk: 'Upraviť produkt',
+    de: 'Produkt bearbeiten'
+  },
+  deleteProduct: {
+    pl: 'Usuń produkt',
+    en: 'Delete product',
+    cs: 'Smazat produkt',
+    sk: 'Zmazať produkt',
+    de: 'Produkt löschen'
+  },
+  compactTableView: {
+    pl: 'Widok tabelaryczny produktów',
+    en: 'Tabular view of products',
+    cs: 'Tabulkový pohled na produkty',
+    sk: 'Tabuľkový pohľad na produkty',
+    de: 'Tabellarische Produktansicht'
+  },
+  filterProducts: {
+    pl: 'Filtruj produkty...',
+    en: 'Filter products...',
+    cs: 'Filtrovat produkty...',
+    sk: 'Filtrovať produkty...',
+    de: 'Produkte filtern...'
+  },
+  noMatchingProducts: {
+    pl: 'Brak produktów pasujących do filtra',
+    en: 'No products matching the filter',
+    cs: 'Žádné produkty neodpovídají filtru',
+    sk: 'Žiadne produkty nevyhovujú filtru',
+    de: 'Keine Produkte entsprechen dem Filter'
+  },
+  serialNumber: {
+    pl: 'Nr seryjny',
+    en: 'Serial Number',
+    cs: 'Sériové číslo',
+    sk: 'Sériové číslo',
+    de: 'Seriennummer'
+  },
+  
+  // Export translations
+  exportCompleted: {
+    pl: 'Eksport ukończony',
+    en: 'Export completed',
+    cs: 'Export dokončen',
+    sk: 'Export dokončený',
+    de: 'Export abgeschlossen'
+  },
+  jpgFileDownloaded: {
+    pl: 'Plik JPG został pobrany',
+    en: 'JPG file has been downloaded',
+    cs: 'JPG soubor byl stažen',
+    sk: 'JPG súbor bol stiahnutý',
+    de: 'JPG-Datei wurde heruntergeladen'
+  },
+  exportError: {
+    pl: 'Błąd eksportu',
+    en: 'Export error',
+    cs: 'Chyba exportu',
+    sk: 'Chyba exportu',
+    de: 'Export-Fehler'
+  },
+  jpgExportFailed: {
+    pl: 'Nie udało się wyeksportować do JPG',
+    en: 'Failed to export to JPG',
+    cs: 'Nepodařilo se exportovat do JPG',
+    sk: 'Nepodarilo sa exportovať do JPG',
+    de: 'Export nach JPG fehlgeschlagen'
+  },
+  exportLibraryNotAvailable: {
+    pl: 'Biblioteka eksportu nie jest dostępna',
+    en: 'Export library is not available',
+    cs: 'Knihovna exportu není k dispozici',
+    sk: 'Knižnica exportu nie je k dispozícii',
+    de: 'Export-Bibliothek ist nicht verfügbar'
+  },
+  inventoryStatement: {
+    pl: 'Zestawienie inwentaryzacji - Stakerpol',
+    en: 'Inventory Statement - Stakerpol',
+    cs: 'Inventurní přehled - Stakerpol',
+    sk: 'Inventárny súpis - Stakerpol',
+    de: 'Inventaraufstellung - Stakerpol'
+  },
+  exportDate: {
+    pl: 'Data eksportu',
+    en: 'Export date',
+    cs: 'Datum exportu',
+    sk: 'Dátum exportu',
+    de: 'Exportdatum'
+  },
+  printSavePdf: {
+    pl: 'Drukuj / Zapisz jako PDF',
+    en: 'Print / Save as PDF',
+    cs: 'Tisk / Uložit jako PDF',
+    sk: 'Tlač / Uložiť ako PDF',
+    de: 'Drucken / Als PDF speichern'
+  },
+  close: {
+    pl: 'Zamknij',
+    en: 'Close',
+    cs: 'Zavřít',
+    sk: 'Zavrieť',
+    de: 'Schließen'
+  },
+  
+  // Price inquiry form
+  priceInquiryFormIntro: {
+    pl: 'Dziękujemy za zainteresowanie naszym produktem. Wypełnij formularz, a skontaktujemy się z Tobą z ofertą cenową.',
+    en: 'Thank you for your interest in our product. Fill out the form and we will contact you with a price offer.',
+    cs: 'Děkujeme za zájem o náš produkt. Vyplňte formulář a my vás budeme kontaktovat s cenovou nabídkou.',
+    sk: 'Ďakujeme za záujem o náš produkt. Vyplňte formulár a my vás budeme kontaktovať s cenovou ponukou.',
+    de: 'Vielen Dank für Ihr Interesse an unserem Produkt. Füllen Sie das Formular aus und wir werden uns mit einem Preisangebot bei Ihnen melden.'
   }
 };
 

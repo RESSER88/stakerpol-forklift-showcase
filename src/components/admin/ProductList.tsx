@@ -77,14 +77,24 @@ const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductLi
                   </TableCell>
                   <TableCell>
                     <div className="space-y-1">
-                      <Button
-                        variant="link"
-                        className="p-0 h-auto font-medium text-left justify-start hover:text-stakerpol-orange"
-                        onClick={() => handlePreviewClick(product.id)}
-                      >
-                        {product.model}
-                        <ExternalLink className="ml-1 h-3 w-3" />
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="link"
+                          className="p-0 h-auto font-medium text-left justify-start hover:text-stakerpol-orange"
+                          onClick={() => onEdit(product)}
+                        >
+                          {product.model}
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0"
+                          onClick={() => handlePreviewClick(product.id)}
+                          title="Zobacz podgląd produktu"
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                        </Button>
+                      </div>
                       <div className="text-sm text-muted-foreground sm:hidden line-clamp-1">
                         {product.shortDescription}
                       </div>
