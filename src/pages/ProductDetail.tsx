@@ -28,8 +28,8 @@ const ProductDetail = () => {
     return (
       <Layout>
         <div className="container-custom py-12">
-          <h1 className="text-3xl font-bold mb-4">{t('productNotFound')}</h1>
-          <Link to="/products" className="text-stakerpol-orange hover:underline">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-stakerpol-navy">{t('productNotFound')}</h1>
+          <Link to="/products" className="text-stakerpol-orange hover:underline text-lg">
             {t('backToProducts')}
           </Link>
         </div>
@@ -49,7 +49,17 @@ const ProductDetail = () => {
               alt={product.model} 
               images={product.images} 
             />
-            <ProductInfo product={product} language={language} />
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-stakerpol-navy leading-tight">
+                  {product.model}
+                </h1>
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  {product.shortDescription}
+                </p>
+              </div>
+              <ProductInfo product={product} language={language} />
+            </div>
           </div>
         </div>
       </section>

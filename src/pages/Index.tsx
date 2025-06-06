@@ -8,14 +8,18 @@ import ProductCard from '@/components/ui/ProductCard';
 import { useProductStore } from '@/stores/productStore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
+import { getRandomItems } from '@/utils/randomUtils';
+import { useMemo } from 'react';
 
 const Index = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
-  const getFeaturedProducts = useProductStore(state => state.getFeaturedProducts);
+  const { products } = useProductStore();
 
-  // Get dynamic featured products (mix of recent and random)
-  const featuredProducts = getFeaturedProducts(3);
+  // Get 4 random products on each page load
+  const featuredProducts = useMemo(() => {
+    return getRandomItems(products, 4);
+  }, [products]);
 
   return (
     <Layout>

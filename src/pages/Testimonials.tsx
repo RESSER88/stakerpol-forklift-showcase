@@ -5,10 +5,17 @@ import CallToAction from '@/components/ui/CallToAction';
 import { testimonials } from '@/data/mockData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
+import { getRandomItems } from '@/utils/randomUtils';
+import { useMemo } from 'react';
 
 const Testimonials = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
+
+  // Shuffle testimonials on each page load
+  const shuffledTestimonials = useMemo(() => {
+    return getRandomItems(testimonials, testimonials.length);
+  }, []);
 
   const getPageDescription = () => {
     switch (language) {
@@ -72,7 +79,7 @@ const Testimonials = () => {
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {shuffledTestimonials.map((testimonial, index) => (
               <div key={testimonial.id} style={{ animationDelay: `${index * 100}ms` }}>
                 <TestimonialCard testimonial={testimonial} />
               </div>
