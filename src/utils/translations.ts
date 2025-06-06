@@ -220,7 +220,7 @@ export const translations = {
     sk: 'Odoslať',
     de: 'Senden'
   },
-  workingHours: {
+  businessHours: {
     pl: 'Godziny pracy',
     en: 'Working Hours',
     cs: 'Pracovní doba',
