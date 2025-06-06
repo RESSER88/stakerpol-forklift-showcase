@@ -58,19 +58,22 @@ export const useProductManager = () => {
   };
 
   const handleCopy = (product: Product) => {
+    const timestamp = new Date().toISOString();
+    const dateTimeSuffix = timestamp.replace(/[:.]/g, '-').slice(0, 19);
+    
     const copiedProduct = {
       ...product,
       id: Date.now().toString(),
       model: `${product.model} (kopia)`,
       specs: {
         ...product.specs,
-        serialNumber: ''
+        serialNumber: product.specs.serialNumber ? `${product.specs.serialNumber}-COPY-${dateTimeSuffix}` : `COPY-${dateTimeSuffix}`
       },
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: timestamp,
+      updatedAt: timestamp
     };
     
-    setSelectedProduct(null);
+    setSelectedProduct(copiedProduct);
     setProductImages(product.images || [product.image].filter(Boolean));
     setIsEditDialogOpen(true);
   };

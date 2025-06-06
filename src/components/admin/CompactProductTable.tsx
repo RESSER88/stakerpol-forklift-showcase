@@ -139,92 +139,49 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
 
   const generateExportTable = () => {
     const currentDate = new Date().toLocaleDateString('pl-PL');
-    const contactInfo = {
-      pl: `
-        <div style="text-align: center; margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #1e40af;">
-          <h1 style="color: #1e40af; margin: 0; font-size: 28px; font-weight: bold;">STAKERPOL</h1>
-          <p style="margin: 8px 0; font-size: 16px; color: #374151;">Profesjonalna sprzedaż wózków widłowych BT Toyota</p>
-          <div style="margin-top: 15px;">
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Tel:</strong> +48 694 133 592</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Adres:</strong> Puławska 403, 02-801 Warszawa</p>
-          </div>
+    const contactInfo = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #1e40af;">
+        <div style="flex: 1;">
+          <h1 style="color: #1e40af; margin: 0 0 8px 0; font-size: 24px; font-weight: bold;">STAKERPOL</h1>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>Tel:</strong> +48 694 133 592</p>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>E-mail:</strong> info@stakerpol.pl</p>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>Adres:</strong> Żwirki i Wigury 16A, 02-092 Warszawa</p>
         </div>
-      `,
-      en: `
-        <div style="text-align: center; margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #1e40af;">
-          <h1 style="color: #1e40af; margin: 0; font-size: 28px; font-weight: bold;">STAKERPOL</h1>
-          <p style="margin: 8px 0; font-size: 16px; color: #374151;">Professional sales of BT Toyota forklifts</p>
-          <div style="margin-top: 15px;">
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Tel:</strong> +48 694 133 592</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Address:</strong> Puławska 403, 02-801 Warsaw</p>
-          </div>
+        <div style="text-align: right;">
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">${t('exportDate')}: ${currentDate}</p>
+          <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">${t('totalProducts')}: ${filteredProducts.length}</p>
         </div>
-      `,
-      cs: `
-        <div style="text-align: center; margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #1e40af;">
-          <h1 style="color: #1e40af; margin: 0; font-size: 28px; font-weight: bold;">STAKERPOL</h1>
-          <p style="margin: 8px 0; font-size: 16px; color: #374151;">Profesionální prodej vysokozdvižných vozíků BT Toyota</p>
-          <div style="margin-top: 15px;">
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Tel:</strong> +48 694 133 592</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Adresa:</strong> Puławska 403, 02-801 Varšava</p>
-          </div>
-        </div>
-      `,
-      sk: `
-        <div style="text-align: center; margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #1e40af;">
-          <h1 style="color: #1e40af; margin: 0; font-size: 28px; font-weight: bold;">STAKERPOL</h1>
-          <p style="margin: 8px 0; font-size: 16px; color: #374151;">Profesionálny predaj vysokozdvižných vozíkov BT Toyota</p>
-          <div style="margin-top: 15px;">
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Tel:</strong> +48 694 133 592</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Adresa:</strong> Puławska 403, 02-801 Varšava</p>
-          </div>
-        </div>
-      `,
-      de: `
-        <div style="text-align: center; margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #1e40af;">
-          <h1 style="color: #1e40af; margin: 0; font-size: 28px; font-weight: bold;">STAKERPOL</h1>
-          <p style="margin: 8px 0; font-size: 16px; color: #374151;">Professioneller Verkauf von BT Toyota Gabelstaplern</p>
-          <div style="margin-top: 15px;">
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Tel:</strong> +48 694 133 592</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-            <p style="margin: 4px 0; font-size: 14px;"><strong>Adresse:</strong> Puławska 403, 02-801 Warschau</p>
-          </div>
-        </div>
-      `
-    };
+      </div>
+    `;
 
     return `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; background: white; color: #111827; max-width: 1200px; margin: 0 auto;">
-        ${contactInfo[language] || contactInfo.pl}
+        ${contactInfo}
         
-        <div style="margin-bottom: 25px;">
-          <h2 style="color: #1e40af; margin: 0 0 8px 0; font-size: 20px;">${t('inventoryStatement')}</h2>
-          <p style="margin: 0; color: #6b7280; font-size: 14px;">${t('exportDate')}: ${currentDate}</p>
-          <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 14px;">${t('totalProducts')}: ${filteredProducts.length}</p>
-        </div>
+        <h2 style="color: #1e40af; margin: 0 0 20px 0; font-size: 18px;">${t('inventoryStatement')}</h2>
         
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <thead>
             <tr style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white;">
-              <th style="padding: 12px 8px; text-align: left; font-weight: 600; font-size: 13px; border-right: 1px solid rgba(255,255,255,0.3);">${t('model')}</th>
-              <th style="padding: 12px 8px; text-align: left; font-weight: 600; font-size: 13px; border-right: 1px solid rgba(255,255,255,0.3);">${t('serialNumber')}</th>
-              <th style="padding: 12px 8px; text-align: left; font-weight: 600; font-size: 13px; border-right: 1px solid rgba(255,255,255,0.3);">${t('productionYear')}</th>
-              <th style="padding: 12px 8px; text-align: left; font-weight: 600; font-size: 13px; border-right: 1px solid rgba(255,255,255,0.3);">${t('workingHours')}</th>
-              <th style="padding: 12px 8px; text-align: left; font-weight: 600; font-size: 13px;">${t('condition')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('model')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('serialNumber')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('productionYear')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('liftHeight')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('workingHours')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px; border-right: 1px solid rgba(255,255,255,0.3);">${t('battery')}</th>
+              <th style="padding: 10px 6px; text-align: left; font-weight: 600; font-size: 12px;">${t('operatorPlatform')}</th>
             </tr>
           </thead>
           <tbody>
             ${filteredProducts.map((product, index) => `
               <tr style="background: ${index % 2 === 0 ? '#f8fafc' : 'white'}; border-bottom: 1px solid #e5e7eb;">
-                <td style="padding: 10px 8px; font-weight: 500; color: #1e40af; border-right: 1px solid #e5e7eb; font-size: 13px;">${product.model}</td>
-                <td style="padding: 10px 8px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 13px;">${product.specs.serialNumber || '-'}</td>
-                <td style="padding: 10px 8px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 13px;">${product.specs.productionYear || '-'}</td>
-                <td style="padding: 10px 8px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 13px;">${product.specs.workingHours || '-'}</td>
-                <td style="padding: 10px 8px; color: #374151; font-size: 13px;">${product.specs.condition || '-'}</td>
+                <td style="padding: 8px 6px; font-weight: 500; color: #1e40af; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.model}</td>
+                <td style="padding: 8px 6px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.specs.serialNumber || '-'}</td>
+                <td style="padding: 8px 6px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.specs.productionYear || '-'}</td>
+                <td style="padding: 8px 6px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.specs.liftHeight || '-'}</td>
+                <td style="padding: 8px 6px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.specs.workingHours || '-'}</td>
+                <td style="padding: 8px 6px; color: #374151; border-right: 1px solid #e5e7eb; font-size: 11px;">${product.specs.battery || '-'}</td>
+                <td style="padding: 8px 6px; color: #374151; font-size: 11px;">${product.specs.operatorPlatform || '-'}</td>
               </tr>
             `).join('')}
           </tbody>
@@ -298,18 +255,20 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[200px]">{t('model')}</TableHead>
-              <TableHead className="hidden sm:table-cell">{t('serialNumber')}</TableHead>
-              <TableHead className="hidden md:table-cell">{t('productionYear')}</TableHead>
-              <TableHead className="hidden lg:table-cell">{t('workingHours')}</TableHead>
-              <TableHead className="hidden xl:table-cell">{t('condition')}</TableHead>
+              <TableHead className="w-[180px]">{t('model')}</TableHead>
+              <TableHead className="hidden sm:table-cell w-[120px]">{t('serialNumber')}</TableHead>
+              <TableHead className="hidden md:table-cell w-[100px]">{t('productionYear')}</TableHead>
+              <TableHead className="hidden lg:table-cell w-[120px]">{t('liftHeight')}</TableHead>
+              <TableHead className="hidden xl:table-cell w-[100px]">{t('workingHours')}</TableHead>
+              <TableHead className="hidden xl:table-cell w-[100px]">{t('battery')}</TableHead>
+              <TableHead className="hidden 2xl:table-cell w-[140px]">{t('operatorPlatform')}</TableHead>
               <TableHead className="text-right w-[120px]">Akcje</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredProducts.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                   {searchTerm ? t('noMatchingProducts') : t('noProducts')}
                 </TableCell>
               </TableRow>
@@ -337,10 +296,16 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
                     {product.specs.productionYear || '-'}
                   </TableCell>
                   <TableCell className="hidden lg:table-cell">
+                    {product.specs.liftHeight || '-'}
+                  </TableCell>
+                  <TableCell className="hidden xl:table-cell">
                     {product.specs.workingHours || '-'}
                   </TableCell>
                   <TableCell className="hidden xl:table-cell">
-                    {product.specs.condition || '-'}
+                    {product.specs.battery || '-'}
+                  </TableCell>
+                  <TableCell className="hidden 2xl:table-cell">
+                    {product.specs.operatorPlatform || '-'}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
