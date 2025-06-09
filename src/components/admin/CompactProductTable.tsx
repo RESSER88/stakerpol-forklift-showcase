@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -142,10 +141,13 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
     const contactInfo = `
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #1e40af;">
         <div style="flex: 1;">
-          <h1 style="color: #1e40af; margin: 0 0 8px 0; font-size: 24px; font-weight: bold;">STAKERPOL</h1>
+          <h1 style="color: #1e40af; margin: 0 0 8px 0; font-size: 24px; font-weight: bold;">FHU Stakerpol</h1>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>Michał Seweryn</strong></p>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;">32-043 Skała</p>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;">ul. Szewska 6</p>
+          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>NIP:</strong> PL6492111954</p>
           <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>Tel:</strong> +48 694 133 592</p>
           <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>E-mail:</strong> info@stakerpol.pl</p>
-          <p style="margin: 4px 0; font-size: 12px; color: #374151;"><strong>Adres:</strong> Żwirki i Wigury 16A, 02-092 Warszawa</p>
         </div>
         <div style="text-align: right;">
           <p style="margin: 0; color: #6b7280; font-size: 12px;">${t('exportDate')}: ${currentDate}</p>
