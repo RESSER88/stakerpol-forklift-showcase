@@ -1,3 +1,4 @@
+
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -17,7 +18,7 @@ import { useProductStore } from '@/stores/productStore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { useToast } from '@/hooks/use-toast';
-import html2canvas from 'html2canvas';
+import { measurePerformance } from '@/utils/performance';
 
 interface CompactProductTableProps {
   onEdit: (product: Product) => void;
@@ -82,6 +83,11 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
 
   const exportToJPG = async () => {
     try {
+      measurePerformance.markStart('jpg-export');
+      
+      // Lazy load html2canvas
+      const html2canvas = await measurePerformance.loadHtml2Canvas();
+      
       if (!html2canvas) {
         toast({
           title: t('exportError'),
@@ -119,6 +125,8 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
           link.click();
           document.body.removeChild(link);
           URL.revokeObjectURL(url);
+          
+          measurePerformance.markEnd('jpg-export');
           
           toast({
             title: t('exportCompleted'),

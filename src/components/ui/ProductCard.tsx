@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
-import LazyImage from '@/components/ui/LazyImage';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 interface ProductCardProps {
   product: Product;
@@ -24,12 +24,13 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in border-none rounded-lg shadow h-full flex flex-col product-card-enhanced">
       <Link to={`/products/${product.id}`} className="block">
         <div className="aspect-[3/4] overflow-hidden bg-stakerpol-lightgray image-hover-zoom">
-          <LazyImage
+          <OptimizedImage
             src={displayImage}
             alt={product.model}
             aspectRatio="3:4"
             priority={priority}
-            className="h-full w-full object-cover"
+            className="h-full w-full"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       </Link>
