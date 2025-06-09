@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Dialog,
   DialogContent,
@@ -24,42 +25,61 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
   const { language } = useLanguage();
   const t = useTranslation(language);
   const { toast } = useToast();
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const generateEmailContent = () => {
+    const productDetails = [
+      `Model: ${product.model}`,
+      product.specs.productionYear && `Rok produkcji: ${product.specs.productionYear}`,
+      product.specs.serialNumber && `Numer seryjny: ${product.specs.serialNumber}`
+    ].filter(Boolean).join('\n');
+
+    const phoneInfo = phoneNumber ? `\nNumer telefonu: ${phoneNumber}` : '';
+
     const messages = {
       pl: `Witam,
 
-jestem zainteresowany produktem: ${product.model}
+jestem zainteresowany produktem:
 
-Proszę o przesłanie oferty cenowej oraz informacji o dostępności.
+${productDetails}
+
+Proszę o przesłanie oferty cenowej oraz informacji o dostępności.${phoneInfo}
 
 Pozdrawiam`,
       en: `Hello,
 
-I am interested in the product: ${product.model}
+I am interested in the product:
 
-Please send me a price quote and availability information.
+${productDetails}
+
+Please send me a price quote and availability information.${phoneInfo}
 
 Best regards`,
       cs: `Dobrý den,
 
-zajímám se o produkt: ${product.model}
+zajímám se o produkt:
 
-Prosím o zaslání cenové nabídky a informací o dostupnosti.
+${productDetails}
+
+Prosím o zaslání cenové nabídky a informací o dostupnosti.${phoneInfo}
 
 S pozdravem`,
       sk: `Dobrý deň,
 
-zaujímam sa o produkt: ${product.model}
+zaujímam sa o produkt:
 
-Prosím o zaslanie cenovej ponuky a informácií o dostupnosti.
+${productDetails}
+
+Prosím o zaslanie cenovej ponuky a informácií o dostupnosti.${phoneInfo}
 
 S pozdravom`,
       de: `Hallo,
 
-ich interessiere mich für das Produkt: ${product.model}
+ich interessiere mich für das Produkt:
 
-Bitte senden Sie mir ein Preisangebot und Verfügbarkeitsinformationen.
+${productDetails}
+
+Bitte senden Sie mir ein Preisangebot und Verfügbarkeitsinformationen.${phoneInfo}
 
 Mit freundlichen Grüßen`
     };
@@ -73,9 +93,11 @@ Wersja w języku polskim:
 
 Witam,
 
-jestem zainteresowany produktem: ${product.model}
+jestem zainteresowany produktem:
 
-Proszę o przesłanie oferty cenowej oraz informacji o dostępności.
+${productDetails}
+
+Proszę o przesłanie oferty cenowej oraz informacji o dostępności.${phoneInfo}
 
 Pozdrawiam`;
 
@@ -114,6 +136,25 @@ Pozdrawiam`;
           <div className="bg-gray-50 p-4 rounded-lg">
             <h4 className="font-semibold mb-2">{t('productModel')}:</h4>
             <p className="text-sm">{product.model}</p>
+            {product.specs.productionYear && (
+              <p className="text-sm mt-1">Rok produkcji: {product.specs.productionYear}</p>
+            )}
+            {product.specs.serialNumber && (
+              <p className="text-sm mt-1">Numer seryjny: {product.specs.serialNumber}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="phone" className="text-sm font-medium">
+              Numer telefonu (opcjonalnie)
+            </label>
+            <Input
+              id="phone"
+              type="tel"
+              placeholder="np. +48 123 456 789"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
           </div>
           
           <div className="bg-blue-50 p-4 rounded-lg">
