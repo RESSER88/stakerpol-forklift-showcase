@@ -72,8 +72,8 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-stakerpol-orange mt-1" />
                     <div>
-                      <p className="font-semibold">ul. Żwirki i Wigury 16A</p>
-                      <p className="text-sm text-gray-600">02-092 Warszawa</p>
+                      <p className="font-semibold">ul. Międzyleśna 115</p>
+                      <p className="text-sm text-gray-600">32-095 Celiny</p>
                       <p className="text-sm text-gray-600 mt-2">{t('warehouseHours')}</p>
                     </div>
                   </div>
@@ -92,8 +92,11 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-stakerpol-orange mt-1" />
                     <div>
-                      <p className="font-semibold">ul. Puławska 403</p>
-                      <p className="text-sm text-gray-600">02-801 Warszawa</p>
+                      <p className="font-semibold">FHU Stakerpol</p>
+                      <p className="font-semibold">Michał Seweryn</p>
+                      <p className="text-sm text-gray-600">32-043 Skała</p>
+                      <p className="text-sm text-gray-600">ul. Szewska 6</p>
+                      <p className="text-sm text-gray-600 mt-2">NIP: PL6492111954</p>
                     </div>
                   </div>
                 </CardContent>
@@ -111,7 +114,7 @@ const Contact = () => {
               <CardContent className="p-0">
                 <div className="relative w-full h-[600px] rounded-b-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.8668397434887!2d20.968089976770234!3d52.19883437197896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecce7c5c26e2d%3A0x3ba3b0b8b8b8b8b8!2s%C5%BBwirki%20i%20Wigury%2016A%2C%2002-092%20Warszawa!5e0!3m2!1spl!2spl!4v1699999999999!5m2!1spl!2spl"
+                    src="https://maps.app.goo.gl/o3wahxgnzXzsMMdS6"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
