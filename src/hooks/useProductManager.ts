@@ -61,9 +61,12 @@ export const useProductManager = () => {
     const timestamp = new Date().toISOString();
     const dateTimeSuffix = timestamp.replace(/[:.]/g, '-').slice(0, 19);
     
+    // Generujemy unikalny ID używając timestamp
+    const uniqueId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
     const copiedProduct = {
       ...product,
-      id: Date.now().toString(),
+      id: uniqueId, // Używamy unikalnego ID
       model: `${product.model} (kopia)`,
       specs: {
         ...product.specs,

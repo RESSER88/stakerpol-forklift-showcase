@@ -38,7 +38,7 @@ const Contact = () => {
                     <Phone className="h-5 w-5 text-stakerpol-orange" />
                     <div>
                       <p className="font-semibold">+48 694 133 592</p>
-                      <p className="text-sm text-gray-600">Marcin Barwijuk</p>
+                      <p className="text-sm text-gray-600">Michał Seweryn</p>
                     </div>
                   </div>
                   
@@ -114,7 +114,7 @@ const Contact = () => {
               <CardContent className="p-0">
                 <div className="relative w-full h-[600px] rounded-b-lg overflow-hidden">
                   <iframe
-                    src="https://maps.app.goo.gl/o3wahxgnzXzsMMdS6"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2610899.6512577063!2d19.995502000000002!3d50.278735!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471655f810639623%3A0xc3bcd72bdd0d6aa!2sStakerpol%20Paleciak%20elektryczny%20Bt%20Swe%20200d!5e0!3m2!1spl!2sus!4v1749466251552!5m2!1spl!2sus"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

@@ -5,8 +5,10 @@ import { Plus, Grid, Table as TableIcon } from 'lucide-react';
 import { useProductManager } from '@/hooks/useProductManager';
 import ProductList from './ProductList';
 import ProductDetailsModal from './ProductDetailsModal';
+import { useToast } from '@/hooks/use-toast';
 
 const ProductManager = () => {
+  const { toast } = useToast();
   const {
     isEditDialogOpen,
     setIsEditDialogOpen,
@@ -32,10 +34,45 @@ const ProductManager = () => {
       image: images[0] || ''
     };
     
-    if (selectedProduct) {
-      updateProduct(productToSave);
-    } else {
-      addProduct(productToSave);
+    try {
+      if (selectedProduct && selectedProduct.id) {
+        // Sprawdzamy czy to jest edycja istniejącego produktu (ma ID które już istnieje w products)
+        const existingProduct = products.find(p => p.id === selectedProduct.id);
+        if (existingProduct) {
+          updateProduct(productToSave);
+          toast({
+            title: "Produkt zaktualizowany",
+            description: `Pomyślnie zaktualizowano produkt ${productToSave.model}`
+          });
+        } else {
+          // To jest nowy produkt (kopia) - dodajemy jako nowy
+          addProduct(productToSave);
+          toast({
+            title: "Produkt dodany",
+            description: `Pomyślnie dodano nowy produkt ${productToSave.model}`
+          });
+        }
+      } else {
+        // Nowy produkt - generujemy ID
+        const newProduct = {
+          ...productToSave,
+          id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+        };
+        addProduct(newProduct);
+        toast({
+          title: "Produkt dodany",
+          description: `Pomyślnie dodano nowy produkt ${newProduct.model}`
+        });
+      }
+      
+      setIsEditDialogOpen(false);
+    } catch (error) {
+      toast({
+        title: "Błąd",
+        description: "Wystąpił błąd podczas zapisywania produktu",
+        variant: "destructive"
+      });
+      console.error('Error saving product:', error);
     }
   };
 
