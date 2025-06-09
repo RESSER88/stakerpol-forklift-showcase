@@ -1,3 +1,4 @@
+
 export type Language = 'pl' | 'en' | 'cs' | 'sk' | 'de';
 
 export const translations = {
@@ -60,6 +61,13 @@ export const translations = {
     sk: 'Zobraziť produkty',
     de: 'Produkte ansehen'
   },
+  browseProducts: {
+    pl: 'Przeglądaj produkty',
+    en: 'Browse products',
+    cs: 'Procházet produkty',
+    sk: 'Prehliadať produkty',
+    de: 'Produkte durchsuchen'
+  },
   learnMore: {
     pl: 'Dowiedz się więcej',
     en: 'Learn more',
@@ -74,12 +82,98 @@ export const translations = {
     sk: 'Odporúčané produkty',
     de: 'Empfohlene Produkte'
   },
+  featuredProductsSubtitle: {
+    pl: 'Sprawdź naszą selekcję najlepszych produktów',
+    en: 'Check out our selection of the best products',
+    cs: 'Podívejte se na náš výběr nejlepších produktů',
+    sk: 'Pozrite si náš výber najlepších produktov',
+    de: 'Schauen Sie sich unsere Auswahl der besten Produkte an'
+  },
   recentProducts: {
     pl: 'Najnowsze produkty',
     en: 'Recent products',
     cs: 'Nejnovější produkty',
     sk: 'Najnovšie produkty',
     de: 'Neueste Produkte'
+  },
+  viewAllProducts: {
+    pl: 'Zobacz wszystkie produkty',
+    en: 'View all products',
+    cs: 'Zobrazit všechny produkty',
+    sk: 'Zobraziť všetky produkty',
+    de: 'Alle Produkte anzeigen'
+  },
+  relatedProducts: {
+    pl: 'Produkty powiązane',
+    en: 'Related products',
+    cs: 'Související produkty',
+    sk: 'Súvisiace produkty',
+    de: 'Ähnliche Produkte'
+  },
+
+  // About us section
+  aboutUsTitle: {
+    pl: 'O nas',
+    en: 'About us',
+    cs: 'O nás',
+    sk: 'O nás',
+    de: 'Über uns'
+  },
+  aboutUsDesc: {
+    pl: 'Jesteśmy specjalistami w dziedzinie używanych wózków widłowych BT Toyota',
+    en: 'We are specialists in the field of used BT Toyota forklifts',
+    cs: 'Jsme specialisté v oblasti použitých vysokozdvižných vozíků BT Toyota',
+    sk: 'Sme špecialisti v oblasti použitých vysokozdvižných vozíkov BT Toyota',
+    de: 'Wir sind Spezialisten für gebrauchte BT Toyota Gabelstapler'
+  },
+  aboutUsAdvantages: {
+    pl: 'Nasze zalety',
+    en: 'Our advantages',
+    cs: 'Naše výhody',
+    sk: 'Naše výhody',
+    de: 'Unsere Vorteile'
+  },
+  advantagesDelivery: {
+    pl: 'Szybka dostawa',
+    en: 'Fast delivery',
+    cs: 'Rychlé dodání',
+    sk: 'Rýchle dodanie',
+    de: 'Schnelle Lieferung'
+  },
+  advantagesDeliveryDesc: {
+    pl: 'Zapewniamy szybką i bezpieczną dostawę na terenie całej Polski',
+    en: 'We provide fast and safe delivery throughout Poland',
+    cs: 'Poskytujeme rychlé a bezpečné dodání po celém Polsku',
+    sk: 'Poskytujeme rýchle a bezpečné dodanie po celom Poľsku',
+    de: 'Wir bieten schnelle und sichere Lieferung in ganz Polen'
+  },
+  advantagesConsultation: {
+    pl: 'Profesjonalne doradztwo',
+    en: 'Professional consultation',
+    cs: 'Profesionální poradenství',
+    sk: 'Profesionálne poradenstvo',
+    de: 'Professionelle Beratung'
+  },
+  advantagesConsultationDesc: {
+    pl: 'Nasz zespół pomoże Ci wybrać odpowiedni sprzęt do Twoich potrzeb',
+    en: 'Our team will help you choose the right equipment for your needs',
+    cs: 'Náš tým vám pomůže vybrat správné vybavení pro vaše potřeby',
+    sk: 'Náš tím vám pomôže vybrať správne vybavenie pre vaše potreby',
+    de: 'Unser Team hilft Ihnen bei der Auswahl der richtigen Ausrüstung für Ihre Bedürfnisse'
+  },
+  advantagesAvailability: {
+    pl: 'Dostępność 24/7',
+    en: '24/7 availability',
+    cs: 'Dostupnost 24/7',
+    sk: 'Dostupnosť 24/7',
+    de: 'Verfügbarkeit 24/7'
+  },
+  advantagesAvailabilityDesc: {
+    pl: 'Jesteśmy dostępni przez całą dobę, aby odpowiedzieć na Twoje pytania',
+    en: 'We are available 24/7 to answer your questions',
+    cs: 'Jsme k dispozici 24/7, abychom odpověděli na vaše otázky',
+    sk: 'Sme k dispozícii 24/7, aby sme odpovedali na vaše otázky',
+    de: 'Wir sind 24/7 verfügbar, um Ihre Fragen zu beantworten'
   },
 
   // Product specifications
@@ -138,6 +232,13 @@ export const translations = {
     cs: 'Baterie',
     sk: 'Batéria',
     de: 'Batterie'
+  },
+  charger: {
+    pl: 'Ładowarka',
+    en: 'Charger',
+    cs: 'Nabíječka',
+    sk: 'Nabíjačka',
+    de: 'Ladegerät'
   },
   condition: {
     pl: 'Stan',
@@ -209,6 +310,13 @@ export const translations = {
     sk: 'Dodatočný popis',
     de: 'Zusätzliche Beschreibung'
   },
+  capacity: {
+    pl: 'Udźwig',
+    en: 'Capacity',
+    cs: 'Nosnost',
+    sk: 'Nosnosť',
+    de: 'Tragfähigkeit'
+  },
 
   // Contact page specific
   contactUs: {
@@ -220,10 +328,10 @@ export const translations = {
   },
   businessHours: {
     pl: 'Godziny pracy',
-    en: 'Working Hours',
+    en: 'Business Hours',
     cs: 'Pracovní doba',
     sk: 'Pracovný čas',
-    de: 'Öffnungszeiten'
+    de: 'Geschäftszeiten'
   },
   mondayToFriday: {
     pl: 'Poniedziałek - Piątek: 8:00 - 17:00',
@@ -297,6 +405,20 @@ export const translations = {
     sk: 'Model',
     de: 'Modell'
   },
+  callNow: {
+    pl: 'Zadzwoń teraz',
+    en: 'Call now',
+    cs: 'Zavolat nyní',
+    sk: 'Zavolať teraz',
+    de: 'Jetzt anrufen'
+  },
+  readyToStart: {
+    pl: 'Gotowy na start?',
+    en: 'Ready to start?',
+    cs: 'Připraven začít?',
+    sk: 'Pripravený začať?',
+    de: 'Bereit anzufangen?'
+  },
 
   // Form elements
   fullName: {
@@ -329,6 +451,13 @@ export const translations = {
   },
 
   // Admin panel
+  adminPanel: {
+    pl: 'Panel administratora',
+    en: 'Admin panel',
+    cs: 'Administrační panel',
+    sk: 'Administračný panel',
+    de: 'Admin-Panel'
+  },
   compactTableView: {
     pl: 'Widok kompaktowej tabeli',
     en: 'Compact table view',
@@ -533,11 +662,49 @@ export const translations = {
     cs: 'Prosím uveďte e-mailovou adresu nebo telefonní číslo.',
     sk: 'Prosím uveďte e-mailovú adresu alebo telefónne číslo.',
     de: 'Bitte geben Sie eine E-Mail-Adresse oder Telefonnummer an.'
+  },
+
+  // Error pages
+  pageNotFound: {
+    pl: 'Strona nie została znaleziona',
+    en: 'Page not found',
+    cs: 'Stránka nenalezena',
+    sk: 'Stránka nenájdená',
+    de: 'Seite nicht gefunden'
+  },
+  returnToHome: {
+    pl: 'Wróć do strony głównej',
+    en: 'Return to home',
+    cs: 'Návrat na domovskou stránku',
+    sk: 'Návrat na domovskú stránku',
+    de: 'Zurück zur Startseite'
+  },
+  productNotFound: {
+    pl: 'Produkt nie został znaleziony',
+    en: 'Product not found',
+    cs: 'Produkt nenalezen',
+    sk: 'Produkt nenájdený',
+    de: 'Produkt nicht gefunden'
+  },
+  backToProducts: {
+    pl: 'Wróć do produktów',
+    en: 'Back to products',
+    cs: 'Zpět k produktům',
+    sk: 'Späť k produktom',
+    de: 'Zurück zu Produkten'
+  },
+
+  // Testimonials
+  customerOpinions: {
+    pl: 'Opinie klientów',
+    en: 'Customer opinions',
+    cs: 'Názory zákazníků',
+    sk: 'Názory zákazníkov',
+    de: 'Kundenmeinungen'
   }
 };
 
 export type TranslationKey = keyof typeof translations;
-export type Language = 'pl' | 'en' | 'cs' | 'sk' | 'de';
 
 export const useTranslation = (language: Language) => {
   return (key: TranslationKey): string => {
