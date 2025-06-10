@@ -5,6 +5,8 @@ import CallToAction from '@/components/ui/CallToAction';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { useProductStore } from '@/stores/productStore';
+import { Link } from 'react-router-dom';
+import { Shield } from 'lucide-react';
 
 const Products = () => {
   const { language } = useLanguage();
@@ -30,8 +32,15 @@ const Products = () => {
     <Layout>
       <section className="bg-gradient-to-b from-stakerpol-lightgray to-white py-12">
         <div className="container-custom">
-          <div className="flex justify-center items-center mb-6">
+          <div className="flex justify-between items-center mb-6">
             <h1 className="text-4xl font-bold text-center animate-fade-in text-stakerpol-navy">{t('products')}</h1>
+            <Link 
+              to="/admin" 
+              className="flex items-center text-muted-foreground hover:text-stakerpol-orange transition-colors"
+              title="Panel administracyjny"
+            >
+              <Shield size={20} />
+            </Link>
           </div>
           
           <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in">
