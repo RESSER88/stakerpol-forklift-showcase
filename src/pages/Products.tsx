@@ -36,10 +36,10 @@ const Products = () => {
             <h1 className="text-4xl font-bold text-center animate-fade-in text-stakerpol-navy">{t('products')}</h1>
             <Link 
               to="/admin" 
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-stakerpol-orange transition-colors"
+              className="flex items-center text-muted-foreground hover:text-stakerpol-orange transition-colors"
+              title="Panel administracyjny"
             >
-              <Shield size={16} />
-              {t('adminPanel')}
+              <Shield size={20} />
             </Link>
           </div>
           
