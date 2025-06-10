@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Lock } from 'lucide-react';
 
 interface AdminLoginProps {
@@ -47,9 +47,6 @@ const AdminLogin = ({ onLogin }: AdminLoginProps) => {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-center text-sm text-muted-foreground">
-          <p>Dla demo: hasło to "admin123"</p>
-        </CardFooter>
       </Card>
     </div>
   );

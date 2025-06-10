@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/types';
@@ -56,6 +56,17 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
           >
             <Link to={`/products/${product.id}`}>
               {t('specifications')}
+            </Link>
+          </Button>
+          <Button 
+            className="w-full text-sm md:text-base py-2 md:py-3"
+            variant="ghost"
+            size="sm"
+            asChild
+            title="Panel administracyjny"
+          >
+            <Link to="/admin">
+              <Shield className="h-4 w-4" />
             </Link>
           </Button>
         </div>

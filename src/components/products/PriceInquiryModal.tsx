@@ -29,12 +29,12 @@ const PriceInquiryModal = ({ isOpen, onClose, product }: PriceInquiryModalProps)
 
   const generateEmailContent = () => {
     const productDetails = [
-      `Model: ${product.model}`,
-      product.specs.productionYear && `Rok produkcji: ${product.specs.productionYear}`,
-      product.specs.serialNumber && `Numer seryjny: ${product.specs.serialNumber}`
+      `${t('model')}: ${product.model}`,
+      product.specs.productionYear && `${t('productionYear')}: ${product.specs.productionYear}`,
+      product.specs.serialNumber && `${t('serialNumber')}: ${product.specs.serialNumber}`
     ].filter(Boolean).join('\n');
 
-    const phoneInfo = phoneNumber ? `\nNumer telefonu: ${phoneNumber}` : '';
+    const phoneInfo = phoneNumber ? `\n${t('yourPhone')}: ${phoneNumber}` : '';
 
     const messages = {
       pl: `Witam,
@@ -84,8 +84,7 @@ Bitte senden Sie mir ein Preisangebot und Verfügbarkeitsinformationen.${phoneIn
 Mit freundlichen Grüßen`
     };
 
-    // Wersja w języku polskim jako backup
-    const polishVersion = `
+    const polishVersion = language !== 'pl' ? `
 
 ---
 
@@ -99,13 +98,13 @@ ${productDetails}
 
 Proszę o przesłanie oferty cenowej oraz informacji o dostępności.${phoneInfo}
 
-Pozdrawiam`;
+Pozdrawiam` : '';
 
-    return messages[language] + (language !== 'pl' ? polishVersion : '');
+    return messages[language] + polishVersion;
   };
 
   const handleEmailRedirect = () => {
-    const subject = encodeURIComponent(`Zapytanie o cenę - ${product.model}`);
+    const subject = encodeURIComponent(`${t('priceInquiry')} - ${product.model}`);
     const body = encodeURIComponent(generateEmailContent());
     const mailtoLink = `mailto:info@stakerpol.pl?subject=${subject}&body=${body}`;
     
@@ -113,7 +112,7 @@ Pozdrawiam`;
     
     toast({
       title: t('success'),
-      description: 'Przekierowanie do programu pocztowego',
+      description: t('emailRedirectSuccess'),
     });
     
     onClose();
@@ -128,7 +127,7 @@ Pozdrawiam`;
             {t('askForPrice')}
           </DialogTitle>
           <DialogDescription>
-            Zostaniesz przekierowany do domyślnego programu pocztowego z przygotowaną wiadomością.
+            {t('emailRedirectDescription')}
           </DialogDescription>
         </DialogHeader>
         
@@ -137,28 +136,28 @@ Pozdrawiam`;
             <h4 className="font-semibold mb-2">{t('productModel')}:</h4>
             <p className="text-sm">{product.model}</p>
             {product.specs.productionYear && (
-              <p className="text-sm mt-1">Rok produkcji: {product.specs.productionYear}</p>
+              <p className="text-sm mt-1">{t('productionYear')}: {product.specs.productionYear}</p>
             )}
             {product.specs.serialNumber && (
-              <p className="text-sm mt-1">Numer seryjny: {product.specs.serialNumber}</p>
+              <p className="text-sm mt-1">{t('serialNumber')}: {product.specs.serialNumber}</p>
             )}
           </div>
 
           <div className="space-y-2">
             <label htmlFor="phone" className="text-sm font-medium">
-              Numer telefonu (opcjonalnie)
+              {t('phoneNumberOptional')}
             </label>
             <Input
               id="phone"
               type="tel"
-              placeholder="np. +48 123 456 789"
+              placeholder={t('phoneNumberPlaceholder')}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
           
           <div className="bg-blue-50 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">E-mail:</h4>
+            <h4 className="font-semibold mb-2">{t('email')}:</h4>
             <p className="text-sm font-mono">info@stakerpol.pl</p>
           </div>
           
@@ -168,7 +167,7 @@ Pozdrawiam`;
               className="flex-1"
             >
               <Mail className="mr-2 h-4 w-4" />
-              Otwórz program pocztowy
+              {t('openEmailClient')}
             </Button>
             <Button
               type="button"

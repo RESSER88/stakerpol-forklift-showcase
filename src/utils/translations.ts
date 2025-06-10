@@ -1,4 +1,3 @@
-
 export type Language = 'pl' | 'en' | 'cs' | 'sk' | 'de';
 
 export const translations = {
@@ -144,7 +143,7 @@ export const translations = {
     pl: 'Zapewniamy szybką i bezpieczną dostawę na terenie całej Polski',
     en: 'We provide fast and safe delivery throughout Poland',
     cs: 'Poskytujeme rychlé a bezpečné dodání po celém Polsku',
-    sk: 'Poskytujeme rýchle a bezpečné dodanie po celom Poľsku',
+    sk: 'Poskytujeme rychlé a bezpečné dodanie po celom Poľsku',
     de: 'Wir bieten schnelle und sichere Lieferung in ganz Polen'
   },
   advantagesConsultation: {
@@ -579,6 +578,50 @@ export const translations = {
   },
 
   // Price inquiry
+  priceInquiry: {
+    pl: 'Zapytanie o cenę',
+    en: 'Price inquiry',
+    cs: 'Cenový dotaz',
+    sk: 'Cenový dopyt',
+    de: 'Preisanfrage'
+  },
+  emailRedirectDescription: {
+    pl: 'Zostaniesz przekierowany do domyślnego programu pocztowego z przygotowaną wiadomością.',
+    en: 'You will be redirected to your default email client with a prepared message.',
+    cs: 'Budete přesměrováni do výchozího e-mailového klienta s připravenou zprávou.',
+    sk: 'Budete presmerovaní do predvoleného e-mailového klienta s pripravenou správou.',
+    de: 'Sie werden zu Ihrem Standard-E-Mail-Programm mit einer vorbereiteten Nachricht weitergeleitet.'
+  },
+  emailRedirectSuccess: {
+    pl: 'Przekierowanie do programu pocztowego',
+    en: 'Redirect to email client',
+    cs: 'Přesměrování do e-mailového klienta',
+    sk: 'Presmerovanie do e-mailového klienta',
+    de: 'Weiterleitung zum E-Mail-Programm'
+  },
+  phoneNumberOptional: {
+    pl: 'Numer telefonu (opcjonalnie)',
+    en: 'Phone number (optional)',
+    cs: 'Telefonní číslo (volitelně)',
+    sk: 'Telefónne číslo (voliteľne)',
+    de: 'Telefonnummer (optional)'
+  },
+  phoneNumberPlaceholder: {
+    pl: 'np. +48 123 456 789',
+    en: 'e.g. +48 123 456 789',
+    cs: 'např. +48 123 456 789',
+    sk: 'napr. +48 123 456 789',
+    de: 'z.B. +48 123 456 789'
+  },
+  openEmailClient: {
+    pl: 'Otwórz program pocztowy',
+    en: 'Open email client',
+    cs: 'Otevřít e-mailový klient',
+    sk: 'Otvoriť e-mailový klient',
+    de: 'E-Mail-Programm öffnen'
+  },
+
+  // Price inquiry specific translations
   priceInquiryFormIntro: {
     pl: 'Wypełnij formularz, aby otrzymać ofertę cenową dla wybranego produktu.',
     en: 'Fill out the form to receive a price quote for the selected product.',

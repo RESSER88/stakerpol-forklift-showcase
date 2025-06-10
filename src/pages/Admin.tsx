@@ -13,7 +13,7 @@ const Admin = () => {
   const handleLogin = (password: string) => {
     // W prawdziwym systemie powinieneś używać bezpiecznej metody uwierzytelniania
     // To jest tylko proste demo dla wizualizacji
-    if (password === "admin123") {
+    if (password === "Kacperek2024") {
       setIsAuthenticated(true);
       toast({
         title: "Zalogowano pomyślnie",
