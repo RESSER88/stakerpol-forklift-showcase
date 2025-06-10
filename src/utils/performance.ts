@@ -14,7 +14,7 @@ export const measurePerformance = {
         domProcessing: navigation.domContentLoadedEventStart - navigation.responseEnd,
         domComplete: navigation.loadEventStart - navigation.domContentLoadedEventStart,
         loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
-        total: navigation.loadEventEnd - navigation.navigationStart
+        total: navigation.loadEventEnd - navigation.fetchStart
       };
     }
     return null;
@@ -62,7 +62,10 @@ export const trackWebVitals = () => {
     // Track First Input Delay (FID)
     new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
-        console.log('FID:', entry.processingStart - entry.startTime);
+        const fidEntry = entry as any; // Type assertion for FID specific properties
+        if (fidEntry.processingStart) {
+          console.log('FID:', fidEntry.processingStart - entry.startTime);
+        }
       }
     }).observe({ entryTypes: ['first-input'] });
 
@@ -70,8 +73,9 @@ export const trackWebVitals = () => {
     let clsValue = 0;
     new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
+        const clsEntry = entry as any; // Type assertion for CLS specific properties
+        if (clsEntry.hadRecentInput !== undefined && !clsEntry.hadRecentInput && clsEntry.value) {
+          clsValue += clsEntry.value;
         }
       }
       console.log('CLS:', clsValue);
