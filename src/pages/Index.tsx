@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
-import WhyChooseUs from '@/components/ui/WhyChooseUs';
 import { useProductStore } from '@/stores/productStore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
@@ -73,13 +72,10 @@ const Index = () => {
         <div className="container-custom">
           <h2 className="section-title text-center">{t('aboutUsTitle')}</h2>
           <p className="section-subtitle text-center max-w-3xl mx-auto">
-            {t('aboutUsDesc')}
+            Stakerpol to rodzinna firma działająca od 2008 roku, która powstała z pasji i chęci budowania wartościowych relacji w biznesie. Naszą działalność opieramy na trzech filarach: Partnerstwie, Pasji i Profesjonalizmie. Specjalizujemy się w sprzedaży używanych elektrycznych wózków paletowych Toyota BT SWE 200D, oferując różne konfiguracje dopasowane do potrzeb magazynowych. Zapewniamy najwyższą jakość sprzętu, profesjonalne doradztwo i autentyczne zaangażowanie w każdą współpracę. Dla nas najważniejszy jest szacunek do Klienta i długofalowe relacje oparte na wzajemnym zaufaniu.
           </p>
         </div>
       </section>
-
-      {/* Why Choose Us Section */}
-      <WhyChooseUs />
 
       {/* Featured Products Section */}
       <section className="section-padding bg-gray-50">
