@@ -33,7 +33,7 @@ const Products = () => {
       <section className="bg-gradient-to-b from-stakerpol-lightgray to-white py-12">
         <div className="container-custom">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-4xl font-bold text-center animate-fade-in text-stakerpol-navy">{t('products')}</h1>
+            <h1 className="text-4xl font-bold text-center animate-fade-in text-stakerpol-navy">Wózki elektryczne</h1>
             <Link 
               to="/admin" 
               className="flex items-center text-muted-foreground hover:text-stakerpol-orange transition-colors"

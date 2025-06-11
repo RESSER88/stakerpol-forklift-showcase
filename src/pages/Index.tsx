@@ -1,5 +1,5 @@
+
 import { Link } from 'react-router-dom';
-import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
@@ -75,39 +75,6 @@ const Index = () => {
           <p className="section-subtitle text-center max-w-3xl mx-auto">
             {t('aboutUsDesc')}
           </p>
-          
-          <h3 className="text-2xl font-bold mt-12 mb-8 text-center">{t('aboutUsAdvantages')}</h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in border border-gray-100">
-              <div className="w-16 h-16 bg-stakerpol-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Truck className="h-8 w-8 text-white" />
-              </div>
-              <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesDelivery')}</h4>
-              <p className="text-gray-600">
-                {t('advantagesDeliveryDesc')}
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in delay-100 border border-gray-100">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Headphones className="h-8 w-8 text-white" />
-              </div>
-              <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesConsultation')}</h4>
-              <p className="text-gray-600">
-                {t('advantagesConsultationDesc')}
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in delay-200 border border-gray-100">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Clock className="h-8 w-8 text-white" />
-              </div>
-              <h4 className="text-xl font-bold mb-3 text-stakerpol-navy">{t('advantagesAvailability')}</h4>
-              <p className="text-gray-600">
-                {t('advantagesAvailabilityDesc')}
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
