@@ -1,10 +1,10 @@
-
 import { Link } from 'react-router-dom';
 import { Truck, Headphones, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
+import WhyChooseUs from '@/components/ui/WhyChooseUs';
 import { useProductStore } from '@/stores/productStore';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
@@ -110,6 +110,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
 
       {/* Featured Products Section */}
       <section className="section-padding bg-gray-50">
