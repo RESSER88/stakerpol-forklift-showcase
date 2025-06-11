@@ -1,24 +1,24 @@
 
-import { Truck, Clock, Handshake } from 'lucide-react';
+import { ShieldCheck, CheckCircle, Award } from 'lucide-react';
 
 const WhyChooseUs = () => {
   const features = [
     {
-      icon: Truck,
-      title: "Szybka dostawa",
-      description: "Błyskawiczna realizacja zamówień dzięki szerokiej dostępności magazynowej",
+      icon: ShieldCheck,
+      title: "Gwarancja Jakości",
+      description: "Każdy wózek to sprawdzony sprzęt z gwarancją jakości. Testy, regeneracja baterii i bezpieczeństwo – to nasz standard.",
       color: "bg-stakerpol-orange"
     },
     {
-      icon: Clock,
-      title: "Profesjonalne doradztwo", 
-      description: "Doświadczeni eksperci pomogą wybrać idealny sprzęt dla Twoich potrzeb",
+      icon: CheckCircle,
+      title: "Kupuj bez ryzyka", 
+      description: "Nie sprzedajemy przypadkowych maszyn – oferujemy rozwiązania, które działają.",
       color: "bg-blue-600"
     },
     {
-      icon: Handshake,
-      title: "Używane wózki od ręki",
-      description: "Sprawdzone i serwisowane maszyny gotowe do natychmiastowego użycia",
+      icon: Award,
+      title: "Doświadczenie od 2008 roku",
+      description: "Przez lata zdobyliśmy zaufanie setek firm, dostarczając sprawdzone rozwiązania do magazynów w całej Polsce i Europie.",
       color: "bg-green-600"
     }
   ];
