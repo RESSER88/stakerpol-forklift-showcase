@@ -1,24 +1,29 @@
 
 import { ShieldCheck, CheckCircle, Award } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/utils/translations';
 
 const WhyChooseUs = () => {
+  const { language } = useLanguage();
+  const t = useTranslation(language);
+
   const features = [
     {
       icon: ShieldCheck,
-      title: "Gwarancja Jakości",
-      description: "Każdy wózek to sprawdzony sprzęt z gwarancją jakości. Testy, regeneracja baterii i bezpieczeństwo – to nasz standard.",
+      title: t('qualityGuaranteeTitle'),
+      description: t('qualityGuaranteeDesc'),
       color: "bg-stakerpol-orange"
     },
     {
       icon: CheckCircle,
-      title: "Kupuj bez ryzyka", 
-      description: "Nie sprzedajemy przypadkowych maszyn – oferujemy rozwiązania, które działają.",
+      title: t('riskFreeTitle'), 
+      description: t('riskFreeDesc'),
       color: "bg-blue-600"
     },
     {
       icon: Award,
-      title: "Doświadczenie od 2008 roku",
-      description: "Przez lata zdobyliśmy zaufanie setek firm, dostarczając sprawdzone rozwiązania do magazynów w całej Polsce i Europie.",
+      title: t('experienceTitle'),
+      description: t('experienceDesc'),
       color: "bg-green-600"
     }
   ];
@@ -27,7 +32,7 @@ const WhyChooseUs = () => {
     <section className="py-16 bg-white">
       <div className="container-custom">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-stakerpol-navy">
-          Nasze zalety
+          {t('advantagesTitle')}
         </h2>
         
         <div className="grid md:grid-cols-3 gap-8">

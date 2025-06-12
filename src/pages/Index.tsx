@@ -37,7 +37,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 md:pr-8 animate-fade-in">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Profesjonalna sprzedaż i serwis używanych wózków paletowych BT Toyota
+                {t('heroTitle')}
               </h1>
               <p className="text-lg text-gray-300 md:text-xl">
                 {t('heroSubtitle')}
@@ -73,7 +73,7 @@ const Index = () => {
         <div className="container-custom">
           <h2 className="section-title text-center">{t('aboutUsTitle')}</h2>
           <p className="section-subtitle text-center max-w-3xl mx-auto">
-            Stakerpol to rodzinna firma działająca od 2008 roku, która powstała z pasji i chęci budowania wartościowych relacji w biznesie. Naszą działalność opieramy na trzech filarach: Partnerstwie, Pasji i Profesjonalizmie. Specjalizujemy się w sprzedaży używanych elektrycznych wózków paletowych Toyota BT SWE 200D, oferując różne konfiguracje dopasowane do potrzeb magazynowych. Zapewniamy najwyższą jakość sprzętu, profesjonalne doradztwo i autentyczne zaangażowanie w każdą współpracę. Dla nas najważniejszy jest szacunek do Klienta i długofalowe relacje oparte na wzajemnym zaufaniu.
+            {t('aboutUsDesc')}
           </p>
         </div>
       </section>
