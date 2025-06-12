@@ -1,7 +1,13 @@
-
 import { Translations } from './types';
 
 export const productsTranslations: Translations = {
+  electricTrolleys: {
+    pl: 'Wózki elektryczne',
+    en: 'Electric trolleys',
+    cs: 'Elektrické vozíky',
+    sk: 'Elektrické vozíky',
+    de: 'Elektrokarren'
+  },
   featuredProducts: {
     pl: 'Polecane produkty',
     en: 'Featured products',

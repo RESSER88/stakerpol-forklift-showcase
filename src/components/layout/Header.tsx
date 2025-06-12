@@ -31,7 +31,7 @@ const Header = () => {
               {t('home')}
             </Link>
             <Link to="/products" className="font-medium hover:text-toyota-orange transition-colors">
-              Wózki elektryczne
+              {t('electricTrolleys')}
             </Link>
             <Link to="/testimonials" className="font-medium hover:text-toyota-orange transition-colors">
               {t('testimonials')}
@@ -77,7 +77,7 @@ const Header = () => {
                 className="font-medium py-2 hover:text-toyota-orange transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Wózki elektryczne
+                {t('electricTrolleys')}
               </Link>
               <Link 
                 to="/testimonials" 
