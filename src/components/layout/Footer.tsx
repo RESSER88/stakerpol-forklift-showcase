@@ -1,5 +1,6 @@
+
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Youtube, Facebook } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 
@@ -98,14 +99,45 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Stakerpol. {
-            language === 'en' ? 'All rights reserved.' :
-            language === 'cs' ? 'Všechna práva vyhrazena.' :
-            language === 'sk' ? 'Všetky práva vyhradené.' :
-            language === 'de' ? 'Alle Rechte vorbehalten.' :
-            'Wszelkie prawa zastrzeżone.'
-          }</p>
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          {/* Social Media Icons */}
+          <div className="flex justify-center space-x-6 mb-6">
+            <a 
+              href="https://www.instagram.com/stakerpol_paleciak_elektryczny" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-gray-800 hover:bg-stakerpol-orange rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+            >
+              <Instagram size={20} className="text-white" />
+            </a>
+            <a 
+              href="https://www.youtube.com/@stakerpol" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-gray-800 hover:bg-stakerpol-orange rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+            >
+              <Youtube size={20} className="text-white" />
+            </a>
+            <a 
+              href="https://www.facebook.com/stakerpol/?locale=pl_PL" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-gray-800 hover:bg-stakerpol-orange rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+            >
+              <Facebook size={20} className="text-white" />
+            </a>
+          </div>
+          
+          {/* Copyright */}
+          <div className="text-center text-sm text-gray-400">
+            <p>&copy; {new Date().getFullYear()} Stakerpol. {
+              language === 'en' ? 'All rights reserved.' :
+              language === 'cs' ? 'Všechna práva vyhrazena.' :
+              language === 'sk' ? 'Všetky práva vyhradené.' :
+              language === 'de' ? 'Alle Rechte vorbehalten.' :
+              'Wszelkie prawa zastrzeżone.'
+            }</p>
+          </div>
         </div>
       </div>
     </footer>
