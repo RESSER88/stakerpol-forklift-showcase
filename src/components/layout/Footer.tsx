@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -13,7 +12,7 @@ const Footer = () => {
     switch (language) {
       case 'en':
         return {
-          description: 'Professional sales and service of BT Toyota forklifts.',
+          description: 'Professional sales and service of BT Toyota pallet trucks.',
           address: 'ul. Międzyleśna 115, 32-095 Celiny, Poland'
         };
       case 'cs':
@@ -23,17 +22,17 @@ const Footer = () => {
         };
       case 'sk':
         return {
-          description: 'Profesionálny predaj a servis vysokozdvižných vozíkov BT Toyota.',
+          description: 'Profesionálny predaj a servis paletových vozíkov BT Toyota.',
           address: 'ul. Międzyleśna 115, 32-095 Celiny, Poľsko'
         };
       case 'de':
         return {
-          description: 'Professioneller Verkauf und Service von BT Toyota Gabelstaplern.',
+          description: 'Professioneller Verkauf und Service von BT Toyota Palettenhubwagen.',
           address: 'ul. Międzyleśna 115, 32-095 Celiny, Polen'
         };
       default:
         return {
-          description: 'Profesjonalna sprzedaż i serwis wózków widłowych BT Toyota.',
+          description: 'Profesjonalna sprzedaż i serwis wózków paletowych BT Toyota.',
           address: 'ul. Międzyleśna 115, 32-095 Celiny, Polska'
         };
     }

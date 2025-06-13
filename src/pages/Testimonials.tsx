@@ -1,36 +1,13 @@
 
 import Layout from '@/components/layout/Layout';
-import TestimonialCard from '@/components/ui/TestimonialCard';
 import CallToAction from '@/components/ui/CallToAction';
-import { testimonials } from '@/data/mockData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
-import { getRandomItems } from '@/utils/randomUtils';
-import { useMemo } from 'react';
+import { useEffect } from 'react';
 
 const Testimonials = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
-
-  // Shuffle testimonials on each page load
-  const shuffledTestimonials = useMemo(() => {
-    return getRandomItems(testimonials, testimonials.length);
-  }, []);
-
-  const getPageDescription = () => {
-    switch (language) {
-      case 'en':
-        return 'Discover the opinions of our customers who trusted Stakerpol and chose BT Toyota forklifts.';
-      case 'cs':
-        return 'Poznejte názory našich zákazníků, kteří důvěřovali společnosti Stakerpol a vybrali si vysokozdvižné vozíky BT Toyota.';
-      case 'sk':
-        return 'Spoznajte názory našich zákazníkov, ktorí dôverovali spoločnosti Stakerpol a vybrali si vysokozdvižné vozíky BT Toyota.';
-      case 'de':
-        return 'Entdecken Sie die Meinungen unserer Kunden, die Stakerpol vertraut und BT Toyota Gabelstapler gewählt haben.';
-      default:
-        return 'Poznaj opinie naszych klientów, którzy zaufali firmie Stakerpol i wybrali wózki widłowe BT Toyota.';
-    }
-  };
 
   const getExperienceContent = () => {
     switch (language) {
@@ -69,21 +46,34 @@ const Testimonials = () => {
 
   const experienceContent = getExperienceContent();
 
+  // Load Elfsight script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script on component unmount
+      const existingScript = document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   return (
     <Layout>
       <section className="bg-gradient-to-b from-gray-100 to-white py-12 md:py-20">
         <div className="container-custom">
           <h1 className="text-4xl font-bold mb-6 text-center animate-fade-in">{t('customerOpinions')}</h1>
           <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in delay-100">
-            {getPageDescription()}
+            {t('testimonialsPageDescription')}
           </p>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {shuffledTestimonials.map((testimonial, index) => (
-              <div key={testimonial.id} style={{ animationDelay: `${index * 100}ms` }}>
-                <TestimonialCard testimonial={testimonial} />
-              </div>
-            ))}
+          {/* Google Reviews Widget */}
+          <div className="mb-16 animate-fade-in delay-200">
+            <div className="elfsight-app-79b664bd-146f-4c14-95e6-8e8fc072c9f3" data-elfsight-app-lazy></div>
           </div>
           
           <div className="mt-16 bg-white p-8 rounded-lg shadow text-center animate-fade-in">
