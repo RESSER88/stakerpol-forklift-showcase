@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { useProductStore } from '@/stores/productStore';
 import CallToAction from '@/components/ui/CallToAction';
+import ProductCard from '@/components/ui/ProductCard';
 import ProductImage from '@/components/products/ProductImage';
 import ProductInfo from '@/components/products/ProductInfo';
 import ProductHeader from '@/components/products/ProductHeader';
