@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Product } from '@/types';
-import { useProductStore } from '@/stores/productStore';
+import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 
 export const useProductManager = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -11,7 +11,7 @@ export const useProductManager = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
   const { toast } = useToast();
   
-  const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
+  const { products, addProduct, updateProduct, deleteProduct, loading } = useSupabaseProducts();
   
   const defaultNewProduct: Product = {
     id: '',
@@ -61,12 +61,11 @@ export const useProductManager = () => {
     const timestamp = new Date().toISOString();
     const dateTimeSuffix = timestamp.replace(/[:.]/g, '-').slice(0, 19);
     
-    // Generujemy unikalny ID używając timestamp
     const uniqueId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
     const copiedProduct = {
       ...product,
-      id: uniqueId, // Używamy unikalnego ID
+      id: uniqueId,
       model: `${product.model} (kopia)`,
       specs: {
         ...product.specs,
@@ -81,13 +80,30 @@ export const useProductManager = () => {
     setIsEditDialogOpen(true);
   };
 
-  const handleDelete = (product: Product) => {
+  const handleDelete = async (product: Product) => {
     if (confirm(`Czy na pewno chcesz usunąć produkt ${product.model}?`)) {
-      deleteProduct(product.id);
-      toast({
-        title: "Produkt usunięty",
-        description: `Pomyślnie usunięto produkt ${product.model}`
-      });
+      await deleteProduct(product.id);
+    }
+  };
+
+  const handleSave = async (product: Product, images: string[]) => {
+    try {
+      if (selectedProduct && selectedProduct.id && products.find(p => p.id === selectedProduct.id)) {
+        // Aktualizacja istniejącego produktu
+        await updateProduct({...product, images}, images);
+      } else {
+        // Dodanie nowego produktu
+        await addProduct({
+          model: product.model,
+          shortDescription: product.shortDescription,
+          specs: product.specs,
+          images: images
+        }, images);
+      }
+      
+      setIsEditDialogOpen(false);
+    } catch (error) {
+      console.error('Error saving product:', error);
     }
   };
 
@@ -102,13 +118,13 @@ export const useProductManager = () => {
     setViewMode,
     products,
     defaultNewProduct,
+    loading,
     
     // Actions
     handleEdit,
     handleAdd,
     handleCopy,
     handleDelete,
-    addProduct,
-    updateProduct
+    handleSave
   };
 };

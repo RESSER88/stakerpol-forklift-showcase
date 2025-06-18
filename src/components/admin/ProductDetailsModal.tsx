@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { Product } from '@/types';
 import ProductImageManager from './ProductImageManager';
+import SupabaseProductImageManager from './SupabaseProductImageManager';
 import ProductForm from './ProductForm';
 import { useProductFormValidation } from '@/hooks/useProductFormValidation';
 
@@ -23,6 +24,7 @@ interface ProductDetailsModalProps {
   onImagesChange: (images: string[]) => void;
   onSave: (product: Product, images: string[]) => void;
   products: Product[];
+  useSupabase?: boolean;
 }
 
 const ProductDetailsModal = ({ 
@@ -33,7 +35,8 @@ const ProductDetailsModal = ({
   productImages,
   onImagesChange,
   onSave,
-  products
+  products,
+  useSupabase = false
 }: ProductDetailsModalProps) => {
   const [editedProduct, setEditedProduct] = useState<Product>(defaultNewProduct);
   const { toast } = useToast();
@@ -65,13 +68,6 @@ const ProductDetailsModal = ({
       }
 
       onSave(editedProduct, productImages);
-      
-      toast({
-        title: selectedProduct ? "Produkt zaktualizowany" : "Produkt dodany",
-        description: `Pomyślnie ${selectedProduct ? 'zaktualizowano' : 'dodano'} produkt ${editedProduct.model}`
-      });
-      
-      onClose();
     } catch (error) {
       toast({
         title: "Błąd",
@@ -87,16 +83,25 @@ const ProductDetailsModal = ({
         <DialogHeader>
           <DialogTitle className="text-lg sm:text-xl">
             {selectedProduct ? `Edytuj ${selectedProduct.model}` : 'Dodaj nowy produkt'}
+            {useSupabase && <span className="text-sm text-green-600 ml-2">(Supabase)</span>}
           </DialogTitle>
         </DialogHeader>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 py-4 sm:py-6">
           <div className="space-y-4 sm:space-y-6">
-            <ProductImageManager
-              onImagesChange={onImagesChange}
-              maxImages={10}
-              currentImages={productImages}
-            />
+            {useSupabase ? (
+              <SupabaseProductImageManager
+                onImagesChange={onImagesChange}
+                maxImages={10}
+                currentImages={productImages}
+              />
+            ) : (
+              <ProductImageManager
+                onImagesChange={onImagesChange}
+                maxImages={10}
+                currentImages={productImages}
+              />
+            )}
           </div>
           
           <ProductForm
