@@ -1,19 +1,13 @@
 
 import { Button } from '@/components/ui/button';
-import { Plus, Grid, Table as TableIcon, Database, Trash2 } from 'lucide-react';
+import { Plus, Grid, Table as TableIcon, Database } from 'lucide-react';
 import { useProductManager } from '@/hooks/useProductManager';
 import ProductList from './ProductList';
 import ProductDetailsModal from './ProductDetailsModal';
-import SupabaseMigrator from './SupabaseMigrator';
-import { useProductStore } from '@/stores/productStore';
-import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 import { useState } from 'react';
 
 const ProductManager = () => {
-  const [showMigrator, setShowMigrator] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
-  const { products: localProducts } = useProductStore();
-  const { deleteAllProducts, bulkAddProducts } = useSupabaseProducts();
   
   const {
     isEditDialogOpen,
@@ -31,10 +25,7 @@ const ProductManager = () => {
     handleSave
   } = useProductManager();
 
-  // Sprawdź czy są dane lokalne do migracji
-  const hasLocalData = localProducts.length > 0;
-
-  // Lista produktów do dodania
+  // Lista produktów do dodania jako opcja resetu
   const productsList = [
     { model: "SWE 200D", serialNumber: "6428064", rok: 2016, udzwigMaszt: "1000 kg", udzwigWstepne: "2000 kg", przebieg: "3727 mth", podnoszenie: "2.10 m", minWys: "1.54 m", bateria: "210 Ah", naped: "Elektryczny", maszt: "Duplex", skokSwobodny: "brak", wymiary: "1.910 m x 0.770 m", podestSkladany: "Nie" },
     { model: "SWE 200D", serialNumber: "6502448", rok: 2017, udzwigMaszt: "1000 kg", udzwigWstepne: "2000 kg", przebieg: "3184 mth", podnoszenie: "2.10 m", minWys: "1.54 m", bateria: "210 Ah", naped: "Elektryczny", maszt: "Duplex", skokSwobodny: "brak", wymiary: "1.910 m x 0.770 m", podestSkladany: "Nie" },
@@ -53,27 +44,14 @@ const ProductManager = () => {
     { model: "SPE 160L", serialNumber: "6669279", rok: 2019, udzwigMaszt: "1600 kg", udzwigWstepne: "1600 kg", przebieg: "2000 mth", podnoszenie: "6.00 m", minWys: "2.55 m", bateria: "500 Ah", naped: "Elektryczny", maszt: "Triplex", skokSwobodny: "brak", wymiary: "2.200 m x 0.920 m", podestSkladany: "Tak" }
   ];
 
+  const { deleteAllProducts, bulkAddProducts } = require('@/hooks/useSupabaseProducts')();
+
   const handleClearAndAddProducts = async () => {
     if (confirm('Czy na pewno chcesz usunąć wszystkie produkty i dodać nową listę? Ta operacja jest nieodwracalna.')) {
       await deleteAllProducts();
       await bulkAddProducts(productsList);
     }
   };
-
-  if (showMigrator) {
-    return (
-      <div className="space-y-6">
-        <Button 
-          variant="outline" 
-          onClick={() => setShowMigrator(false)}
-          className="mb-4"
-        >
-          ← Powrót do zarządzania produktami
-        </Button>
-        <SupabaseMigrator />
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -93,19 +71,8 @@ const ProductManager = () => {
             className="mr-2"
           >
             <Database className="h-4 w-4 mr-2" />
-            Załaduj listę produktów
+            Reset produktów
           </Button>
-          
-          {hasLocalData && (
-            <Button 
-              variant="outline" 
-              onClick={() => setShowMigrator(true)}
-              className="mr-2"
-            >
-              <Database className="h-4 w-4 mr-2" />
-              Migruj dane ({localProducts.length})
-            </Button>
-          )}
           
           <div className="flex bg-gray-100 rounded-lg p-1">
             <Button

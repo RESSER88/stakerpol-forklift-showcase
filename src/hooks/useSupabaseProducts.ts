@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Product } from '@/types';
 import { useToast } from '@/hooks/use-toast';
@@ -19,8 +20,12 @@ export const useSupabaseProducts = () => {
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Cache management
+  const [lastFetch, setLastFetch] = useState(0);
+  const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
+
   // Konwersja z formatu Supabase do lokalnego formatu Product
-  const convertFromSupabase = (supabaseProduct: SupabaseProduct): Product => {
+  const convertFromSupabase = useCallback((supabaseProduct: SupabaseProduct): Product => {
     return {
       id: supabaseProduct.id,
       model: supabaseProduct.model,
@@ -31,10 +36,10 @@ export const useSupabaseProducts = () => {
       createdAt: supabaseProduct.created_at,
       updatedAt: supabaseProduct.updated_at
     };
-  };
+  }, []);
 
   // Konwersja z lokalnego formatu Product do Supabase
-  const convertToSupabase = (product: Product) => {
+  const convertToSupabase = useCallback((product: Product) => {
     return {
       id: product.id,
       model: product.model,
@@ -42,11 +47,19 @@ export const useSupabaseProducts = () => {
       image: product.images?.[0] || product.image,
       specs: product.specs
     };
-  };
+  }, []);
 
-  // Pobieranie wszystkich produktów
-  const fetchProducts = async () => {
-    console.log('Fetching products from Supabase...'); // Debug log
+  // Pobieranie wszystkich produktów z cache'em
+  const fetchProducts = useCallback(async (forceRefresh = false) => {
+    const now = Date.now();
+    
+    // Sprawdź cache
+    if (!forceRefresh && products.length > 0 && (now - lastFetch) < CACHE_DURATION) {
+      console.log('Using cached products data');
+      return;
+    }
+
+    console.log('Fetching products from Supabase...');
     setLoading(true);
     setError(null);
     
@@ -56,7 +69,7 @@ export const useSupabaseProducts = () => {
         .select('*')
         .order('created_at', { ascending: false });
 
-      console.log('Supabase response:', { data, error: fetchError }); // Debug log
+      console.log('Supabase response:', { data, error: fetchError });
 
       if (fetchError) {
         console.error('Supabase fetch error:', fetchError);
@@ -86,8 +99,9 @@ export const useSupabaseProducts = () => {
         })
       );
 
-      console.log('Converted products:', productsWithImages); // Debug log
+      console.log('Converted products:', productsWithImages);
       setProducts(productsWithImages);
+      setLastFetch(now);
     } catch (err: any) {
       console.error('Error fetching products:', err);
       setError(err.message || 'Nieznany błąd podczas pobierania produktów');
@@ -99,10 +113,10 @@ export const useSupabaseProducts = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [products.length, lastFetch, convertFromSupabase, toast]);
 
   // Dodawanie produktu
-  const addProduct = async (product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>, images: string[] = []) => {
+  const addProduct = useCallback(async (product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>, images: string[] = []) => {
     try {
       const newProduct = {
         ...convertToSupabase({
@@ -132,7 +146,7 @@ export const useSupabaseProducts = () => {
         await supabase.from('product_images').insert(imageInserts);
       }
 
-      await fetchProducts();
+      await fetchProducts(true);
       
       toast({
         title: "Sukces",
@@ -145,10 +159,10 @@ export const useSupabaseProducts = () => {
         variant: "destructive"
       });
     }
-  };
+  }, [convertToSupabase, fetchProducts, toast]);
 
   // Aktualizacja produktu
-  const updateProduct = async (product: Product, images: string[] = []) => {
+  const updateProduct = useCallback(async (product: Product, images: string[] = []) => {
     try {
       const { error } = await supabase
         .from('products')
@@ -170,7 +184,7 @@ export const useSupabaseProducts = () => {
         await supabase.from('product_images').insert(imageInserts);
       }
 
-      await fetchProducts();
+      await fetchProducts(true);
       
       toast({
         title: "Sukces",
@@ -183,10 +197,10 @@ export const useSupabaseProducts = () => {
         variant: "destructive"
       });
     }
-  };
+  }, [convertToSupabase, fetchProducts, toast]);
 
   // Usuwanie produktu
-  const deleteProduct = async (id: string) => {
+  const deleteProduct = useCallback(async (id: string) => {
     try {
       const { error } = await supabase
         .from('products')
@@ -195,7 +209,7 @@ export const useSupabaseProducts = () => {
 
       if (error) throw error;
 
-      await fetchProducts();
+      await fetchProducts(true);
       
       toast({
         title: "Sukces",
@@ -208,10 +222,10 @@ export const useSupabaseProducts = () => {
         variant: "destructive"
       });
     }
-  };
+  }, [fetchProducts, toast]);
 
   // Usuwanie wszystkich produktów
-  const deleteAllProducts = async () => {
+  const deleteAllProducts = useCallback(async () => {
     try {
       // Usuń wszystkie obrazy produktów
       await supabase.from('product_images').delete().neq('id', '00000000-0000-0000-0000-000000000000');
@@ -224,7 +238,7 @@ export const useSupabaseProducts = () => {
 
       if (error) throw error;
 
-      await fetchProducts();
+      await fetchProducts(true);
       
       toast({
         title: "Sukces",
@@ -237,10 +251,10 @@ export const useSupabaseProducts = () => {
         variant: "destructive"
       });
     }
-  };
+  }, [fetchProducts, toast]);
 
   // Bulk dodawanie produktów
-  const bulkAddProducts = async (productsList: any[]) => {
+  const bulkAddProducts = useCallback(async (productsList: any[]) => {
     try {
       const defaultImage = "/lovable-uploads/c6b103db-0f96-4137-9911-80b50af35519.png";
       
@@ -287,7 +301,7 @@ export const useSupabaseProducts = () => {
         }]);
       }
 
-      await fetchProducts();
+      await fetchProducts(true);
       
       toast({
         title: "Sukces",
@@ -300,14 +314,13 @@ export const useSupabaseProducts = () => {
         variant: "destructive"
       });
     }
-  };
+  }, [fetchProducts, toast]);
 
-  // Nasłuchiwanie zmian real-time z poprawną obsługą kanału
+  // Optimized realtime subscription
   useEffect(() => {
     fetchProducts();
 
-    // Używamy unikalnej nazwy kanału z timestamp, aby uniknąć konfliktów
-    const channelName = `products-changes-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const channelName = `products-${Date.now()}`;
     
     const channel = supabase
       .channel(channelName)
@@ -315,17 +328,17 @@ export const useSupabaseProducts = () => {
         event: '*',
         schema: 'public',
         table: 'products'
-      }, () => {
-        console.log('Real-time update detected, refetching products...');
-        fetchProducts();
+      }, (payload) => {
+        console.log('Real-time update detected:', payload);
+        // Delay refetch to allow for consistency
+        setTimeout(() => fetchProducts(true), 500);
       })
       .subscribe();
 
     return () => {
-      // Poprawne czyszczenie kanału
       channel.unsubscribe();
     };
-  }, []);
+  }, [fetchProducts]);
 
   return {
     products,
@@ -336,6 +349,6 @@ export const useSupabaseProducts = () => {
     deleteProduct,
     deleteAllProducts,
     bulkAddProducts,
-    refetch: fetchProducts
+    refetch: () => fetchProducts(true)
   };
 };

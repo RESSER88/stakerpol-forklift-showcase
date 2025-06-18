@@ -96,7 +96,7 @@ export const useProductManager = () => {
         await addProduct({
           model: product.model,
           shortDescription: product.shortDescription,
-          image: images[0] || '', // Dodaj brakującą właściwość image
+          image: images[0] || '',
           specs: product.specs,
           images: images
         }, images);
