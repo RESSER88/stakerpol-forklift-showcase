@@ -12,7 +12,6 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { Pencil, Trash2, Image, Copy, ExternalLink } from 'lucide-react';
 import { Product } from '@/types';
-import CompactProductTable from './CompactProductTable';
 
 interface ProductListProps {
   products: Product[];
@@ -32,15 +31,6 @@ const ProductList = ({ products, viewMode, onEdit, onCopy, onDelete }: ProductLi
   const handleModelClick = (productId: string) => {
     navigate(`/products/${productId}`);
   };
-
-  if (viewMode === 'table') {
-    return (
-      <CompactProductTable 
-        onEdit={onEdit}
-        onCopy={onCopy}
-      />
-    );
-  }
 
   return (
     <Card>

@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 const ProductManager = () => {
   const [showMigrator, setShowMigrator] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
   const { products: localProducts } = useProductStore();
   
   const {
@@ -18,8 +19,6 @@ const ProductManager = () => {
     selectedProduct,
     productImages,
     setProductImages,
-    viewMode,
-    setViewMode,
     products,
     defaultNewProduct,
     loading,
@@ -52,7 +51,7 @@ const ProductManager = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-stakerpol-navy">Zarządzanie Produktami (Supabase)</h2>
+          <h2 className="text-2xl font-bold text-stakerpol-navy">Zarządzanie Produktami</h2>
           <p className="text-sm text-muted-foreground mt-1">
             Łącznie produktów w bazie: <span className="font-semibold text-stakerpol-orange">{products.length}</span>
             {loading && <span className="ml-2 text-blue-600">⟳ Ładowanie...</span>}

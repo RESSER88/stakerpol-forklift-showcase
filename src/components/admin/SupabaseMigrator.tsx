@@ -33,12 +33,33 @@ const SupabaseMigrator = () => {
       for (let i = 0; i < localProducts.length; i++) {
         const product = localProducts[i];
         
-        // Przygotuj produkt do migracji
+        // Przygotuj produkt do migracji z pełną specyfikacją
         const productToMigrate = {
           model: product.model,
           shortDescription: product.shortDescription || '',
-          image: product.images?.[0] || product.image || '', // Dodaj brakującą właściwość image
-          specs: product.specs || {},
+          image: product.images?.[0] || product.image || '',
+          specs: {
+            productionYear: product.specs?.productionYear || '',
+            mastLiftingCapacity: product.specs?.mastLiftingCapacity || '',
+            preliminaryLiftingCapacity: product.specs?.preliminaryLiftingCapacity || '',
+            workingHours: product.specs?.workingHours || '',
+            liftHeight: product.specs?.liftHeight || '',
+            minHeight: product.specs?.minHeight || '',
+            preliminaryLifting: product.specs?.preliminaryLifting || '',
+            battery: product.specs?.battery || '',
+            condition: product.specs?.condition || '',
+            serialNumber: product.specs?.serialNumber || '',
+            driveType: product.specs?.driveType || '',
+            mast: product.specs?.mast || '',
+            freeStroke: product.specs?.freeStroke || '',
+            dimensions: product.specs?.dimensions || '',
+            wheels: product.specs?.wheels || '',
+            operatorPlatform: product.specs?.operatorPlatform || '',
+            additionalOptions: product.specs?.additionalOptions || '',
+            additionalDescription: product.specs?.additionalDescription || '',
+            capacity: product.specs?.capacity || '',
+            charger: product.specs?.charger || ''
+          },
           images: product.images || [product.image].filter(Boolean)
         };
 
