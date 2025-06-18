@@ -5,7 +5,7 @@ import Layout from '@/components/layout/Layout';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
 import WhyChooseUs from '@/components/ui/WhyChooseUs';
-import { useProductStore } from '@/stores/productStore';
+import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { getRandomItems } from '@/utils/randomUtils';
@@ -14,7 +14,7 @@ import { useMemo } from 'react';
 const Index = () => {
   const { language } = useLanguage();
   const t = useTranslation(language);
-  const { products } = useProductStore();
+  const { products } = useSupabaseProducts();
 
   // Get 4 random products on each page load
   const featuredProducts = useMemo(() => {

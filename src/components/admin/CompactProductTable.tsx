@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -14,7 +13,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Download, FileImage, Search, Copy, Pencil, Trash2, ExternalLink } from 'lucide-react';
 import { Product } from '@/types';
-import { useProductStore } from '@/stores/productStore';
+import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { useToast } from '@/hooks/use-toast';
@@ -30,7 +29,7 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
   const { language } = useLanguage();
   const t = useTranslation(language);
   const { toast } = useToast();
-  const { products, deleteProduct } = useProductStore();
+  const { products, deleteProduct } = useSupabaseProducts();
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredProducts = useMemo(() => {
@@ -44,9 +43,9 @@ const CompactProductTable = ({ onEdit, onCopy }: CompactProductTableProps) => {
     );
   }, [products, searchTerm]);
 
-  const handleDelete = (product: Product) => {
+  const handleDelete = async (product: Product) => {
     if (confirm(`Czy na pewno chcesz usunąć produkt ${product.model}?`)) {
-      deleteProduct(product.id);
+      await deleteProduct(product.id);
       toast({
         title: "Produkt usunięty",
         description: `Pomyślnie usunięto produkt ${product.model}`
