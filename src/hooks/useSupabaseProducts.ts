@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Product } from '@/types';
@@ -303,12 +302,15 @@ export const useSupabaseProducts = () => {
     }
   };
 
-  // Nasłuchiwanie zmian real-time
+  // Nasłuchiwanie zmian real-time z poprawną obsługą kanału
   useEffect(() => {
     fetchProducts();
 
+    // Używamy unikalnej nazwy kanału z timestamp, aby uniknąć konfliktów
+    const channelName = `products-changes-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
     const channel = supabase
-      .channel('products-changes')
+      .channel(channelName)
       .on('postgres_changes', {
         event: '*',
         schema: 'public',
@@ -320,7 +322,8 @@ export const useSupabaseProducts = () => {
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      // Poprawne czyszczenie kanału
+      channel.unsubscribe();
     };
   }, []);
 
