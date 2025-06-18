@@ -16,7 +16,7 @@ interface SupabaseProduct {
 
 export const useSupabaseProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
@@ -47,20 +47,32 @@ export const useSupabaseProducts = () => {
 
   // Pobieranie wszystkich produktów
   const fetchProducts = async () => {
+    console.log('Fetching products from Supabase...'); // Debug log
     setLoading(true);
     setError(null);
     
     try {
-      const { data, error } = await supabase
+      const { data, error: fetchError } = await supabase
         .from('products')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      console.log('Supabase response:', { data, error: fetchError }); // Debug log
+
+      if (fetchError) {
+        console.error('Supabase fetch error:', fetchError);
+        throw fetchError;
+      }
+
+      if (!data) {
+        console.log('No data returned from Supabase');
+        setProducts([]);
+        return;
+      }
 
       // Pobierz obrazy dla każdego produktu
       const productsWithImages = await Promise.all(
-        (data || []).map(async (product) => {
+        data.map(async (product) => {
           const { data: images } = await supabase
             .from('product_images')
             .select('image_url')
@@ -69,18 +81,20 @@ export const useSupabaseProducts = () => {
 
           const convertedProduct = convertFromSupabase(product);
           convertedProduct.images = images?.map(img => img.image_url) || [];
-          convertedProduct.image = convertedProduct.images[0] || '';
+          convertedProduct.image = convertedProduct.images[0] || convertedProduct.image || '';
           
           return convertedProduct;
         })
       );
 
+      console.log('Converted products:', productsWithImages); // Debug log
       setProducts(productsWithImages);
     } catch (err: any) {
-      setError(err.message);
+      console.error('Error fetching products:', err);
+      setError(err.message || 'Nieznany błąd podczas pobierania produktów');
       toast({
         title: "Błąd",
-        description: "Nie udało się pobrać produktów",
+        description: "Nie udało się pobrać produktów: " + (err.message || 'Nieznany błąd'),
         variant: "destructive"
       });
     } finally {
@@ -91,14 +105,18 @@ export const useSupabaseProducts = () => {
   // Dodawanie produktu
   const addProduct = async (product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>, images: string[] = []) => {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .insert([convertToSupabase({
+      const newProduct = {
+        ...convertToSupabase({
           ...product,
           id: crypto.randomUUID(),
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
-        })])
+        })
+      };
+
+      const { data, error } = await supabase
+        .from('products')
+        .insert([newProduct])
         .select()
         .single();
 
@@ -204,6 +222,7 @@ export const useSupabaseProducts = () => {
         schema: 'public',
         table: 'products'
       }, () => {
+        console.log('Real-time update detected, refetching products...');
         fetchProducts();
       })
       .subscribe();
