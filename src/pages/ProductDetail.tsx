@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
-import { useProductStore } from '@/stores/productStore';
+import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 import CallToAction from '@/components/ui/CallToAction';
 import ProductCard from '@/components/ui/ProductCard';
 import ProductImage from '@/components/products/ProductImage';
@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { language } = useLanguage();
   const t = useTranslation(language);
-  const { products } = useProductStore();
+  const { products } = useSupabaseProducts();
   
   const product = products.find((p) => p.id === id);
   

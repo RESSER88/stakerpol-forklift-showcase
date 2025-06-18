@@ -211,6 +211,98 @@ export const useSupabaseProducts = () => {
     }
   };
 
+  // Usuwanie wszystkich produktów
+  const deleteAllProducts = async () => {
+    try {
+      // Usuń wszystkie obrazy produktów
+      await supabase.from('product_images').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      // Usuń wszystkie produkty
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000');
+
+      if (error) throw error;
+
+      await fetchProducts();
+      
+      toast({
+        title: "Sukces",
+        description: "Wszystkie produkty zostały usunięte"
+      });
+    } catch (err: any) {
+      toast({
+        title: "Błąd",
+        description: err.message,
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Bulk dodawanie produktów
+  const bulkAddProducts = async (productsList: any[]) => {
+    try {
+      const defaultImage = "/lovable-uploads/c6b103db-0f96-4137-9911-80b50af35519.png";
+      
+      for (const productData of productsList) {
+        const newProduct = {
+          model: productData.model,
+          short_description: `Stan: używany | Rok: ${productData.rok} | Nr seryjny: ${productData.serialNumber}`,
+          image: defaultImage,
+          specs: {
+            productionYear: productData.rok.toString(),
+            serialNumber: productData.serialNumber,
+            mastLiftingCapacity: productData.udzwigMaszt,
+            preliminaryLiftingCapacity: productData.udzwigWstepne,
+            workingHours: productData.przebieg,
+            liftHeight: productData.podnoszenie,
+            minHeight: productData.minWys || '',
+            preliminaryLifting: productData.skokSwobodny === 'Tak' ? 'Tak' : 'Nie',
+            battery: productData.bateria,
+            condition: 'Używany',
+            driveType: productData.naped,
+            mast: productData.maszt,
+            freeStroke: productData.skokSwobodny === 'Tak' ? 'Tak' : 'Brak',
+            dimensions: productData.wymiary,
+            wheels: '',
+            operatorPlatform: productData.podestSkladany === 'Tak' ? 'Tak' : 'Nie',
+            additionalOptions: '',
+            additionalDescription: ''
+          }
+        };
+
+        const { data, error } = await supabase
+          .from('products')
+          .insert([newProduct])
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        // Dodaj domyślny obraz
+        await supabase.from('product_images').insert([{
+          product_id: data.id,
+          image_url: defaultImage,
+          is_primary: true
+        }]);
+      }
+
+      await fetchProducts();
+      
+      toast({
+        title: "Sukces",
+        description: `Dodano ${productsList.length} produktów`
+      });
+    } catch (err: any) {
+      toast({
+        title: "Błąd",
+        description: err.message,
+        variant: "destructive"
+      });
+    }
+  };
+
   // Nasłuchiwanie zmian real-time
   useEffect(() => {
     fetchProducts();
@@ -239,6 +331,8 @@ export const useSupabaseProducts = () => {
     addProduct,
     updateProduct,
     deleteProduct,
+    deleteAllProducts,
+    bulkAddProducts,
     refetch: fetchProducts
   };
 };
