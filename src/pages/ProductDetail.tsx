@@ -6,7 +6,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
 import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 import CallToAction from '@/components/ui/CallToAction';
-import ProductCard from '@/components/ui/ProductCard';
 import ProductImage from '@/components/products/ProductImage';
 import ProductInfo from '@/components/products/ProductInfo';
 import ProductHeader from '@/components/products/ProductHeader';
@@ -42,7 +41,7 @@ const ProductDetail = () => {
     <Layout>
       <section id="product-details" className="bg-white py-12">
         <div className="container-custom">
-          <ProductHeader />
+          <ProductHeader product={product} />
           
           <div className="grid lg:grid-cols-2 gap-12">
             <ProductImage 

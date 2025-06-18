@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslation } from '@/utils/translations';
@@ -103,6 +103,18 @@ const Header = () => {
           </div>
         )}
       </div>
+      
+      {/* Discrete Admin Button - Moved to bottom left corner */}
+      <Link to="/admin">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="fixed bottom-4 left-4 z-40 bg-white/90 backdrop-blur-sm shadow-md hover:bg-stakerpol-orange hover:text-white transition-all duration-200 border border-gray-200"
+          title="Panel Administracyjny"
+        >
+          <Shield className="h-4 w-4" />
+        </Button>
+      </Link>
     </header>
   );
 };

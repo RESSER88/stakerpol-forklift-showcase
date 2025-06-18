@@ -16,9 +16,9 @@ const Index = () => {
   const t = useTranslation(language);
   const { products } = useSupabaseProducts();
 
-  // Get 4 random products on each page load
+  // Get 3 random products on each page load for better 3-column layout
   const featuredProducts = useMemo(() => {
-    return getRandomItems(products, 4);
+    return getRandomItems(products, 3);
   }, [products]);
 
   return (
@@ -81,16 +81,16 @@ const Index = () => {
       {/* Why Choose Us Section */}
       <WhyChooseUs />
 
-      {/* Featured Products Section */}
+      {/* Featured Products Section - 3 column grid */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <h2 className="section-title text-center">{t('featuredProducts')}</h2>
           <p className="text-center text-gray-600 mb-8">
             {t('featuredProductsSubtitle')}
           </p>
-          <div className="product-grid-desktop mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {featuredProducts.map((product, index) => (
-              <div key={product.id} style={{ animationDelay: `${index * 100}ms` }}>
+              <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                 <ProductCard product={product} />
               </div>
             ))}

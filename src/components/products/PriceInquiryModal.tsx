@@ -5,25 +5,29 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Phone } from 'lucide-react';
+import { Product } from '@/types';
 
 interface PriceInquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  productModel: string;
+  productModel?: string;
+  product?: Product;
 }
 
-const PriceInquiryModal = ({ isOpen, onClose, productModel }: PriceInquiryModalProps) => {
+const PriceInquiryModal = ({ isOpen, onClose, productModel, product }: PriceInquiryModalProps) => {
+  const modelName = productModel || product?.model || 'Produkt';
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    message: `Dzień dobry, interesuje mnie produkt ${productModel}. Proszę o kontakt w sprawie ceny i dostępności.`
+    message: `Dzień dobry, interesuje mnie produkt ${modelName}. Proszę o kontakt w sprawie ceny i dostępności.`
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const mailtoLink = `mailto:info@stakerpol.pl?subject=Zapytanie o ${productModel}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:info@stakerpol.pl?subject=Zapytanie o ${modelName}&body=${encodeURIComponent(
       `Imię i nazwisko: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
       `Telefon: ${formData.phone}\n\n` +
@@ -42,7 +46,7 @@ const PriceInquiryModal = ({ isOpen, onClose, productModel }: PriceInquiryModalP
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Zapytanie o cenę - {productModel}</DialogTitle>
+          <DialogTitle>Zapytanie o cenę - {modelName}</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4">
