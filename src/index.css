@@ -115,46 +115,40 @@
     @apply transition-transform duration-500 ease-in-out hover:scale-110;
   }
   
-  /* Improved responsive grid layout for better desktop presentation */
-  .product-grid-desktop {
-    @apply grid gap-6;
+  /* Improved responsive grid layout for 4-column products with 3:4 aspect ratio */
+  .products-grid-4col {
+    @apply grid gap-4;
     /* Mobile: 1 column */
     grid-template-columns: 1fr;
   }
   
-  /* Tablet: 2 columns with better spacing */
-  @media (min-width: 768px) {
-    .product-grid-desktop {
+  /* Small mobile: 2 columns */
+  @media (min-width: 480px) {
+    .products-grid-4col {
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+      gap: 1rem;
     }
   }
   
-  /* Desktop: 3 columns with generous spacing */
-  @media (min-width: 1024px) {
-    .product-grid-desktop {
+  /* Tablet: 3 columns */
+  @media (min-width: 768px) {
+    .products-grid-4col {
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      gap: 1.5rem;
     }
   }
   
-  /* Large desktop: 4 columns for better space utilization */
-  @media (min-width: 1200px) {
-    .product-grid-desktop {
+  /* Desktop and larger: 4 columns */
+  @media (min-width: 1024px) {
+    .products-grid-4col {
       grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      padding: 0 2rem;
+      gap: 1.5rem;
     }
   }
   
-  /* Extra large desktop: maintain 4 columns with more spacing */
-  @media (min-width: 1440px) {
-    .product-grid-desktop {
-      gap: 2.5rem;
-      padding: 0 3rem;
-    }
+  /* Product card with 3:4 aspect ratio */
+  .product-card-3-4 {
+    @apply aspect-[3/4] object-cover;
   }
   
   /* Better button spacing on mobile */
@@ -164,25 +158,6 @@
   
   .button-group.horizontal {
     @apply flex-col sm:flex-row;
-  }
-  
-  /* Enhanced product card spacing for desktop */
-  @media (min-width: 1024px) {
-    .product-card-enhanced {
-      @apply mb-4;
-    }
-    
-    .product-card-enhanced .card-content {
-      @apply p-8;
-    }
-    
-    .product-card-enhanced h3 {
-      @apply text-2xl mb-4;
-    }
-    
-    .product-card-enhanced p {
-      @apply text-base leading-relaxed mb-6;
-    }
   }
   
   /* Desktop constraints for product detail images */

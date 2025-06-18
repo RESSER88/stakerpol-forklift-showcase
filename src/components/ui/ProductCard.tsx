@@ -80,7 +80,7 @@ const ProductCard = ({ product, viewMode = 'grid' }: ProductCardProps) => {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative">
-        <div className="aspect-[4/3] overflow-hidden">
+        <div className="aspect-[3/4] overflow-hidden">
           <LazyImage
             src={mainImage}
             alt={product.model}
