@@ -37,6 +37,7 @@ const SupabaseMigrator = () => {
         const productToMigrate = {
           model: product.model,
           shortDescription: product.shortDescription || '',
+          image: product.images?.[0] || product.image || '', // Dodaj brakującą właściwość image
           specs: product.specs || {},
           images: product.images || [product.image].filter(Boolean)
         };
