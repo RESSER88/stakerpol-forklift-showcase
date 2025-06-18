@@ -1,6 +1,7 @@
 
 import Layout from '@/components/layout/Layout';
 import ProductCard from '@/components/ui/ProductCard';
+import AdminShield from '@/components/admin/AdminShield';
 import { useSupabaseProducts } from '@/hooks/useSupabaseProducts';
 
 const Products = () => {
@@ -13,6 +14,7 @@ const Products = () => {
   if (loading) {
     return (
       <Layout>
+        <AdminShield />
         <section className="bg-white py-12">
           <div className="container-custom">
             <div className="text-center">
@@ -28,6 +30,7 @@ const Products = () => {
   if (error) {
     return (
       <Layout>
+        <AdminShield />
         <section className="bg-white py-12">
           <div className="container-custom">
             <div className="text-center">
@@ -42,6 +45,7 @@ const Products = () => {
 
   return (
     <Layout>
+      <AdminShield />
       <section className="bg-white py-12">
         <div className="container-custom">
           <div className="text-center mb-12">
