@@ -1,19 +1,68 @@
 
-import { Link } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useTranslation } from '@/utils/translations';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { MessageCircle } from 'lucide-react';
+import { Product } from '@/types';
+import PriceInquiryModal from './PriceInquiryModal';
 
-const ProductHeader = () => {
-  const { language } = useLanguage();
-  const t = useTranslation(language);
+interface ProductHeaderProps {
+  product: Product;
+}
+
+const ProductHeader = ({ product }: ProductHeaderProps) => {
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
 
   return (
-    <Link to="/products" className="text-stakerpol-orange hover:underline mb-6 inline-flex items-center group animate-fade-in">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 group-hover:-translate-x-1 transition-transform">
-        <path d="m15 18-6-6 6-6"/>
-      </svg>
-      Powrót do {t('electricTrolleys').toLowerCase()}
-    </Link>
+    <>
+      <div className="space-y-4">
+        <div className="flex flex-col gap-4">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold text-stakerpol-navy mb-2">
+              {product.model}
+            </h1>
+            <p className="text-lg text-gray-600">
+              {product.shortDescription}
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            {product.specs.condition && (
+              <Badge variant="secondary">
+                Stan: {product.specs.condition}
+              </Badge>
+            )}
+            {product.specs.productionYear && (
+              <Badge variant="outline">
+                Rok: {product.specs.productionYear}
+              </Badge>
+            )}
+            {product.specs.workingHours && (
+              <Badge variant="outline">
+                {product.specs.workingHours}
+              </Badge>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Contact Button - Fixed positioning, non-intrusive */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={() => setShowInquiryModal(true)}
+          className="bg-green-600 hover:bg-green-700 text-white shadow-lg rounded-full h-14 w-14 p-0"
+          title="Zapytanie o cenę"
+        >
+          <MessageCircle className="h-6 w-6" />
+        </Button>
+      </div>
+
+      <PriceInquiryModal 
+        isOpen={showInquiryModal}
+        onClose={() => setShowInquiryModal(false)}
+        productModel={product.model}
+      />
+    </>
   );
 };
 

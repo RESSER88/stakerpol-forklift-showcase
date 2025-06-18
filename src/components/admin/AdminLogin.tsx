@@ -11,10 +11,20 @@ interface AdminLoginProps {
 
 const AdminLogin = ({ onLogin }: AdminLoginProps) => {
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(password);
+    setIsLoading(true);
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500)); // Symulacja sprawdzenia
+      onLogin(password);
+    } catch (error) {
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,10 +49,15 @@ const AdminLogin = ({ onLogin }: AdminLoginProps) => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full"
                   required
+                  disabled={isLoading}
                 />
               </div>
-              <Button type="submit" className="w-full cta-button">
-                Zaloguj się
+              <Button 
+                type="submit" 
+                className="w-full cta-button"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Logowanie...' : 'Zaloguj się'}
               </Button>
             </div>
           </form>
